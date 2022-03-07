@@ -20,6 +20,8 @@ h1 {
   margin: 0px;
 }
 
+/* Background for SignIn, SignUp & Register */
+
 .background {
   background-image: url(./assets/images/library.jpg);
   position: absolute;
@@ -33,7 +35,7 @@ h1 {
 
 .card {
   width: 50%;
-  height: 80%;
+  height: fit-content;
 
   background: linear-gradient(
       135.23deg,
@@ -72,4 +74,67 @@ h1 {
   position: absolute;
   bottom: -1.2rem;
   left: 41%;
+}
+
+.icon {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+/* SignIn Form */
+
+.form {
+  margin-left: 10%;
+  margin-top: 7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.wrapper {
+  margin-bottom: 5%;
+  align-items: flex-end;
+  display: flex;
+}
+
+.inputField {
+  padding: 0.9rem 0.6rem 0.6rem;
+  width: 63%;
+  margin-left: 1.4rem;
+  margin-bottom: 0.3rem;
+  border-radius: 0.4rem;
+  border: none;
+}
+
+.auth {
+  width: 66%;
+  margin-left: 5rem;
+  margin-bottom: 5%;
+  padding: 0.5rem 0rem;
+  background-color: #09cc5c;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.auth-other {
+  width: 59%;
+  margin-left: 9rem;
+  margin-bottom: 2.3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.register {
+  color: #d17b7b;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.forgotPassword {
+  color: #ffffff;
+  font-weight: normal;
 }
