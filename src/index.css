@@ -76,6 +76,10 @@ h1 {
   left: 41%;
 }
 
+.checkMark.red path {
+  fill: #d5a496;
+}
+
 .icon {
   width: 3.5rem;
   height: 3.5rem;
@@ -137,6 +141,33 @@ h1 {
 .forgotPassword {
   color: #ffffff;
   font-weight: normal;
+  text-shadow: 0px 0.5px 10px #46785c;
   display: inline-block;
   margin: 0px;
+}
+
+/* User Registration Form */
+
+.col {
+  align-items: center;
+  margin-bottom: 5%;
+  flex-direction: column;
+  display: flex;
+}
+
+.form.new {
+  margin: auto;
+  margin-top: 7%;
+  justify-content: center;
+}
+
+.auth.new {
+  margin: auto;
+  margin-bottom: 3%;
+}
+
+.auth-other.new {
+  width: 66%;
+  margin: auto;
+  margin-bottom: 2.3rem;
 }
