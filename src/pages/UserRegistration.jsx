@@ -3,12 +3,12 @@ import { ReactComponent as CorrectIcon } from "../assets/svgs/CorrectSign.svg";
 import { ReactComponent as UserIcon } from "../assets/svgs/UserIcon.svg";
 import { ReactComponent as PasswordIcon } from "../assets/svgs/PasswordIcon.svg";
 
-const UserSignIn = () => {
+const UserRegistration = () => {
   return (
     <div className="background">
       <div className="card">
         <div className="container">
-          <h1 className="heading">SIGN IN</h1>
+          <h1 className="heading">REGISTER</h1>
           <CorrectIcon width="10rem" className="checkMark" />
         </div>
         <form className="form">
@@ -38,16 +38,16 @@ const UserSignIn = () => {
           </div>
 
           <button className="auth" type="submit">
-            LOGIN
+            REGISTER
           </button>
         </form>
         <div className="auth-other">
-          <a href="./forgot-password" className="forgotPassword">
-            forgot password
-          </a>
-          <a href="./register" className="register">
-            register
-          </a>
+          <p className="forgotPassword">
+            Already have an account?{"  "}
+            <a href="./" className="register">
+              login
+            </a>
+          </p>
         </div>
       </div>
       <img src={logo} alt="" className="logo" />
@@ -55,4 +55,4 @@ const UserSignIn = () => {
   );
 };
 
-export default UserSignIn;
+export default UserRegistration;

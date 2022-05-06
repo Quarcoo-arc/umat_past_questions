@@ -137,4 +137,6 @@ h1 {
 .forgotPassword {
   color: #ffffff;
   font-weight: normal;
+  display: inline-block;
+  margin: 0px;
 }
