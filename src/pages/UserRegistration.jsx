@@ -17,21 +17,21 @@ const UserRegistration = () => {
                 name="firstName"
                 id="firstName"
                 placeholder="First Name"
-                className="inputField"
+                className="inputField new"
               />
               <input
                 type="text"
                 name="lastName"
                 id="lastName"
                 placeholder="Last Name"
-                className="inputField"
+                className="inputField new"
               />
               <input
                 type="number"
                 name="id"
                 id="id"
                 placeholder="ID/Ref. No."
-                className="inputField"
+                className="inputField new"
               />
             </div>
             <div className="wrapper">
@@ -40,30 +40,30 @@ const UserRegistration = () => {
                 name="username"
                 id="username"
                 placeholder="Username"
-                className="inputField"
+                className="inputField new"
               />
               <input
                 type="email"
                 name="email"
                 id="email"
                 placeholder="Email"
-                className="inputField"
+                className="inputField new xlg"
               />
             </div>
-            <div className="wrapper">
+            <div className="wrapper space">
               <input
                 type="password"
                 name="password"
                 id="password"
                 placeholder="Password"
-                className="inputField"
+                className="inputField new lg"
               />
               <input
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
                 placeholder="Confirm Password"
-                className="inputField"
+                className="inputField new lg"
               />
             </div>
           </div>

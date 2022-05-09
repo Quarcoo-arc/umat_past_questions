@@ -22,6 +22,10 @@ h1 {
 
 /* Background for SignIn, SignUp & Register */
 
+button:hover {
+  cursor: pointer;
+}
+
 .background {
   background-image: url(./assets/images/library.jpg);
   position: absolute;
@@ -97,7 +101,8 @@ h1 {
 
 .wrapper {
   margin-bottom: 5%;
-  align-items: flex-end;
+  align-items: flex-start;
+  justify-content: flex-start;
   display: flex;
 }
 
@@ -149,8 +154,8 @@ h1 {
 /* User Registration Form */
 
 .col {
-  align-items: center;
-  margin-bottom: 5%;
+  margin: auto;
+  margin-bottom: 3%;
   flex-direction: column;
   display: flex;
 }
@@ -170,4 +175,24 @@ h1 {
   width: 66%;
   margin: auto;
   margin-bottom: 2.3rem;
+}
+
+.inputField.new {
+  padding: 0.9rem 1.4rem 0.6rem;
+  width: 5.5rem;
+  margin-left: 1.4rem;
+  margin-bottom: 0.3rem;
+  border-radius: 2rem;
+}
+
+.inputField.lg {
+  width: 8rem;
+}
+
+.inputField.xlg {
+  width: 9rem;
+}
+
+.wrapper.space {
+  justify-content: space-between;
 }
