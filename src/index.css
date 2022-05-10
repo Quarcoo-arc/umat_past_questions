@@ -216,3 +216,18 @@ button:hover {
 .heading.small {
   font-size: 2.7rem;
 }
+
+/* Password Reset Page */
+
+.wrapper.no-space {
+  margin-bottom: 2%;
+}
+
+.inputField.full {
+  margin-left: 0;
+}
+
+.green {
+  color: #46785c;
+  font-weight: bold;
+}
