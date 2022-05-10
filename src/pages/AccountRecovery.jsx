@@ -2,12 +2,12 @@ import logo from "../assets/images/umat-logo.png";
 import { ReactComponent as CorrectIcon } from "../assets/svgs/CorrectSign.svg";
 import { ReactComponent as EmailIcon } from "../assets/svgs/EmailIcon.svg";
 
-const PasswordRecovery = () => {
+const AccountRecovery = () => {
   return (
     <div className="background">
       <div className="card">
         <div className="container">
-          <h1 className="heading">PASSWORD RECOVERY</h1>
+          <h1 className="heading small">ACCOUNT RECOVERY</h1>
           <CorrectIcon width="10rem" className="checkMark" />
         </div>
         <form className="form new">
@@ -41,4 +41,4 @@ const PasswordRecovery = () => {
   );
 };
 
-export default PasswordRecovery;
+export default AccountRecovery;
