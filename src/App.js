@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<UserSignIn />} />
         <Route path="/register" element={<UserRegistration />} />
         <Route path="/forgot-password" element={<AccountRecovery />} />
-        <Route path="/password-reset" element={<PasswordReset />} />
+        <Route path="/password-reset/:email" element={<PasswordReset />} />
       </Routes>
     </Router>
   );

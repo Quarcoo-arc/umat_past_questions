@@ -223,6 +223,10 @@ button:hover {
   margin-bottom: 2%;
 }
 
+.wrapper.small-space {
+  margin-bottom: 4%;
+}
+
 .inputField.full {
   margin-left: 0;
 }

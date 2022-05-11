@@ -1,7 +1,10 @@
 import logo from "../assets/images/umat-logo.png";
 import { ReactComponent as CorrectIcon } from "../assets/svgs/CorrectSign.svg";
+import { useParams } from "react-router-dom";
 
 const PasswordReset = () => {
+  const params = useParams();
+  //TODO: check if email exists in database
   return (
     <div className="background">
       <div className="card">
@@ -13,7 +16,7 @@ const PasswordReset = () => {
           <div className="wrapper row-center no-space">
             <div>
               &nbsp;&nbsp;&nbsp;Password reset for{" "}
-              <span className="green">info@example.com</span>{" "}
+              <span className="green">{params.email}</span>{" "}
             </div>
           </div>
           <div className="wrapper row-center no-space">
@@ -25,7 +28,7 @@ const PasswordReset = () => {
               className="inputField new xxlg full"
             />
           </div>
-          <div className="wrapper row-center">
+          <div className="wrapper row-center small-space">
             <input
               type="password"
               name="confirm-password"
