@@ -5,6 +5,7 @@ import AccountRecovery from "./pages/AccountRecovery";
 import PasswordReset from "./pages/PasswordReset";
 import AdminSignIn from "./pages/AdminSignIn";
 import LandingPage from "./pages/LandingPage";
+import UserDashboard from "./pages/UserDashboard";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/forgot-password" element={<AccountRecovery />} />
         <Route path="/password-reset/:email" element={<PasswordReset />} />
         <Route path="/admin" element={<AdminSignIn />} />
+        <Route path="/user-dashboard" element={<UserDashboard />} />
       </Routes>
     </Router>
   );

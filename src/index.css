@@ -15,7 +15,12 @@ code {
     monospace;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Nexa Bold", "Roboto", "Ubuntu", sans-serif;
   margin: 0px;
 }
@@ -374,4 +379,12 @@ a {
 
 .logout {
   margin: 0 3.5rem;
+}
+
+h2 {
+  text-align: center;
+  letter-spacing: 0.405em;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #777777;
 }
