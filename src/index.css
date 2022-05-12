@@ -270,7 +270,6 @@ button:hover {
 }
 
 .action-top {
-  font-family: "Roboto";
   margin-top: 3rem;
   margin-right: 3rem;
   text-decoration: none;
@@ -298,7 +297,7 @@ button:hover {
 .books {
   border: none;
   margin-left: 5rem;
-  width: 50%;
+  width: 47%;
 }
 
 .col.new {
@@ -306,4 +305,73 @@ button:hover {
   text-align: center;
   font-size: 2.3rem;
   font-weight: bold;
+}
+
+.background-footer {
+  background: linear-gradient(
+    180deg,
+    rgba(211, 61, 61, 0) 0%,
+    rgba(211, 61, 61, 0.0984375) 54.17%,
+    rgba(211, 61, 61, 0.18) 100%
+  );
+  padding-bottom: 1rem;
+}
+
+.center {
+  width: fit-content;
+  margin: -1rem auto 1rem;
+  text-align: center;
+}
+
+.center p {
+  color: white;
+  text-shadow: 0px 0.5px 10px #46785c;
+  font-weight: bolder;
+  margin: 0.5rem auto;
+}
+
+.avatar {
+  margin: auto;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin: auto 0;
+}
+
+.row-footer {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  margin: auto 3rem auto 0;
+}
+
+.social {
+  margin-right: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+.red {
+  color: #c60202;
+  font-weight: bold;
+}
+
+.light-green {
+  color: #029141;
+  font-weight: bold;
+}
+
+.icon-small {
+  width: 1.8rem;
+  height: 1.8rem;
+  align-self: center;
+}
+
+.logout {
+  margin: 0 3.5rem;
 }

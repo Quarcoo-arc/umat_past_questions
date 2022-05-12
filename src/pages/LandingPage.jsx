@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import books from "../assets/images/Books.png";
+import Footer from "../components/Footer";
 
 const LandingPage = () => {
   return (
@@ -14,6 +15,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+      <Footer isLoggedIn={false} />
     </div>
   );
 };
