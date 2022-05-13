@@ -1,7 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
-import { click } from "@testing-library/user-event/dist/click";
 
 const UserDashboard = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +25,21 @@ const UserDashboard = () => {
   };
 
   const changeSemester = (event) => {
-    setFormData((prev) => ({ ...prev, semester: event.target.value }));
+    setFormData((prev) => ({
+      ...prev,
+      semester: event.target.value
+        ? event.target.value
+        : event.target.firstChild.value,
+    }));
+  };
+
+  const viewQuestions = (event) => {
+    event.preventDefault();
+    if (!(department && semester && level)) {
+      alert("Fill in the missing portions");
+    } else {
+      alert("Success!");
+    }
   };
 
   return (
@@ -246,9 +259,41 @@ const UserDashboard = () => {
               </div>
             </div>
           </div>
+          <h2>Semester</h2>
+          <div className="buttonGroup">
+            <div className="row">
+              <div className="radio-button" onClick={changeSemester}>
+                <input
+                  type="radio"
+                  name="semester"
+                  id="semester"
+                  value="1"
+                  checked={semester === "1"}
+                />
+                1ST SEMESTER
+              </div>
+              <div className="radio-button" onClick={changeSemester}>
+                <input
+                  type="radio"
+                  name="semester"
+                  id="semester"
+                  value="2"
+                  checked={semester === "2"}
+                />
+                2ND SEMESTER
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="view formButton"
+            onClick={viewQuestions}
+          >
+            VIEW QUESTIONS
+          </button>
         </form>
       </div>
-      <Footer isLoggedIn={false} />
+      <Footer isLoggedIn={true} />
     </div>
   );
 };
