@@ -24,6 +24,18 @@ const viewQuestions = () => {
             <input type="checkbox" name="question1" id="question1" />
             2021 Basic Electronics End of First Semester Exams
           </label>
+          <label htmlFor="question2" className="question">
+            <input type="checkbox" name="question2" id="question2" />
+            2021 Basic Electronics End of First Semester Exams
+          </label>
+          <label htmlFor="question3" className="question">
+            <input type="checkbox" name="question3" id="question3" />
+            2021 Basic Electronics End of First Semester Exams
+          </label>
+          <label htmlFor="question4" className="question">
+            <input type="checkbox" name="question4" id="question4" />
+            2021 Basic Electronics End of First Semester Exams
+          </label>
           <button
             type="submit"
             className="view formButton"
