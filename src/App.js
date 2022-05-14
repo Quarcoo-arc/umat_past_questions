@@ -6,6 +6,7 @@ import PasswordReset from "./pages/PasswordReset";
 import AdminSignIn from "./pages/AdminSignIn";
 import LandingPage from "./pages/LandingPage";
 import UserDashboard from "./pages/UserDashboard";
+import ViewQuestions from "./pages/ViewQuestions";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/password-reset/:email" element={<PasswordReset />} />
         <Route path="/admin" element={<AdminSignIn />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="/view-questions" element={<ViewQuestions />} />
       </Routes>
     </Router>
   );
