@@ -9,6 +9,7 @@ const AddQuestions = () => {
     semester: null,
   });
 
+  const [inputText, setInputText] = useState("No file chosen!");
   const { departments, semester, level } = formData;
 
   const changeDepartment = (event) => {
@@ -41,6 +42,18 @@ const AddQuestions = () => {
         ? event.target.value
         : event.target.firstChild.value,
     }));
+  };
+
+  const pressed = (event) => {
+    if (event.target.files.length === 0) {
+      setInputText("No file chosen!");
+    } else {
+      setInputText(
+        event.target.files.length === 1
+          ? event.target.files[0].name
+          : event.target.files.length + " files"
+      );
+    }
   };
 
   const viewQuestions = (event) => {
@@ -297,7 +310,32 @@ const AddQuestions = () => {
           {/* TODO: Create File Input and add functionality */}
           {/* TODO: Allow multiple files to be added simultaneously */}
           {/* TODO: Set rules for firestore */}
-          <input type="file" name="file" id="file" />
+          {/* <label className="file-input" htmlFor="file-input">
+            <input type="file" name="file" id="file" />
+            Upload File
+          </label> */}
+          <div className="button-wrapper">
+            <input
+              className="file-input"
+              type="file"
+              id="aa"
+              onChange={pressed}
+              multiple
+              max="10"
+            />
+            <label className="reference" for="aa">
+              CHOOSE A FILE
+            </label>
+            <label id="fileLabel">{inputText}</label>
+          </div>
+          {/* <div class="button-wrap">
+            <div class="container">
+              <label class="button" for="upload">
+                Upload File
+              </label>
+              <input id="upload" type="file" />
+            </div>
+          </div> */}
           <button
             type="submit"
             className="view formButton"
