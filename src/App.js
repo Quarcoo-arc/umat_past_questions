@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import UserDashboard from "./pages/UserDashboard";
 import ViewQuestions from "./pages/ViewQuestions";
 import AddQuestions from "./pages/AddQuestions";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/user-dashboard" element={<UserDashboard />} />
         <Route path="/view-questions" element={<ViewQuestions />} />
         <Route path="/add-questions" element={<AddQuestions />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
       </Routes>
     </Router>
   );

@@ -553,3 +553,36 @@ input[type="file"] {
   height: 10rem;
   color: transparent;
 }
+
+/* TODO: Style Checkmark symbol */
+
+/* Admin Dashboard Page  */
+
+.stats {
+  background: linear-gradient(
+      135.23deg,
+      #eaeae4 12.02%,
+      rgba(238, 232, 178, 0.72071) 33.56%,
+      rgba(145, 211, 61, 0.292715) 73.31%,
+      rgba(169, 204, 30, 0.18) 83.77%
+    ),
+    #ffffff;
+  border-radius: 19px;
+  width: 15rem;
+  height: 9rem;
+  text-align: center;
+  letter-spacing: 0.155em;
+  padding: 2rem 0;
+  box-sizing: border-box;
+}
+
+.form-select .row.new {
+  width: 75%;
+  margin: 4% auto 7%;
+}
+
+.stats h4 {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
