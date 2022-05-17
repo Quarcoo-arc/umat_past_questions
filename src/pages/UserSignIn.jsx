@@ -1,9 +1,44 @@
 import logo from "../assets/images/umat-logo.png";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "../firebase.config";
 import { ReactComponent as CorrectIcon } from "../assets/svgs/CorrectSign.svg";
 import { ReactComponent as UserIcon } from "../assets/svgs/UserIcon.svg";
 import { ReactComponent as PasswordIcon } from "../assets/svgs/PasswordIcon.svg";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserSignIn = () => {
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { email, password } = formData;
+
+  const navigate = useNavigate();
+
+  const onChange = (event) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [event.target.id]: event.target.value,
+    }));
+  };
+
+  const validateUser = async (event) => {
+    event.preventDefault();
+
+    try {
+      const auth = getAuth(app);
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      if (userCredential.user) {
+        navigate("/user-dashboard");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="background">
       <div className="card">
@@ -11,17 +46,19 @@ const UserSignIn = () => {
           <h1 className="heading">SIGN IN</h1>
           <CorrectIcon width="10rem" className="checkMark" />
         </div>
-        <form className="form">
+        <form className="form" onSubmit={validateUser}>
           <div className="wrapper">
-            <label htmlFor="username">
+            <label htmlFor="email">
               <UserIcon className="icon" />
             </label>
             <input
               type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
+              name="email"
+              id="email"
+              placeholder="Email"
               className="inputField"
+              value={email}
+              onChange={onChange}
             />
           </div>
           <div className="wrapper">
@@ -34,6 +71,8 @@ const UserSignIn = () => {
               id="password"
               placeholder="Password"
               className="inputField"
+              value={password}
+              onChange={onChange}
             />
           </div>
 

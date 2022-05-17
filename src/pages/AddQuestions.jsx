@@ -319,7 +319,7 @@ const AddQuestions = () => {
               multiple
               max="10"
             />
-            <label className="reference" for="aa">
+            <label className="reference" htmlFor="aa">
               CHOOSE A FILE
             </label>
             <label id="fileLabel">{inputText}</label>

@@ -3,24 +3,86 @@ import Footer from "../components/Footer";
 import { ReactComponent as DeleteIcon } from "../assets/svgs/DeleteIcon.svg";
 import { ReactComponent as PlusIcon } from "../assets/svgs/PlusIcon.svg";
 import { ReactComponent as DropDownArrow } from "../assets/svgs/DropDownArrow.svg";
+import { ReactComponent as SpinIcon } from "../assets/svgs/SpinIcon.svg";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
 
+  const [selected, setSelected] = useState({
+    Level: "Level",
+    Department: "Department",
+    Semester: "Semester",
+  });
+
+  const navigate = useNavigate();
+
+  const { Level, Department, Semester } = selected;
+
   const showDropdown = (event) => {
-    console.log(event.target);
-    if (event.target.matches("svg, p")) {
+    if (event.target.matches("svg")) {
       event.target.parentElement.children[
         event.target.parentElement.children.length - 1
       ].classList.toggle("active");
-    } else if (event.target.matches("div")) {
+
+      event.target.classList.toggle("rotate");
+    } else if (event.target.matches(".selected")) {
+      event.target.parentElement.children[
+        event.target.parentElement.children.length - 1
+      ].classList.toggle("active");
+
+      event.target.nextSibling.classList.toggle("rotate");
+    } else if (event.target.matches(".drop-down-container")) {
       event.target.lastElementChild.classList.toggle("active");
+
+      event.target.lastElementChild.previousSibling.classList.toggle("rotate");
     } else if (event.target.matches("path")) {
       event.target.parentElement.parentElement.children[
         event.target.parentElement.parentElement.children.length - 1
       ].classList.toggle("active");
+
+      event.target.parentElement.classList.toggle("rotate");
     }
   };
+
+  const setLevel = (event) => {
+    setSelected((prev) => ({ ...prev, Level: event.target.innerText }));
+    event.target.parentElement.parentElement.click();
+  };
+  const setDepartment = (event) => {
+    setSelected((prev) => ({ ...prev, Department: event.target.innerText }));
+    event.target.parentElement.parentElement.click();
+  };
+  const setSemester = (event) => {
+    setSelected((prev) => ({ ...prev, Semester: event.target.innerText }));
+    event.target.parentElement.parentElement.click();
+  };
+
+  const filterQuestions = (event) => {
+    //Check to see if all fields have been selected
+    if (
+      Level === "Level" ||
+      Department === "Department" ||
+      Semester === "Semester"
+    ) {
+      alert("Please select from the categories available!");
+      return;
+    }
+    if (event.target.matches("path")) {
+      event.target.parentElement.classList.add("rotate");
+      setTimeout(() => {
+        event.target.parentElement.classList.remove("rotate");
+      }, 2000);
+    } else {
+      event.target.classList.add("rotate");
+      setTimeout(() => {
+        event.target.classList.remove("rotate");
+      }, 2000);
+    }
+  };
+
+  const addNew = () => navigate("/add-questions");
 
   const courses = [
     "RENEWABLE ENGINEERING",
@@ -58,32 +120,41 @@ const AdminDashboard = () => {
             </div>
           </div>
           <div className="row new">
-            <div className="drop-down-container" onClick={showDropdown}>
-              <p>Department</p>
+            <div className="drop-down-container long" onClick={showDropdown}>
+              <p className="selected">{Department}</p>
               <DropDownArrow width="2rem" className="dropdown" />
               <div className="dropdownContent">
-                {courses.map((course) => (
-                  <p>{course}</p>
+                {courses.map((course, index) => (
+                  <p onClick={setDepartment} key={index}>
+                    {course}
+                  </p>
                 ))}
               </div>
             </div>
-            <div className="drop-down-container" onClick={showDropdown}>
-              <p>Level</p>
+            <div className="drop-down-container small" onClick={showDropdown}>
+              <p className="selected">{Level}</p>
               <DropDownArrow width="2rem" className="dropdown" />
-              <div className="dropdownContent">
-                <p>100</p>
-                <p>200</p>
-                <p>300</p>
+              <div className="dropdownContent small">
+                <p onClick={setLevel}>100</p>
+                <p onClick={setLevel}>200</p>
+                <p onClick={setLevel}>300</p>
               </div>
             </div>
-            <div className="drop-down-container" onClick={showDropdown}>
-              <p>Semester</p>
+            <div className="drop-down-container medium" onClick={showDropdown}>
+              <p className="selected">{Semester}</p>
               <DropDownArrow width="2rem" className="dropdown" />
               <div className="dropdownContent">
-                <p>1ST SEMESTER</p>
-                <p>2ND SEMESTER</p>
+                <p onClick={setSemester}>1ST SEMESTER</p>
+                <p onClick={setSemester}>2ND SEMESTER</p>
               </div>
             </div>
+            <SpinIcon
+              className="clickable"
+              width="3rem"
+              height="2.7rem"
+              onClick={filterQuestions}
+            />
+            {/* Filter icon / button : submit button for selection */}
           </div>
           {/* TODO: Create a downloadable link component for the pdfs */}
           {/* TODO: Create a state variable to be updated upon checking a checkbox */}
@@ -105,8 +176,8 @@ const AdminDashboard = () => {
           </label>
           {/* Add & Delete Buttons & Functionalities */}
           <div className="row new buttons">
-            <DeleteIcon width="3rem" />
-            <PlusIcon width="3rem" />
+            <DeleteIcon width="3rem" className="clickable" />
+            <PlusIcon width="3rem" className="clickable" onClick={addNew} />
           </div>
         </form>
       </div>

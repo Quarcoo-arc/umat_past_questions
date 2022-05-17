@@ -598,6 +598,19 @@ input[type="file"] {
   position: relative;
   background: #b1b1b1;
   border-radius: 0.8rem;
+  cursor: pointer;
+}
+
+.drop-down-container.small {
+  width: 10rem;
+}
+
+.drop-down-container.long {
+  width: 17rem;
+}
+
+.drop-down-container.medium {
+  width: 13rem;
 }
 
 .drop-down-container p {
@@ -609,6 +622,12 @@ input[type="file"] {
   position: absolute;
   right: 0.4rem;
   top: -0.25rem;
+  transition: all 1s;
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: all 1s;
 }
 
 .dropdownContent {
@@ -620,8 +639,17 @@ input[type="file"] {
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
+  padding: 4px 0px;
   z-index: 1;
+  transition: all 2s;
+}
+
+.dropdownContent.small {
+  min-width: 120px;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .active {
