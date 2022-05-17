@@ -1,12 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as AvatarIcon } from "../assets/svgs/AvatarIcon.svg";
 import { ReactComponent as UmatLogo } from "../assets/svgs/UmatLogo.svg";
 import { ReactComponent as FacebookLogo } from "../assets/svgs/FacebookLogo.svg";
 import { ReactComponent as TwitterLogo } from "../assets/svgs/TwitterLogo.svg";
 import InstagramLogo from "../assets/images/InstagramLogo.png";
 import { ReactComponent as Line } from "../assets/svgs/Line.svg";
+import { getAuth } from "firebase/auth";
 
 const Footer = ({ isLoggedIn }) => {
+  const auth = getAuth();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    auth.signOut();
+    navigate("/");
+  };
+
   return (
     <div className="background-footer">
       <div className="row">
@@ -14,9 +23,9 @@ const Footer = ({ isLoggedIn }) => {
           <AvatarIcon width="3rem" className="avatar" />
           {isLoggedIn ? (
             //TODO: Logout functionality
-            <Link to="/logout" className="red logout">
+            <span onClick={logout} className="red logout clickable">
               Logout
-            </Link>
+            </span>
           ) : (
             <div className="row">
               <Link to="/register" className="light-green">
