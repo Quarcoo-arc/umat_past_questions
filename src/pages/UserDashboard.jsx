@@ -36,7 +36,7 @@ const UserDashboard = () => {
   const viewQuestions = (event) => {
     event.preventDefault();
     if (!(department && semester && level)) {
-      alert("Fill in the missing portions");
+      alert("Fill in the missing fields");
     } else {
       alert("Success!");
     }

@@ -36,6 +36,15 @@ const UserSignIn = () => {
         navigate("/user-dashboard");
       }
     } catch (error) {
+      if (error.message === "Firebase: Error (auth/invalid-email).") {
+        alert("Invalid email!");
+      } else if (error.message === "Firebase: Error (auth/user-not-found).") {
+        alert("User not found!");
+      } else if (error.message === "Firebase: Error (auth/wrong-password).") {
+        alert("Incorrect password");
+      } else {
+        alert("Something went wrong!");
+      }
       console.log(error);
     }
   };
