@@ -224,6 +224,7 @@ const UserDashboard = () => {
                   id="level"
                   value="100"
                   checked={level === "100"}
+                  onChange={changeLevel}
                 />{" "}
                 100
               </div>
@@ -234,6 +235,7 @@ const UserDashboard = () => {
                   id="level"
                   value="200"
                   checked={level === "200"}
+                  onChange={changeLevel}
                 />{" "}
                 200
               </div>
@@ -244,6 +246,7 @@ const UserDashboard = () => {
                   id="level"
                   value="300"
                   checked={level === "300"}
+                  onChange={changeLevel}
                 />{" "}
                 300
               </div>
@@ -254,6 +257,7 @@ const UserDashboard = () => {
                   id="level"
                   value="400"
                   checked={level === "400"}
+                  onChange={changeLevel}
                 />{" "}
                 400
               </div>
@@ -269,6 +273,7 @@ const UserDashboard = () => {
                   id="semester"
                   value="1"
                   checked={semester === "1"}
+                  onChange={changeSemester}
                 />
                 1ST SEMESTER
               </div>
@@ -279,6 +284,7 @@ const UserDashboard = () => {
                   id="semester"
                   value="2"
                   checked={semester === "2"}
+                  onChange={changeSemester}
                 />
                 2ND SEMESTER
               </div>
