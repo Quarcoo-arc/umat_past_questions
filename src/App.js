@@ -10,6 +10,7 @@ import ViewQuestions from "./pages/ViewQuestions";
 import AddQuestions from "./pages/AddQuestions";
 import AdminDashboard from "./pages/AdminDashboard";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   return (
@@ -27,8 +28,12 @@ function App() {
         <Route path="/view-questions" element={<PrivateRoute />}>
           <Route path="/view-questions" element={<ViewQuestions />} />
         </Route>
-        <Route path="/add-questions" element={<AddQuestions />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/add-questions" element={<AdminRoute />}>
+          <Route path="/add-questions" element={<AddQuestions />} />
+        </Route>
+        <Route path="/admin-dashboard" element={<AdminRoute />}>
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        </Route>
       </Routes>
     </Router>
   );
