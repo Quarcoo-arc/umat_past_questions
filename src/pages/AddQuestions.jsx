@@ -1,8 +1,20 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import AdminContext from "../context/AdminContext";
+import { useNavigate } from "react-router-dom";
 
 const AddQuestions = () => {
+  const navigate = useNavigate();
+
+  const { isAdmin } = useContext(AdminContext);
+
+  useEffect(() => {
+    if (!isAdmin) {
+      navigate("/admin");
+    }
+  }, [isAdmin, navigate]);
+
   const [formData, setFormData] = useState({
     departments: [],
     level: null,
@@ -68,7 +80,7 @@ const AddQuestions = () => {
   return (
     <div>
       <div className="background-red">
-        <Header isLoggedIn={true} isAdmin={true} />
+        <Header isLoggedIn={isAdmin} isAdmin={isAdmin} />
         <form action="" className="form-select">
           <h2>Select your Department(s)</h2>
           <div className="buttonGroup">
@@ -333,7 +345,7 @@ const AddQuestions = () => {
           </button>
         </form>
       </div>
-      <Footer isLoggedIn={true} />
+      <Footer isLoggedIn={isAdmin} />
     </div>
   );
 };

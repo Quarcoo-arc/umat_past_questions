@@ -243,6 +243,11 @@ button:hover {
 
 /* Admin SignIn Page */
 
+.wrench {
+  margin-bottom: -0.3rem;
+  margin-right: -0.2rem;
+}
+
 .nut-small {
   position: absolute;
   bottom: -1.3rem;

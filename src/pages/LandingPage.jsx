@@ -2,16 +2,20 @@ import Header from "../components/Header";
 import books from "../assets/images/Books.png";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import AdminContext from "../context/AdminContext";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+
+  const { isAdmin, isUser } = useContext(AdminContext);
 
   const onClick = () => navigate("/user-dashboard");
 
   return (
     <div>
       <div className="background-red">
-        <Header isLoggedIn={false} isAdmin={false} />
+        <Header isLoggedIn={isUser} isAdmin={isAdmin} />
         <div className="content">
           <img src={books} alt="" className="books" />
           <div className="col new">
@@ -22,7 +26,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-      <Footer isLoggedIn={false} />
+      <Footer isLoggedIn={isUser} />
     </div>
   );
 };

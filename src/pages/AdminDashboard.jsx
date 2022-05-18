@@ -4,19 +4,28 @@ import { ReactComponent as DeleteIcon } from "../assets/svgs/DeleteIcon.svg";
 import { ReactComponent as PlusIcon } from "../assets/svgs/PlusIcon.svg";
 import { ReactComponent as DropDownArrow } from "../assets/svgs/DropDownArrow.svg";
 import { ReactComponent as SpinIcon } from "../assets/svgs/SpinIcon.svg";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import AdminContext from "../context/AdminContext";
 
 const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
+
+  const { isAdmin } = useContext(AdminContext);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAdmin) {
+      navigate("/admin");
+    }
+  }, [isAdmin, navigate]);
 
   const [selected, setSelected] = useState({
     Level: "Level",
     Department: "Department",
     Semester: "Semester",
   });
-
-  const navigate = useNavigate();
 
   const { Level, Department, Semester } = selected;
 
@@ -102,7 +111,7 @@ const AdminDashboard = () => {
   return (
     <div>
       <div className="background-red">
-        <Header isLoggedIn={true} isAdmin={false} />
+        <Header isLoggedIn={isAdmin} isAdmin={isAdmin} />
         <form action="" className="form-select">
           <div className="row new">
             {/* Cards showing statistics */}
@@ -181,7 +190,7 @@ const AdminDashboard = () => {
           </div>
         </form>
       </div>
-      <Footer isLoggedIn={true} />
+      <Footer isLoggedIn={isAdmin} />
     </div>
   );
 };

@@ -7,10 +7,13 @@ import { ReactComponent as NutIcon } from "../assets/svgs/NutIcon.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app, db } from "../firebase.config";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AdminContext from "../context/AdminContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
 const AdminSignIn = () => {
+  const { setIsAdmin, setIsUser } = useContext(AdminContext);
+
   const [formData, setFormData] = useState({ email: "", password: "" });
   const { email, password } = formData;
 
@@ -49,6 +52,8 @@ const AdminSignIn = () => {
 
         if (querySnap.docs.length === 1) {
           console.log(querySnap);
+          setIsAdmin(true);
+          setIsUser(true);
           navigate("/admin-dashboard");
         } else {
           alert("You are not an administrator!");
@@ -61,12 +66,17 @@ const AdminSignIn = () => {
         alert("User not found!");
       } else if (error.message === "Firebase: Error (auth/wrong-password).") {
         alert("Incorrect password");
+      } else if (
+        error.message === "Firebase: Error (auth/network-request-failed)."
+      ) {
+        alert("Network Error!");
       } else {
         alert("Something went wrong!");
       }
       console.log(error);
     }
   };
+
   return (
     <div className="background">
       <div className="card">
@@ -75,7 +85,7 @@ const AdminSignIn = () => {
           <h1 className="heading">
             SIGN{" "}
             <span>
-              <WrenchIcon width="3.7rem" height="unset" />
+              <WrenchIcon width="3.7rem" height="4rem" className="wrench" />
             </span>
             {""}N
           </h1>

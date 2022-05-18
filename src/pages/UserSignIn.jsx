@@ -4,14 +4,17 @@ import { app } from "../firebase.config";
 import { ReactComponent as CorrectIcon } from "../assets/svgs/CorrectSign.svg";
 import { ReactComponent as UserIcon } from "../assets/svgs/UserIcon.svg";
 import { ReactComponent as PasswordIcon } from "../assets/svgs/PasswordIcon.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AdminContext from "../context/AdminContext";
 
 const UserSignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const { email, password } = formData;
 
   const navigate = useNavigate();
+
+  const { setIsUser } = useContext(AdminContext);
 
   const onChange = (event) => {
     setFormData((prevState) => ({
@@ -33,6 +36,7 @@ const UserSignIn = () => {
       );
 
       if (userCredential.user) {
+        setIsUser(true);
         navigate("/user-dashboard");
       }
     } catch (error) {
@@ -40,6 +44,10 @@ const UserSignIn = () => {
         alert("Invalid email!");
       } else if (error.message === "Firebase: Error (auth/user-not-found).") {
         alert("User not found!");
+      } else if (
+        error.message === "Firebase: Error (auth/network-request-failed)."
+      ) {
+        alert("Network Error!");
       } else if (error.message === "Firebase: Error (auth/wrong-password).") {
         alert("Incorrect password");
       } else {

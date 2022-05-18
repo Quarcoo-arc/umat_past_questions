@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AdminContextProvider } from "./context/AdminContext";
 import UserSignIn from "./pages/UserSignIn";
 import UserRegistration from "./pages/UserRegistration";
 import AccountRecovery from "./pages/AccountRecovery";
@@ -10,32 +11,29 @@ import ViewQuestions from "./pages/ViewQuestions";
 import AddQuestions from "./pages/AddQuestions";
 import AdminDashboard from "./pages/AdminDashboard";
 import PrivateRoute from "./components/PrivateRoute";
-import AdminRoute from "./components/AdminRoute";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/sign-in" element={<UserSignIn />} />
-        <Route path="/register" element={<UserRegistration />} />
-        <Route path="/forgot-password" element={<AccountRecovery />} />
-        <Route path="/password-reset/:email" element={<PasswordReset />} />
-        <Route path="/admin" element={<AdminSignIn />} />
-        <Route path="/user-dashboard" element={<PrivateRoute />}>
-          <Route path="/user-dashboard" element={<UserDashboard />} />
-        </Route>
-        <Route path="/view-questions" element={<PrivateRoute />}>
-          <Route path="/view-questions" element={<ViewQuestions />} />
-        </Route>
-        <Route path="/add-questions" element={<AdminRoute />}>
+    <AdminContextProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/sign-in" element={<UserSignIn />} />
+          <Route path="/register" element={<UserRegistration />} />
+          <Route path="/forgot-password" element={<AccountRecovery />} />
+          <Route path="/password-reset/:email" element={<PasswordReset />} />
+          <Route path="/admin" element={<AdminSignIn />} />
+          <Route path="/user-dashboard" element={<PrivateRoute />}>
+            <Route path="/user-dashboard" element={<UserDashboard />} />
+          </Route>
+          <Route path="/view-questions" element={<PrivateRoute />}>
+            <Route path="/view-questions" element={<ViewQuestions />} />
+          </Route>
           <Route path="/add-questions" element={<AddQuestions />} />
-        </Route>
-        <Route path="/admin-dashboard" element={<AdminRoute />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        </Route>
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </AdminContextProvider>
   );
 }
 

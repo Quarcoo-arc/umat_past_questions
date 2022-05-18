@@ -6,13 +6,18 @@ import { ReactComponent as TwitterLogo } from "../assets/svgs/TwitterLogo.svg";
 import InstagramLogo from "../assets/images/InstagramLogo.png";
 import { ReactComponent as Line } from "../assets/svgs/Line.svg";
 import { getAuth } from "firebase/auth";
+import AdminContext from "../context/AdminContext";
+import { useContext } from "react";
 
 const Footer = ({ isLoggedIn }) => {
+  const { setIsAdmin, setIsUser } = useContext(AdminContext);
   const auth = getAuth();
   const navigate = useNavigate();
 
   const logout = () => {
     auth.signOut();
+    setIsAdmin(false);
+    setIsUser(false);
     navigate("/");
   };
 
@@ -22,7 +27,6 @@ const Footer = ({ isLoggedIn }) => {
         <div className="column">
           <AvatarIcon width="3rem" className="avatar" />
           {isLoggedIn ? (
-            //TODO: Logout functionality
             <span onClick={logout} className="red logout clickable">
               Logout
             </span>

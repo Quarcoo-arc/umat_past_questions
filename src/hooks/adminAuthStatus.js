@@ -10,28 +10,39 @@ export const useAuthStatus = () => {
   const isMounted = useRef(true);
 
   useEffect(() => {
-    if (isMounted) {
-      const auth = getAuth();
-      const usersRef = collection(db, "users");
+    const checkAdminStats = async () => {
+      if (isMounted) {
+        const auth = getAuth();
+        const usersRef = collection(db, "users");
 
-      onAuthStateChanged(auth, (user) => {
-        if (!user) {
-          setCheckingStatus(false);
-          return;
+        let q;
+
+        onAuthStateChanged(auth, (user) => {
+          if (!user) {
+            setCheckingStatus(false);
+            console.log("No user");
+            return;
+          }
+          q = query(
+            usersRef,
+            where("email", "==", user.email),
+            where("isAdmin", "==", true)
+          );
+        });
+        const querySnap = await getDocs(q);
+
+        if (querySnap.docs.length === 1) {
+          console.log(querySnap);
+          setIsAdmin(true) && setLoggedIn(true);
+        } else {
+          alert("You are not an administrator!");
         }
-        const q = query(
-          usersRef,
-          where("email", "==", user.email),
-          where("isAdmin", "==", true)
-        );
-        const querySnap = async () => await getDocs(q);
-
-        querySnap.docs.length === 1 && setLoggedIn(true) && setIsAdmin(true);
         setCheckingStatus(false);
-      });
-    }
+      }
+    };
+    checkAdminStats();
     return () => (isMounted.current = false);
   }, [isMounted]);
 
-  return { isAdmin, loggedIn, checkingStatus };
+  return { isAdmin, setIsAdmin, setLoggedIn, loggedIn, checkingStatus };
 };
