@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../assets/images/umat-logo.png";
 import { ReactComponent as CorrectIcon } from "../assets/svgs/CorrectSign.svg";
 import { ReactComponent as EmailIcon } from "../assets/svgs/EmailIcon.svg";
@@ -30,9 +31,9 @@ const AccountRecovery = () => {
         <div className="auth-other new end">
           <p className="forgotPassword">
             Return to &nbsp;
-            <a href="./" className="register">
+            <Link to="/sign-in" className="register">
               login
-            </a>
+            </Link>
           </p>
         </div>
       </div>

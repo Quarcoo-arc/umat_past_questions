@@ -5,7 +5,7 @@ import { ReactComponent as CorrectIcon } from "../assets/svgs/CorrectSign.svg";
 import { ReactComponent as UserIcon } from "../assets/svgs/UserIcon.svg";
 import { ReactComponent as PasswordIcon } from "../assets/svgs/PasswordIcon.svg";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserSignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -90,12 +90,12 @@ const UserSignIn = () => {
           </button>
         </form>
         <div className="auth-other">
-          <a href="./forgot-password" className="forgotPassword">
+          <Link to="/forgot-password" className="forgotPassword">
             forgot password
-          </a>
-          <a href="./register" className="register">
+          </Link>
+          <Link to="/register" className="register">
             register
-          </a>
+          </Link>
         </div>
       </div>
       <img src={logo} alt="" className="logo" />

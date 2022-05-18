@@ -1,6 +1,6 @@
 import logo from "../assets/images/umat-logo.png";
 import { ReactComponent as CorrectIcon } from "../assets/svgs/CorrectSign.svg";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const PasswordReset = () => {
   const params = useParams();
@@ -44,9 +44,9 @@ const PasswordReset = () => {
         <div className="auth-other new end">
           <p className="forgotPassword">
             Return to &nbsp;
-            <a href="./" className="register">
+            <Link href="/sign-in" className="register">
               login
-            </a>
+            </Link>
           </p>
         </div>
       </div>

@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/umat-logo.png";
 import { ReactComponent as CorrectIcon } from "../assets/svgs/CorrectSign.svg";
 import { app, db } from "../firebase.config";
@@ -184,9 +184,9 @@ const UserRegistration = () => {
         <div className="auth-other new">
           <p className="forgotPassword">
             Already have an account? &nbsp;&nbsp;
-            <a href="./" className="register">
+            <Link to="/sign-in" className="register">
               login
-            </a>
+            </Link>
           </p>
         </div>
       </div>
