@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ const UserDashboard = () => {
   });
 
   const { department, semester, level } = formData;
+
+  const navigate = useNavigate();
 
   const changeDepartment = (event) => {
     setFormData((prev) => ({ ...prev, department: event.target.value }));
@@ -39,6 +42,11 @@ const UserDashboard = () => {
       alert("Fill in the missing fields");
     } else {
       alert("Success!");
+      navigate(
+        `/view-questions/LEVEL ${level}/${department}/${semester}${
+          semester === "1" ? "ST" : "ND"
+        } SEMESTER`
+      );
     }
   };
 

@@ -26,8 +26,14 @@ function App() {
           <Route path="/user-dashboard" element={<PrivateRoute />}>
             <Route path="/user-dashboard" element={<UserDashboard />} />
           </Route>
-          <Route path="/view-questions" element={<PrivateRoute />}>
-            <Route path="/view-questions" element={<ViewQuestions />} />
+          <Route
+            path="/view-questions/:level/:department/:semester"
+            element={<PrivateRoute />}
+          >
+            <Route
+              path="/view-questions/:level/:department/:semester"
+              element={<ViewQuestions />}
+            />
           </Route>
           <Route path="/add-questions" element={<AddQuestions />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
