@@ -2,13 +2,23 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { collection, getDocs, query } from "firebase/firestore";
+import {
+  getStorage,
+  ref,
+  getDownloadURL,
+  getBytes,
+  getBlob,
+  getStream,
+} from "firebase/storage";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { db } from "../firebase.config";
 
 const viewQuestions = () => {
   const { level, semester, department } = useParams();
   const [questions, setQuestions] = useState("No questions available!");
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const [checkedInputs, setCheckedInputs] = useState([]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -24,14 +34,6 @@ const viewQuestions = () => {
         querySnap.forEach((doc) => questions.push(doc.data()));
 
         setQuestions(questions);
-        // console.log(
-        //   decodeURIComponent(
-        //     questions[0][department][semester][level][5].slice(
-        //       questions[0][department][semester][level][5].indexOf("F") + 1,
-        //       questions[0][department][semester][level][5].lastIndexOf("?")
-        //     )
-        //   )
-        // );
       } catch (error) {
         console.log(error);
       }
@@ -41,6 +43,52 @@ const viewQuestions = () => {
 
   const downloadQuestions = (event) => {
     event.preventDefault();
+    if (selectedQuestions.length === 0) {
+      alert("No questions selected!");
+      return;
+    }
+    //Download Questions
+    selectedQuestions.forEach((question) => {
+      fetch(question, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/pdf",
+        },
+        mode: "no-cors",
+      })
+        .then((response) => response.blob())
+        .then((blob) => {
+          // Create blob link to download
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute(
+            "download",
+            decodeURIComponent(
+              question.slice(
+                question.indexOf("F") + 1,
+                question.lastIndexOf("?")
+              )
+            )
+          );
+
+          // Append to html link element page
+          document.body.appendChild(link);
+
+          // Start download
+          link.click();
+
+          // Clean up and remove the link
+          link.parentNode.removeChild(link);
+          // window.location.reload();
+        });
+    });
+
+    //Uncheck checkboxes
+    checkedInputs.map((input) => (input.checked = false));
+    setCheckedInputs([]);
+    //Reset Files to be downloaded
+    setSelectedQuestions([]);
   };
 
   const launchReport = (event) => {
@@ -55,7 +103,17 @@ const viewQuestions = () => {
     alert("Thanks for your message!");
   };
 
-  console.log(questions);
+  const selectQuestion = (event) => {
+    if (selectedQuestions.includes(event.target.dataset.url)) {
+      setCheckedInputs(checkedInputs.filter((input) => input !== event.target));
+      setSelectedQuestions(
+        selectedQuestions.filter((quest) => quest !== event.target.dataset.url)
+      );
+    } else {
+      setCheckedInputs((prev) => [...prev, event.target]);
+      setSelectedQuestions((prev) => [...prev, event.target.dataset.url]);
+    }
+  };
 
   // TODO: Check if course name, level and semester are valid
   return (
@@ -87,6 +145,8 @@ const viewQuestions = () => {
                       type="checkbox"
                       name={`question${index}`}
                       id={`question${index}`}
+                      onChange={selectQuestion}
+                      data-url={question}
                     />
                     {decodeURIComponent(
                       question.slice(
@@ -117,10 +177,6 @@ const viewQuestions = () => {
               </button>
             </>
           )}
-          {/* <label htmlFor="question1" className="question">
-            <input type="checkbox" name="question1" id="question1" />
-            2021 Basic Electronics End of First Semester Exams
-          </label> */}
         </form>
       </div>
       <Footer isLoggedIn={true} />
