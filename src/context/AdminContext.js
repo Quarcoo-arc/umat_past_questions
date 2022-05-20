@@ -1,9 +1,10 @@
 import { createContext, useState } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const AdminContext = createContext();
 
 export const AdminContextProvider = ({ children }) => {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useLocalStorage("isAdmin", false);
   const [isUser, setIsUser] = useState(false);
 
   return (
