@@ -1,5 +1,5 @@
 import { collection, getDocs, query } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { createContext, useEffect, useState } from "react";
 import { db } from "../firebase.config";
 
@@ -41,6 +41,9 @@ export const QuestionsContextProvider = ({ children }) => {
       uploadBytes(storageRef, file)
         .then((snapshot) => {
           console.log("Uploaded file: " + file.name + " successfully!");
+          getDownloadURL(snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+          });
         })
         .catch((error) => console.log(error));
     });

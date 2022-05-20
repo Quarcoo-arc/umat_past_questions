@@ -9,7 +9,7 @@ const AddQuestions = () => {
   const navigate = useNavigate();
 
   const { isAdmin } = useContext(AdminContext);
-  const { questions, addNewQuestions } = useContext(QuestionsContext);
+  const { addNewQuestions } = useContext(QuestionsContext);
 
   useEffect(() => {
     if (!isAdmin) {
