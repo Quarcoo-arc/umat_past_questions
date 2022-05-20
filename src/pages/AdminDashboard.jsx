@@ -7,19 +7,19 @@ import { ReactComponent as SpinIcon } from "../assets/svgs/SpinIcon.svg";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminContext from "../context/AdminContext";
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "../firebase.config";
 
 const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
 
   const { isAdmin } = useContext(AdminContext);
-
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isAdmin) {
-      navigate("/admin");
-    }
-  }, [isAdmin, navigate]);
+  const [questions, setQuestions] = useState([]);
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const [checkedInputs, setCheckedInputs] = useState([]);
+  const [urls, setUrls] = useState([]);
 
   const [selected, setSelected] = useState({
     Level: "Level",
@@ -28,6 +28,33 @@ const AdminDashboard = () => {
   });
 
   const { Level, Department, Semester } = selected;
+
+  useEffect(() => {
+    if (!isAdmin) {
+      navigate("/admin");
+    }
+  }, [isAdmin, navigate]);
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const questionsRef = collection(db, "past_questions");
+
+        const q = query(questionsRef);
+
+        const querySnap = await getDocs(q);
+
+        const questions = [];
+
+        querySnap.forEach((doc) => questions.push(doc.data()));
+
+        setQuestions(questions);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchQuestions();
+  }, [Department, Level, Semester]);
 
   const showDropdown = (event) => {
     if (event.target.matches("svg")) {
@@ -89,9 +116,32 @@ const AdminDashboard = () => {
         event.target.classList.remove("rotate");
       }, 2000);
     }
+
+    if (
+      questions.length > 0 &&
+      questions[0][Department] !== undefined &&
+      questions[0][Department][Semester] !== undefined &&
+      questions[0][Department][Semester][Level] !== undefined &&
+      questions[0][Department][Semester][Level].length > 0
+    ) {
+      setUrls(questions[0][Department][Semester][Level]);
+    }
+    console.log(questions[0][Department][Semester][Level]);
   };
 
   const addNew = () => navigate("/add-questions");
+
+  const selectQuestion = (event) => {
+    if (selectedQuestions.includes(event.target.dataset.url)) {
+      setCheckedInputs(checkedInputs.filter((input) => input !== event.target));
+      setSelectedQuestions(
+        selectedQuestions.filter((quest) => quest !== event.target.dataset.url)
+      );
+    } else {
+      setCheckedInputs((prev) => [...prev, event.target]);
+      setSelectedQuestions((prev) => [...prev, event.target.dataset.url]);
+    }
+  };
 
   const courses = [
     "RENEWABLE ENGINEERING",
@@ -144,9 +194,9 @@ const AdminDashboard = () => {
               <p className="selected">{Level}</p>
               <DropDownArrow width="2rem" className="dropdown" />
               <div className="dropdownContent small">
-                <p onClick={setLevel}>100</p>
-                <p onClick={setLevel}>200</p>
-                <p onClick={setLevel}>300</p>
+                <p onClick={setLevel}>LEVEL 100</p>
+                <p onClick={setLevel}>LEVEL 200</p>
+                <p onClick={setLevel}>LEVEL 300</p>
               </div>
             </div>
             <div className="drop-down-container medium" onClick={showDropdown}>
@@ -167,22 +217,28 @@ const AdminDashboard = () => {
           </div>
           {/* TODO: Create a downloadable link component for the pdfs */}
           {/* TODO: Create a state variable to be updated upon checking a checkbox */}
-          <label htmlFor="question1" className="question">
-            <input type="checkbox" name="question1" id="question1" />
-            2021 Basic Electronics End of First Semester Exams
-          </label>
-          <label htmlFor="question2" className="question">
-            <input type="checkbox" name="question2" id="question2" />
-            2021 Basic Electronics End of First Semester Exams
-          </label>
-          <label htmlFor="question3" className="question">
-            <input type="checkbox" name="question3" id="question3" />
-            2021 Basic Electronics End of First Semester Exams
-          </label>
-          <label htmlFor="question4" className="question">
-            <input type="checkbox" name="question4" id="question4" />
-            2021 Basic Electronics End of First Semester Exams
-          </label>
+          {urls.length ? (
+            urls.map((link, index) => (
+              <label
+                key={index}
+                htmlFor={`question${index}`}
+                className="question"
+              >
+                <input
+                  type="checkbox"
+                  name={`question${index}`}
+                  id={`question${index}`}
+                  onChange={selectQuestion}
+                  data-url={link}
+                />
+                {decodeURIComponent(
+                  link.slice(link.indexOf("F") + 1, link.lastIndexOf("?"))
+                )}
+              </label>
+            ))
+          ) : (
+            <h1 className="question">No questions available yet!</h1>
+          )}
           {/* Add & Delete Buttons & Functionalities */}
           <div className="row new buttons">
             <DeleteIcon width="3rem" className="clickable" />

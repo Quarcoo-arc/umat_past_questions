@@ -2,16 +2,8 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { collection, getDocs, query } from "firebase/firestore";
-import {
-  getStorage,
-  ref,
-  getDownloadURL,
-  getBytes,
-  getBlob,
-  getStream,
-} from "firebase/storage";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { db } from "../firebase.config";
 
 const viewQuestions = () => {
