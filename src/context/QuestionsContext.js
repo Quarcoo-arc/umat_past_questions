@@ -1,4 +1,5 @@
 import { collection, getDocs, query } from "firebase/firestore";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { createContext, useEffect, useState } from "react";
 import { db } from "../firebase.config";
 
@@ -19,7 +20,7 @@ export const QuestionsContextProvider = ({ children }) => {
         const questions = [];
 
         querySnap.forEach((doc) => questions.push(doc.data()));
-
+        console.log(querySnap.docs[0].id);
         setQuestions(questions);
       } catch (error) {
         console.log(error);
@@ -28,11 +29,31 @@ export const QuestionsContextProvider = ({ children }) => {
     fetchQuestions();
   }, []);
 
+  const addNewQuestions = (arr) => {
+    //Check if files exist in firebase storage
+    //Copy file url to document
+    //Else
+    //Upload file to firebase storage
+    const storage = getStorage();
+    arr.files.forEach((file) => {
+      const storageRef = ref(storage, `past_questions/${file.name}`);
+
+      uploadBytes(storageRef, file)
+        .then((snapshot) => {
+          console.log("Uploaded file: " + file.name + " successfully!");
+        })
+        .catch((error) => console.log(error));
+    });
+    //Add file url to documents
+    console.log("Adding questions to database...");
+  };
+
   return (
     <QuestionsContext.Provider
       value={{
         questions,
         setQuestions,
+        addNewQuestions,
       }}
     >
       {children}

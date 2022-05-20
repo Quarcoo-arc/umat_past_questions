@@ -3,11 +3,13 @@ import Footer from "../components/Footer";
 import { useContext, useEffect, useState } from "react";
 import AdminContext from "../context/AdminContext";
 import { useNavigate } from "react-router-dom";
+import QuestionsContext from "../context/QuestionsContext";
 
 const AddQuestions = () => {
   const navigate = useNavigate();
 
   const { isAdmin } = useContext(AdminContext);
+  const { questions, addNewQuestions } = useContext(QuestionsContext);
 
   useEffect(() => {
     if (!isAdmin) {
@@ -77,6 +79,7 @@ const AddQuestions = () => {
       alert("Fill in the missing portions");
     } else {
       /* TODO: Create Add to firestore functionality */
+      addNewQuestions(formData);
       alert("Success!");
     }
   };
@@ -261,8 +264,9 @@ const AddQuestions = () => {
                   type="radio"
                   name="level"
                   id="level"
-                  value="100"
-                  checked={level === "100"}
+                  value="LEVEL 100"
+                  checked={level === "LEVEL 100"}
+                  onChange={changeLevel}
                 />{" "}
                 100
               </div>
@@ -271,8 +275,9 @@ const AddQuestions = () => {
                   type="radio"
                   name="level"
                   id="level"
-                  value="200"
-                  checked={level === "200"}
+                  value="LEVEL 200"
+                  checked={level === "LEVEL 200"}
+                  onChange={changeLevel}
                 />{" "}
                 200
               </div>
@@ -281,8 +286,9 @@ const AddQuestions = () => {
                   type="radio"
                   name="level"
                   id="level"
-                  value="300"
-                  checked={level === "300"}
+                  value="LEVEL 300"
+                  checked={level === "LEVEL 300"}
+                  onChange={changeLevel}
                 />{" "}
                 300
               </div>
@@ -291,8 +297,9 @@ const AddQuestions = () => {
                   type="radio"
                   name="level"
                   id="level"
-                  value="400"
-                  checked={level === "400"}
+                  value="LEVEL 400"
+                  checked={level === "LEVEL 400"}
+                  onChange={changeLevel}
                 />{" "}
                 400
               </div>
@@ -306,8 +313,9 @@ const AddQuestions = () => {
                   type="radio"
                   name="semester"
                   id="semester"
-                  value="1"
-                  checked={semester === "1"}
+                  value="1ST SEMESTER"
+                  checked={semester === "1ST SEMESTER"}
+                  onChange={changeSemester}
                 />
                 1ST SEMESTER
               </div>
@@ -316,8 +324,9 @@ const AddQuestions = () => {
                   type="radio"
                   name="semester"
                   id="semester"
-                  value="2"
-                  checked={semester === "2"}
+                  value="2ND SEMESTER"
+                  checked={semester === "2ND SEMESTER"}
+                  onChange={changeSemester}
                 />
                 2ND SEMESTER
               </div>
