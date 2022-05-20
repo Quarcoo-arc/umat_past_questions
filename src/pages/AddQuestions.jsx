@@ -19,10 +19,11 @@ const AddQuestions = () => {
     departments: [],
     level: null,
     semester: null,
+    files: [],
   });
 
   const [inputText, setInputText] = useState("No file chosen!");
-  const { departments, semester, level } = formData;
+  const { departments, semester, level, files } = formData;
 
   const changeDepartment = (event) => {
     if (!departments.includes(event.target.value)) {
@@ -56,23 +57,26 @@ const AddQuestions = () => {
     }));
   };
 
-  const pressed = (event) => {
+  const changeFiles = (event) => {
     if (event.target.files.length === 0) {
       setInputText("No file chosen!");
+      setFormData((prev) => ({ ...prev, files: [] }));
     } else {
       setInputText(
         event.target.files.length === 1
           ? event.target.files[0].name
           : event.target.files.length + " files"
       );
+      setFormData((prev) => ({ ...prev, files: [...event.target.files] }));
     }
   };
 
-  const viewQuestions = (event) => {
+  const addQuestions = (event) => {
     event.preventDefault();
-    if (!(departments && semester && level)) {
+    if (!(departments.length && semester && level && files.length)) {
       alert("Fill in the missing portions");
     } else {
+      /* TODO: Create Add to firestore functionality */
       alert("Success!");
     }
   };
@@ -319,15 +323,12 @@ const AddQuestions = () => {
               </div>
             </div>
           </div>
-          {/* TODO: Create File Input and add functionality */}
-          {/* TODO: Allow multiple files to be added simultaneously */}
-          {/* TODO: Set rules for firestore */}
           <div className="button-wrapper">
             <input
               className="file-input"
               type="file"
               id="aa"
-              onChange={pressed}
+              onChange={changeFiles}
               multiple
               max="10"
             />
@@ -339,7 +340,7 @@ const AddQuestions = () => {
           <button
             type="submit"
             className="view formButton"
-            onClick={viewQuestions}
+            onClick={addQuestions}
           >
             ADD
           </button>

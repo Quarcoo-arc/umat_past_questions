@@ -1,37 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { collection, getDocs, query } from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { db } from "../firebase.config";
+import QuestionsContext from "../context/QuestionsContext";
 
 const viewQuestions = () => {
   const { level, semester, department } = useParams();
-  const [questions, setQuestions] = useState("No questions available!");
+  const { questions } = useContext(QuestionsContext);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [checkedInputs, setCheckedInputs] = useState([]);
-
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const questionsRef = collection(db, "past_questions");
-
-        const q = query(questionsRef);
-
-        const querySnap = await getDocs(q);
-
-        const questions = [];
-
-        querySnap.forEach((doc) => questions.push(doc.data()));
-
-        setQuestions(questions);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchQuestions();
-  }, [department, level, semester]);
 
   const downloadQuestions = (event) => {
     event.preventDefault();
@@ -120,7 +98,7 @@ const viewQuestions = () => {
           </div>
           {/* TODO: Create a downloadable link component for the pdfs */}
           {/* TODO: Create a state variable to be updated upon checking a checkbox */}
-          {typeof questions === "object" &&
+          {questions.length > 0 &&
           questions[0][department] !== undefined &&
           questions[0][department][semester] !== undefined &&
           questions[0][department][semester][level] !== undefined &&

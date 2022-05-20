@@ -7,16 +7,14 @@ import { ReactComponent as SpinIcon } from "../assets/svgs/SpinIcon.svg";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminContext from "../context/AdminContext";
-import { collection, getDocs, query } from "firebase/firestore";
-import { db } from "../firebase.config";
+import QuestionsContext from "../context/QuestionsContext";
 
 const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
 
   const { isAdmin } = useContext(AdminContext);
+  const { questions } = useContext(QuestionsContext);
   const navigate = useNavigate();
-
-  const [questions, setQuestions] = useState([]);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [checkedInputs, setCheckedInputs] = useState([]);
   const [urls, setUrls] = useState([]);
@@ -34,27 +32,6 @@ const AdminDashboard = () => {
       navigate("/admin");
     }
   }, [isAdmin, navigate]);
-
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const questionsRef = collection(db, "past_questions");
-
-        const q = query(questionsRef);
-
-        const querySnap = await getDocs(q);
-
-        const questions = [];
-
-        querySnap.forEach((doc) => questions.push(doc.data()));
-
-        setQuestions(questions);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchQuestions();
-  }, [Department, Level, Semester]);
 
   const showDropdown = (event) => {
     if (event.target.matches("svg")) {
@@ -213,8 +190,8 @@ const AdminDashboard = () => {
               height="2.7rem"
               onClick={filterQuestions}
             />
-            {/* Filter icon / button : submit button for selection */}
           </div>
+          {/* TODO: Create a select all button / Checkbox */}
           {/* TODO: Create a downloadable link component for the pdfs */}
           {/* TODO: Create a state variable to be updated upon checking a checkbox */}
           {urls.length ? (
