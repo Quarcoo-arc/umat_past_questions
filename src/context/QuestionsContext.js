@@ -1,6 +1,6 @@
-import { collection, getDocs, query } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { db } from "../firebase.config";
 
 const QuestionsContext = createContext();
@@ -8,28 +8,26 @@ const QuestionsContext = createContext();
 export const QuestionsContextProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]);
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const questionsRef = collection(db, "past_questions");
+  const loadQuestions = async (department, level, semester) => {
+    try {
+      const questionsRef = doc(db, "past_questions", department);
 
-        const q = query(questionsRef);
+      const querySnap = await getDoc(questionsRef);
 
-        const querySnap = await getDocs(q);
-
-        const questions = [];
-
-        querySnap.forEach((doc) => questions.push(doc.data()));
-        console.log(querySnap.docs[0].id);
-        setQuestions(questions);
-      } catch (error) {
-        console.log(error);
+      const questions = [...querySnap.data()[level][semester]];
+      if (querySnap.exists()) {
+        console.log("Document data: ", querySnap.data()[level][semester]);
+      } else {
+        console.log("No such document!");
       }
-    };
-    fetchQuestions();
-  }, []);
+      console.log(querySnap);
+      setQuestions(questions);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const addNewQuestions = (arr) => {
+  const addNewQuestions = async (arr) => {
     //Check if files exist in firebase storage
     //Copy file url to document
     //Else
@@ -48,7 +46,26 @@ export const QuestionsContextProvider = ({ children }) => {
         .catch((error) => console.log(error));
     });
     //Add file url to documents
-    console.log("Adding questions to database...");
+    // await setDoc(doc(db, "past_questions", "COMPUTER SCIENCE & ENG."), {
+    //   "LEVEL 100": {
+    //     "1ST SEMESTER": [
+    //       ...questions[0]["COMPUTER SCIENCE & ENG."]["1ST SEMESTER"][
+    //         "LEVEL 100"
+    //       ],
+    //     ],
+    //     "2ND SEMESTER": [
+    //       ...questions[0]["COMPUTER SCIENCE & ENG."]["2ND SEMESTER"][
+    //         "LEVEL 100"
+    //       ],
+    //     ],
+    //   },
+    //   "LEVEL 200": { "1ST SEMESTER": [], "2ND SEMESTER": [] },
+    //   "LEVEL 300": { "1ST SEMESTER": [], "2ND SEMESTER": [] },
+    //   "LEVEL 400": { "1ST SEMESTER": [], "2ND SEMESTER": [] },
+    // })
+    //   .then(() => console.log("Added document to collection"))
+    //   .catch((error) => console.log(error));
+    // console.log("Adding questions to database...");
   };
 
   return (
@@ -57,6 +74,7 @@ export const QuestionsContextProvider = ({ children }) => {
         questions,
         setQuestions,
         addNewQuestions,
+        loadQuestions,
       }}
     >
       {children}

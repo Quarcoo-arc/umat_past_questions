@@ -1,15 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import QuestionsContext from "../context/QuestionsContext";
 
 const viewQuestions = () => {
   const { level, semester, department } = useParams();
-  const { questions } = useContext(QuestionsContext);
+  const { questions, loadQuestions } = useContext(QuestionsContext);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [checkedInputs, setCheckedInputs] = useState([]);
+
+  useEffect(() => {
+    loadQuestions(department, level, semester);
+  }, [department, level, loadQuestions, semester]);
 
   const downloadQuestions = (event) => {
     event.preventDefault();
@@ -98,35 +102,29 @@ const viewQuestions = () => {
           </div>
           {/* TODO: Create a downloadable link component for the pdfs */}
           {/* TODO: Create a state variable to be updated upon checking a checkbox */}
-          {questions.length > 0 &&
-          questions[0][department] !== undefined &&
-          questions[0][department][semester] !== undefined &&
-          questions[0][department][semester][level] !== undefined &&
-          questions[0][department][semester][level].length > 0 ? (
+          {questions.length > 0 ? (
             <>
-              {questions[0][department][semester][level].map(
-                (question, index) => (
-                  <label
-                    key={index}
-                    htmlFor={`question${index}`}
-                    className="question"
-                  >
-                    <input
-                      type="checkbox"
-                      name={`question${index}`}
-                      id={`question${index}`}
-                      onChange={selectQuestion}
-                      data-url={question}
-                    />
-                    {decodeURIComponent(
-                      question.slice(
-                        question.indexOf("F") + 1,
-                        question.lastIndexOf("?")
-                      )
-                    )}
-                  </label>
-                )
-              )}
+              {questions.map((question, index) => (
+                <label
+                  key={index}
+                  htmlFor={`question${index}`}
+                  className="question"
+                >
+                  <input
+                    type="checkbox"
+                    name={`question${index}`}
+                    id={`question${index}`}
+                    onChange={selectQuestion}
+                    data-url={question}
+                  />
+                  {decodeURIComponent(
+                    question.slice(
+                      question.indexOf("F") + 1,
+                      question.lastIndexOf("?")
+                    )
+                  )}
+                </label>
+              ))}
               <button
                 type="submit"
                 className="view formButton"

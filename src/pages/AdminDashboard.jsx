@@ -13,11 +13,10 @@ const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
 
   const { isAdmin } = useContext(AdminContext);
-  const { questions } = useContext(QuestionsContext);
+  const { questions, loadQuestions } = useContext(QuestionsContext);
   const navigate = useNavigate();
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [checkedInputs, setCheckedInputs] = useState([]);
-  const [urls, setUrls] = useState([]);
 
   const [selected, setSelected] = useState({
     Level: "Level",
@@ -93,17 +92,7 @@ const AdminDashboard = () => {
         event.target.classList.remove("rotate");
       }, 2000);
     }
-
-    if (
-      questions.length > 0 &&
-      questions[0][Department] !== undefined &&
-      questions[0][Department][Semester] !== undefined &&
-      questions[0][Department][Semester][Level] !== undefined &&
-      questions[0][Department][Semester][Level].length > 0
-    ) {
-      setUrls(questions[0][Department][Semester][Level]);
-    }
-    console.log(questions[0][Department][Semester][Level]);
+    loadQuestions(Department, Level, Semester);
   };
 
   const addNew = () => navigate("/add-questions");
@@ -192,10 +181,9 @@ const AdminDashboard = () => {
             />
           </div>
           {/* TODO: Create a select all button / Checkbox */}
-          {/* TODO: Create a downloadable link component for the pdfs */}
           {/* TODO: Create a state variable to be updated upon checking a checkbox */}
-          {urls.length ? (
-            urls.map((link, index) => (
+          {questions.length ? (
+            questions.map((link, index) => (
               <label
                 key={index}
                 htmlFor={`question${index}`}
