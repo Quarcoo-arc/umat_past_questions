@@ -1,4 +1,10 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { createContext, useState } from "react";
 import { db } from "../firebase.config";
@@ -70,12 +76,12 @@ export const QuestionsContextProvider = ({ children }) => {
               ? false
               : true
           );
-          newUrls.length
+          newUrls.length > 0
             ? setDoc(
                 doc(db, "past_questions", department),
                 {
                   [arr.level]: {
-                    [arr.semester]: [...questions, ...newUrls],
+                    [arr.semester]: arrayUnion(...newUrls),
                   },
                 },
                 { merge: true }
@@ -86,7 +92,6 @@ export const QuestionsContextProvider = ({ children }) => {
           console.log(
             "Successfully updated " + department + " document in database!"
           );
-          setQuestions([]);
         })
         .catch((error) => console.log(error));
     });
@@ -111,6 +116,29 @@ export const QuestionsContextProvider = ({ children }) => {
     //   .then(() => console.log("Added document to collection"))
     //   .catch((error) => console.log(error));
     // console.log("Adding questions to database...");
+    setQuestions([]);
+    setDownloadUrls([]);
+  };
+
+  const deleteQuestions = (selected, links) => {
+    setDoc(
+      doc(db, "past_questions", selected.Department),
+      {
+        [selected.Level]: {
+          [selected.Semester]: arrayRemove(...links),
+        },
+      },
+      { merge: true }
+    )
+      .then(() => {
+        console.log(
+          "Successfully removed links from " +
+            selected.Department +
+            " document!"
+        );
+        setQuestions(questions.filter((question) => !links.includes(question)));
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -120,6 +148,7 @@ export const QuestionsContextProvider = ({ children }) => {
         setQuestions,
         addNewQuestions,
         loadQuestions,
+        deleteQuestions,
       }}
     >
       {children}

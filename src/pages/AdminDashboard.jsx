@@ -13,7 +13,8 @@ const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
 
   const { isAdmin } = useContext(AdminContext);
-  const { questions, loadQuestions } = useContext(QuestionsContext);
+  const { questions, loadQuestions, deleteQuestions } =
+    useContext(QuestionsContext);
   const navigate = useNavigate();
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [checkedInputs, setCheckedInputs] = useState([]);
@@ -109,6 +110,13 @@ const AdminDashboard = () => {
     }
   };
 
+  const deleteSelected = () => {
+    const links = [];
+    checkedInputs.forEach((input) => links.push(input.dataset.url));
+    deleteQuestions(selected, links);
+    setCheckedInputs([]);
+  };
+
   const courses = [
     "RENEWABLE ENGINEERING",
     "COMPUTER SCIENCE & ENG.",
@@ -163,6 +171,7 @@ const AdminDashboard = () => {
                 <p onClick={setLevel}>LEVEL 100</p>
                 <p onClick={setLevel}>LEVEL 200</p>
                 <p onClick={setLevel}>LEVEL 300</p>
+                <p onClick={setLevel}>LEVEL 400</p>
               </div>
             </div>
             <div className="drop-down-container medium" onClick={showDropdown}>
@@ -206,7 +215,11 @@ const AdminDashboard = () => {
           )}
           {/* Add & Delete Buttons & Functionalities */}
           <div className="row new buttons">
-            <DeleteIcon width="3rem" className="clickable" />
+            <DeleteIcon
+              width="3rem"
+              className="clickable"
+              onClick={deleteSelected}
+            />
             <PlusIcon width="3rem" className="clickable" onClick={addNew} />
           </div>
         </form>
