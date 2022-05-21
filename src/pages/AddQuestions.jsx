@@ -19,8 +19,8 @@ const AddQuestions = () => {
 
   const [formData, setFormData] = useState({
     departments: [],
-    level: null,
-    semester: null,
+    level: "",
+    semester: "",
     files: [],
   });
 
@@ -81,6 +81,13 @@ const AddQuestions = () => {
       /* TODO: Create Add to firestore functionality */
       addNewQuestions(formData);
       alert("Success!");
+      setFormData({
+        departments: [],
+        level: "",
+        semester: "",
+        files: [],
+      });
+      setInputText("No file chosen!");
     }
   };
 

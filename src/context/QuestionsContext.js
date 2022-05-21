@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { createContext, useState } from "react";
 import { db } from "../firebase.config";
@@ -7,6 +7,7 @@ const QuestionsContext = createContext();
 
 export const QuestionsContextProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]);
+  const [downloadUrls, setDownloadUrls] = useState([]);
 
   const loadQuestions = async (department, level, semester) => {
     try {
@@ -14,8 +15,13 @@ export const QuestionsContextProvider = ({ children }) => {
 
       const querySnap = await getDoc(questionsRef);
 
-      const questions = [...querySnap.data()[level][semester]];
-      if (querySnap.exists()) {
+      let questions = [];
+      if (
+        querySnap.exists() &&
+        querySnap.data()[level] &&
+        querySnap.data()[level][semester]
+      ) {
+        questions = [...querySnap.data()[level][semester]];
         console.log("Document data: ", querySnap.data()[level][semester]);
       } else {
         console.log("No such document!");
@@ -41,7 +47,46 @@ export const QuestionsContextProvider = ({ children }) => {
           console.log("Uploaded file: " + file.name + " successfully!");
           getDownloadURL(snapshot.ref).then((downloadURL) => {
             console.log("File available at", downloadURL);
+            setDownloadUrls((prev) => [...prev, downloadURL]);
+            //If no record is found => create a new document
+            //Update document to include record
+            //First check to see if the url already exists.
+            //console.log(sucess)
           });
+        })
+        .catch((error) => console.log(error));
+    });
+
+    //For each of the selected departments, fetch the associated document
+    arr.departments.forEach((department) => {
+      loadQuestions(department, arr.level, arr.semester)
+        .then(() => {
+          const newUrls = downloadUrls.filter((url) =>
+            questions.find(
+              (question) =>
+                question.slice(0, question.indexOf("?")) ===
+                url.slice(0, question.indexOf("?"))
+            )
+              ? false
+              : true
+          );
+          newUrls.length
+            ? setDoc(
+                doc(db, "past_questions", department),
+                {
+                  [arr.level]: {
+                    [arr.semester]: [...questions, ...newUrls],
+                  },
+                },
+                { merge: true }
+              )
+            : console.log("File already exists in database");
+        })
+        .then(() => {
+          console.log(
+            "Successfully updated " + department + " document in database!"
+          );
+          setQuestions([]);
         })
         .catch((error) => console.log(error));
     });
