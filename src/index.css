@@ -121,7 +121,8 @@ button:hover {
 
 .auth {
   width: 66%;
-  margin-left: 5rem;
+  align-self: center;
+  display: block;
   margin-bottom: 5%;
   padding: 0.5rem 0rem;
   background-color: #09cc5c;
@@ -299,19 +300,19 @@ button:hover {
 }
 
 .content {
-  margin-top: 3rem;
+  margin: 3% auto 4%;
   display: flex;
   flex-direction: row;
+  width: 94%;
 }
 
 .books {
   border: none;
-  margin-left: 5rem;
-  width: 47%;
+  width: 46%;
 }
 
 .col.new {
-  margin: 5rem 3rem 5rem 0rem;
+  margin: auto;
   text-align: center;
   font-size: 2.3rem;
   font-weight: bold;
