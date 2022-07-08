@@ -318,6 +318,10 @@ button:hover {
   font-weight: bold;
 }
 
+.col.new p {
+  margin: 0 0 2%;
+}
+
 .background-footer {
   background: linear-gradient(
     180deg,

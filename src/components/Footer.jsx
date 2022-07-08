@@ -52,7 +52,7 @@ const Footer = ({ isLoggedIn }) => {
       <div className="center">
         <p>Knowledge | Truth | Excellence</p>
         <div className="row">
-          <Line />
+          <Line width={"100%"} />
         </div>
         <p>
           Copyright &copy; {new Date().getFullYear()} | University of Mines and
