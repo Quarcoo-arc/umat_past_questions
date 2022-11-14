@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import Footer from "../components/Footer";
+import { Footer } from "../components/index";
 import { useContext, useEffect, useState } from "react";
 import AdminContext from "../context/AdminContext";
 import { useNavigate } from "react-router-dom";

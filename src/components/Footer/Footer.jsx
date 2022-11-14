@@ -1,13 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as AvatarIcon } from "../assets/svgs/AvatarIcon.svg";
-import { ReactComponent as UmatLogo } from "../assets/svgs/UmatLogo.svg";
-import { ReactComponent as FacebookLogo } from "../assets/svgs/FacebookLogo.svg";
-import { ReactComponent as TwitterLogo } from "../assets/svgs/TwitterLogo.svg";
-import InstagramLogo from "../assets/images/InstagramLogo.png";
-import { ReactComponent as Line } from "../assets/svgs/Line.svg";
+import { ReactComponent as AvatarIcon } from "../../assets/svgs/AvatarIcon.svg";
+import { ReactComponent as UmatLogo } from "../../assets/svgs/UmatLogo.svg";
+import { ReactComponent as FacebookLogo } from "../../assets/svgs/FacebookLogo.svg";
+import { ReactComponent as TwitterLogo } from "../../assets/svgs/TwitterLogo.svg";
+import InstagramLogo from "../../assets/images/InstagramLogo.png";
+import { ReactComponent as Line } from "../../assets/svgs/Line.svg";
 import { getAuth } from "firebase/auth";
-import AdminContext from "../context/AdminContext";
+import AdminContext from "../../context/AdminContext";
 import { useContext } from "react";
+import "./Footer.css";
 
 const Footer = ({ isLoggedIn }) => {
   const { setIsAdmin, setIsUser } = useContext(AdminContext);

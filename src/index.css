@@ -330,16 +330,6 @@ button:hover {
   margin: 0 0 2%;
 }
 
-.background-footer {
-  background: linear-gradient(
-    180deg,
-    rgba(211, 61, 61, 0) 0%,
-    rgba(211, 61, 61, 0.0984375) 54.17%,
-    rgba(211, 61, 61, 0.18) 100%
-  );
-  padding-bottom: 1rem;
-}
-
 .center {
   width: fit-content;
   margin: -1rem auto 1rem;
@@ -353,26 +343,11 @@ button:hover {
   margin: 0.5rem auto;
 }
 
-.avatar {
-  margin: auto;
-}
-
 .column {
   display: flex;
   flex-direction: column;
   height: fit-content;
   margin: auto 0;
-}
-
-.row-footer {
-  display: flex;
-  flex-direction: row;
-  width: fit-content;
-  margin: auto 3rem auto 0;
-}
-
-.social {
-  margin-right: 0.5rem;
 }
 
 a {
@@ -387,16 +362,6 @@ a {
 .light-green {
   color: #029141;
   font-weight: bold;
-}
-
-.icon-small {
-  width: 1.8rem;
-  height: 1.8rem;
-  align-self: center;
-}
-
-.logout {
-  margin: 0 3.5rem;
 }
 
 /* User Dashboard */

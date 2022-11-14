@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Header from "../components/Header";
-import Footer from "../components/Footer";
+import { Footer } from "../components/index";
 import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import QuestionsContext from "../context/QuestionsContext";
