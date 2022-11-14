@@ -93,47 +93,50 @@ const AdminSignIn = () => {
           <NutIcon width="5rem" className="nut-large" />
         </div>
         <form className="form" onSubmit={validateUser}>
-          <div className="wrapper">
-            <label htmlFor="email">
-              <UserIcon className="icon" />
-            </label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              placeholder="Email"
-              className="inputField"
-              value={email}
-              onChange={onChange}
-            />
+          <div className="wrap">
+            <div className="wrapper">
+              <label htmlFor="email">
+                <UserIcon className="icon" />
+              </label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                placeholder="Email"
+                className="inputField"
+                value={email}
+                onChange={onChange}
+              />
+            </div>
+            <div className="wrapper">
+              <label htmlFor="password">
+                <PasswordIcon className="icon" />
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                className="inputField"
+                value={password}
+                onChange={onChange}
+              />
+            </div>
+            <div className="auth-wrap">
+              <button className="auth" type="submit">
+                LOGIN
+              </button>
+              <div className="auth-other">
+                <Link to="/forgot-password" className="forgotPassword">
+                  forgot password
+                </Link>
+                <Link to="/" className="register">
+                  &lt; Back to Home
+                </Link>
+              </div>
+            </div>
           </div>
-          <div className="wrapper">
-            <label htmlFor="password">
-              <PasswordIcon className="icon" />
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              className="inputField"
-              value={password}
-              onChange={onChange}
-            />
-          </div>
-
-          <button className="auth" type="submit">
-            LOGIN
-          </button>
         </form>
-        <div className="auth-other">
-          <Link to="/forgot-password" className="forgotPassword">
-            forgot password
-          </Link>
-          <Link to="/" className="register">
-            &lt; Back to Home
-          </Link>
-        </div>
       </div>
       <img src={logo} alt="" className="logo" />
     </div>
