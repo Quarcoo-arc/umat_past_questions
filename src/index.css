@@ -1,5 +1,5 @@
-@import url(//db.onlinewebfonts.com/c/c9f309b3d47969ecac64a77a6c672594?family=Nexa+Bold);
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+/* @import url(//db.onlinewebfonts.com/c/c9f309b3d47969ecac64a77a6c672594?family=Nexa+Bold);
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"); */
 
 body {
   margin: 0;
@@ -192,14 +192,14 @@ button:hover {
 
 .inputField.new {
   padding: 0.9rem 1.4rem 0.6rem;
-  width: 5.5rem;
+  width: 8rem;
   margin-left: 1.4rem;
   margin-bottom: 0.3rem;
   border-radius: 2rem;
 }
 
 .inputField.lg {
-  width: 8rem;
+  width: 11rem;
 }
 
 .inputField.xlg {

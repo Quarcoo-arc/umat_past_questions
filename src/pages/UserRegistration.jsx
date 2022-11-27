@@ -105,90 +105,94 @@ const UserRegistration = () => {
           <CorrectIcon width="10rem" className="checkMark red" />
         </div>
         <form className="form new" onSubmit={addUser}>
-          <div className="col">
-            <div className="wrapper">
-              <input
-                type="text"
-                name="firstName"
-                id="firstName"
-                placeholder="First Name"
-                className="inputField new"
-                onChange={onChange}
-                value={firstName}
-              />
-              <input
-                type="text"
-                name="lastName"
-                id="lastName"
-                placeholder="Last Name"
-                className="inputField new"
-                onChange={onChange}
-                value={lastName}
-              />
-              <input
-                type="number"
-                name="id"
-                id="id"
-                placeholder="ID/Ref. No."
-                className="inputField new"
-                onChange={onChange}
-                value={id}
-              />
+          <div className="wrap">
+            <div className="col">
+              <div className="wrapper">
+                <input
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  placeholder="First Name"
+                  className="inputField new"
+                  onChange={onChange}
+                  value={firstName}
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  placeholder="Last Name"
+                  className="inputField new"
+                  onChange={onChange}
+                  value={lastName}
+                />
+                <input
+                  type="number"
+                  name="id"
+                  id="id"
+                  placeholder="ID/Ref. No."
+                  className="inputField new"
+                  onChange={onChange}
+                  value={id}
+                />
+              </div>
+              <div className="wrapper">
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Username"
+                  className="inputField new"
+                  onChange={onChange}
+                  value={username}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  className="inputField new xlg"
+                  onChange={onChange}
+                  value={email}
+                />
+              </div>
+              <div className="wrapper space">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                  className="inputField new lg"
+                  onChange={onChange}
+                  value={password}
+                />
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
+                  placeholder="Confirm Password"
+                  className="inputField new lg"
+                  onChange={onChange}
+                  value={confirmPassword}
+                />
+              </div>
             </div>
-            <div className="wrapper">
-              <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Username"
-                className="inputField new"
-                onChange={onChange}
-                value={username}
-              />
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                className="inputField new xlg"
-                onChange={onChange}
-                value={email}
-              />
-            </div>
-            <div className="wrapper space">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="inputField new lg"
-                onChange={onChange}
-                value={password}
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="Confirm Password"
-                className="inputField new lg"
-                onChange={onChange}
-                value={confirmPassword}
-              />
+
+            <div className="auth-wrap">
+              <button className="auth new" type="submit">
+                REGISTER
+              </button>
+              <div className="auth-other new">
+                <p className="forgotPassword">
+                  Already have an account? &nbsp;&nbsp;
+                  <Link to="/sign-in" className="register">
+                    login
+                  </Link>
+                </p>
+              </div>
             </div>
           </div>
-
-          <button className="auth new" type="submit">
-            REGISTER
-          </button>
         </form>
-        <div className="auth-other new">
-          <p className="forgotPassword">
-            Already have an account? &nbsp;&nbsp;
-            <Link to="/sign-in" className="register">
-              login
-            </Link>
-          </p>
-        </div>
       </div>
       <img src={logo} alt="" className="logo" />
     </div>
