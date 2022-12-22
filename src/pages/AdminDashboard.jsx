@@ -1,5 +1,4 @@
-import Header from "../components/Header";
-import { Footer } from "../components/index";
+import { Footer, Header } from "../components/index";
 import { ReactComponent as DeleteIcon } from "../assets/svgs/DeleteIcon.svg";
 import { ReactComponent as PlusIcon } from "../assets/svgs/PlusIcon.svg";
 import { ReactComponent as DropDownArrow } from "../assets/svgs/DropDownArrow.svg";

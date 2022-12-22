@@ -1,7 +1,8 @@
-import { ReactComponent as UmatLogo } from "../assets/svgs/UmatLogo.svg";
-import { ReactComponent as SpeedDialIcon } from "../assets/svgs/SpeedDialIcon.svg";
-import { ReactComponent as ToolsIcon } from "../assets/svgs/ToolsIcon.svg";
+import { ReactComponent as UmatLogo } from "../../assets/svgs/UmatLogo.svg";
+import { ReactComponent as SpeedDialIcon } from "../../assets/svgs/SpeedDialIcon.svg";
+import { ReactComponent as ToolsIcon } from "../../assets/svgs/ToolsIcon.svg";
 import { Link } from "react-router-dom";
+import "./Header.css";
 
 const Header = ({ isLoggedIn, isAdmin }) => {
   return (
