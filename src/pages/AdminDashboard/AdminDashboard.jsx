@@ -1,12 +1,13 @@
-import { Footer, Header } from "../components/index";
-import { ReactComponent as DeleteIcon } from "../assets/svgs/DeleteIcon.svg";
-import { ReactComponent as PlusIcon } from "../assets/svgs/PlusIcon.svg";
-import { ReactComponent as DropDownArrow } from "../assets/svgs/DropDownArrow.svg";
-import { ReactComponent as SpinIcon } from "../assets/svgs/SpinIcon.svg";
+import { Footer, Header } from "../../components/index";
+import { ReactComponent as DeleteIcon } from "../../assets/svgs/DeleteIcon.svg";
+import { ReactComponent as PlusIcon } from "../../assets/svgs/PlusIcon.svg";
+import { ReactComponent as DropDownArrow } from "../../assets/svgs/DropDownArrow.svg";
+import { ReactComponent as SpinIcon } from "../../assets/svgs/SpinIcon.svg";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import AdminContext from "../context/AdminContext";
-import QuestionsContext from "../context/QuestionsContext";
+import AdminContext from "../../context/AdminContext";
+import QuestionsContext from "../../context/QuestionsContext";
+import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
