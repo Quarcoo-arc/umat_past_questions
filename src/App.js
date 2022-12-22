@@ -8,7 +8,7 @@ import AdminSignIn from "./pages/AdminSignIn";
 import LandingPage from "./pages/LandingPage";
 import UserDashboard from "./pages/UserDashboard";
 import ViewQuestions from "./pages/ViewQuestions/ViewQuestions";
-import AddQuestions from "./pages/AddQuestions";
+import AddQuestions from "./pages/AddQuestions/AddQuestions";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import PrivateRoute from "./routes/PrivateRoute";
 import { QuestionsContextProvider } from "./context/QuestionsContext";

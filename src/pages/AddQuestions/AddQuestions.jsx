@@ -1,8 +1,9 @@
-import { Footer, Header } from "../components/index";
+import { Footer, Header } from "../../components/index";
 import { useContext, useEffect, useState } from "react";
-import AdminContext from "../context/AdminContext";
+import AdminContext from "../../context/AdminContext";
 import { useNavigate } from "react-router-dom";
-import QuestionsContext from "../context/QuestionsContext";
+import QuestionsContext from "../../context/QuestionsContext";
+import "./AddQuestions.css";
 
 const AddQuestions = () => {
   const navigate = useNavigate();
