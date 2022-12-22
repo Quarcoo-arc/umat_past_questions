@@ -1,6 +1,7 @@
-import { Footer, Header } from "../components/index";
+import { Footer, Header } from "../../components/index";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./UserDashboard.css";
 
 const UserDashboard = () => {
   const [formData, setFormData] = useState({
