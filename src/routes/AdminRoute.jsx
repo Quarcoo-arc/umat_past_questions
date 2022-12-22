@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuthStatus } from "../hooks/adminAuthStatus";
-import Spinner from "./Spinner/Spinner";
+import { Spinner } from "../components/index";
 
 const AdminRoute = () => {
   const { isAdmin, loggedIn, checkingStatus } = useAuthStatus();

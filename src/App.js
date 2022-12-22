@@ -10,7 +10,7 @@ import UserDashboard from "./pages/UserDashboard";
 import ViewQuestions from "./pages/ViewQuestions";
 import AddQuestions from "./pages/AddQuestions";
 import AdminDashboard from "./pages/AdminDashboard";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./routes/PrivateRoute";
 import { QuestionsContextProvider } from "./context/QuestionsContext";
 
 function App() {
