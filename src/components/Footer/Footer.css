@@ -45,3 +45,20 @@
   font-weight: bolder;
   margin: 0.5rem auto;
 }
+
+.column {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  margin: auto 0;
+}
+
+.red {
+  color: #c60202;
+  font-weight: bold;
+}
+
+.light-green {
+  color: #029141;
+  font-weight: bold;
+}

@@ -30,6 +30,19 @@ h2 {
   color: #777777;
 }
 
+a {
+  text-decoration: none;
+}
+
+.background-red {
+  background: linear-gradient(
+    180deg,
+    rgba(211, 61, 61, 0.18) 0%,
+    rgba(211, 61, 61, 0.0984375) 54.17%,
+    rgba(211, 61, 61, 0) 100%
+  );
+}
+
 /* Background for SignIn, SignUp & Register */
 
 button:hover {
@@ -275,75 +288,3 @@ button:hover {
 }
 
 /* Landing Page  */
-
-.title {
-  font-weight: bold;
-  font-size: 2.3rem;
-  text-align: center;
-  letter-spacing: 0.5rem;
-  color: rgb(0, 0, 0);
-  margin: auto;
-}
-
-.action-top {
-  margin-top: 3rem;
-  margin-right: 3rem;
-  text-decoration: none;
-  color: #d17b7b;
-  font-weight: bolder;
-  font-size: 1.2rem;
-  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-}
-
-.background-red {
-  background: linear-gradient(
-    180deg,
-    rgba(211, 61, 61, 0.18) 0%,
-    rgba(211, 61, 61, 0.0984375) 54.17%,
-    rgba(211, 61, 61, 0) 100%
-  );
-}
-
-.content {
-  margin: 3% auto 4%;
-  display: flex;
-  flex-direction: row;
-  width: 94%;
-}
-
-.books {
-  border: none;
-  width: 46%;
-}
-
-.col.new {
-  margin: auto;
-  text-align: center;
-  font-size: 2.3rem;
-  font-weight: bold;
-}
-
-.col.new p {
-  margin: 0 0 2%;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  margin: auto 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-.red {
-  color: #c60202;
-  font-weight: bold;
-}
-
-.light-green {
-  color: #029141;
-  font-weight: bold;
-}

@@ -1,0 +1,22 @@
+.content {
+  margin: 3% auto 4%;
+  display: flex;
+  flex-direction: row;
+  width: 94%;
+}
+
+.books {
+  border: none;
+  width: 46%;
+}
+
+.col.new {
+  margin: auto;
+  text-align: center;
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+
+.col.new p {
+  margin: 0 0 2%;
+}

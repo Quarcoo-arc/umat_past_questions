@@ -1,8 +1,9 @@
-import books from "../assets/images/Books.png";
-import { Footer, Header } from "../components/index";
+import books from "../../assets/images/Books.png";
+import { Footer, Header } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import AdminContext from "../context/AdminContext";
+import AdminContext from "../../context/AdminContext";
+import "./LandingPage.css";
 
 const LandingPage = () => {
   const navigate = useNavigate();

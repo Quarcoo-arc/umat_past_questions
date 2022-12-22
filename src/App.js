@@ -5,7 +5,7 @@ import UserRegistration from "./pages/UserRegistration";
 import AccountRecovery from "./pages/AccountRecovery";
 import PasswordReset from "./pages/PasswordReset";
 import AdminSignIn from "./pages/AdminSignIn";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
 import UserDashboard from "./pages/UserDashboard/UserDashboard";
 import ViewQuestions from "./pages/ViewQuestions/ViewQuestions";
 import AddQuestions from "./pages/AddQuestions/AddQuestions";
