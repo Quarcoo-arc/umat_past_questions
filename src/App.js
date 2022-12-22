@@ -7,7 +7,7 @@ import PasswordReset from "./pages/PasswordReset";
 import AdminSignIn from "./pages/AdminSignIn";
 import LandingPage from "./pages/LandingPage";
 import UserDashboard from "./pages/UserDashboard";
-import ViewQuestions from "./pages/ViewQuestions";
+import ViewQuestions from "./pages/ViewQuestions/ViewQuestions";
 import AddQuestions from "./pages/AddQuestions";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import PrivateRoute from "./routes/PrivateRoute";

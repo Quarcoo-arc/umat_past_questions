@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Footer, Header } from "../components/index";
+import "./ViewQuestions.css";
+import { Footer, Header } from "../../components/index";
 import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import QuestionsContext from "../context/QuestionsContext";
+import QuestionsContext from "../../context/QuestionsContext";
 
-const viewQuestions = () => {
+const ViewQuestions = () => {
   const { level, semester, department } = useParams();
   const { questions, loadQuestions } = useContext(QuestionsContext);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
@@ -151,4 +152,4 @@ const viewQuestions = () => {
   );
 };
 
-export default viewQuestions;
+export default ViewQuestions;
