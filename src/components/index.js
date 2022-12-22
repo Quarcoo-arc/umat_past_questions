@@ -1,3 +1,4 @@
 import Footer from "./Footer/Footer";
+import Spinner from "./Spinner/Spinner";
 
-export { Footer };
+export { Footer, Spinner };
