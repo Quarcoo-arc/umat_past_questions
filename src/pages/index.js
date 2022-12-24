@@ -5,6 +5,7 @@ import LandingPage from "./LandingPage/LandingPage";
 import UserDashboard from "./UserDashboard/UserDashboard";
 import UserSignIn from "./UserSignIn/UserSignIn";
 import AccountRecovery from "./AccountRecovery/AccountRecovery";
+import AdminSignIn from "./AdminSignIn/AdminSignIn";
 
 export {
   AdminDashboard,
@@ -14,4 +15,5 @@ export {
   UserDashboard,
   UserSignIn,
   AccountRecovery,
+  AdminSignIn,
 };

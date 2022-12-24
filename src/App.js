@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AdminContextProvider } from "./context/AdminContext";
-import { UserSignIn, AccountRecovery } from "./pages";
+import { UserSignIn, AccountRecovery, AdminSignIn } from "./pages";
 import UserRegistration from "./pages/UserRegistration";
 import PasswordReset from "./pages/PasswordReset";
-import AdminSignIn from "./pages/AdminSignIn";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import UserDashboard from "./pages/UserDashboard/UserDashboard";
 import ViewQuestions from "./pages/ViewQuestions/ViewQuestions";
