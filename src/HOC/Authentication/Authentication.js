@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../assets/images/umat-logo.png";
 import { ReactComponent as CorrectIcon } from "../../assets/svgs/CorrectSign.svg";
-import { ReactComponent as NutIcon } from "../assets/svgs/NutIcon.svg";
+import { ReactComponent as NutIcon } from "../../assets/svgs/NutIcon.svg";
 import "./Authentication.css";
 
 const Authentication = ({
