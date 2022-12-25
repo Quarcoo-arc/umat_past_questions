@@ -8,6 +8,7 @@ import { useState, useContext } from "react";
 import { Authentication } from "../../HOC";
 import AdminContext from "../../context/AdminContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import "./AdminSignIn.css";
 
 const AdminSignIn = () => {
   const { setIsAdmin, setIsUser } = useContext(AdminContext);
