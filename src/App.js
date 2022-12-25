@@ -5,8 +5,8 @@ import {
   AccountRecovery,
   AdminSignIn,
   PasswordReset,
+  UserRegistration,
 } from "./pages";
-import UserRegistration from "./pages/UserRegistration";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import UserDashboard from "./pages/UserDashboard/UserDashboard";
 import ViewQuestions from "./pages/ViewQuestions/ViewQuestions";

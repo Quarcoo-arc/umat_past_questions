@@ -7,6 +7,7 @@ import UserSignIn from "./UserSignIn/UserSignIn";
 import AccountRecovery from "./AccountRecovery/AccountRecovery";
 import AdminSignIn from "./AdminSignIn/AdminSignIn";
 import PasswordReset from "./PasswordRest/PasswordReset";
+import UserRegistration from "./UserRegistration/UserRegistration";
 
 export {
   AdminDashboard,
@@ -18,4 +19,5 @@ export {
   AccountRecovery,
   AdminSignIn,
   PasswordReset,
+  UserRegistration,
 };
