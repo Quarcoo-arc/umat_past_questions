@@ -7,7 +7,7 @@ import styles from "./Header.module.css";
 const Header = ({ isLoggedIn, isAdmin }) => {
   return (
     <div className={styles.row}>
-      <UmatLogo width="4.5rem" className={styles.pointer} />
+      <UmatLogo width="4.5rem" className={styles.icon} />
       <h1 className={styles.title}>Past Questions Database</h1>
       {!isLoggedIn && (
         <Link to="/sign-in" className={styles.action}>
