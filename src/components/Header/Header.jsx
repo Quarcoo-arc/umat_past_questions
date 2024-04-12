@@ -2,15 +2,15 @@ import { ReactComponent as UmatLogo } from "../../assets/svgs/UmatLogo.svg";
 import { ReactComponent as SpeedDialIcon } from "../../assets/svgs/SpeedDialIcon.svg";
 import { ReactComponent as ToolsIcon } from "../../assets/svgs/ToolsIcon.svg";
 import { Link } from "react-router-dom";
-import "./Header.css";
+import styles from "./Header.module.css";
 
 const Header = ({ isLoggedIn, isAdmin }) => {
   return (
-    <div className="row">
-      <UmatLogo width="4.5rem" />
-      <h1 className="title">Past Questions Database</h1>
+    <div className={styles.row}>
+      <UmatLogo width="4.5rem" className={styles.pointer} />
+      <h1 className={styles.title}>Past Questions Database</h1>
       {!isLoggedIn && (
-        <Link to="/sign-in" className="action-top">
+        <Link to="/sign-in" className={styles.action}>
           Login
         </Link>
       )}

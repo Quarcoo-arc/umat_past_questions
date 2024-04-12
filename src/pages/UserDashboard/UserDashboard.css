@@ -22,6 +22,14 @@
   margin-bottom: 4%;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0rem 2rem;
+}
+
 .buttonGroup {
   width: fit-content;
   margin: 3% auto 4%;

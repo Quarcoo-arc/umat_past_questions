@@ -1,3 +1,11 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0rem 2rem;
+}
+
 .center {
   width: fit-content;
   margin: -1rem auto 1rem;
@@ -5,7 +13,7 @@
 }
 
 .page-title {
-  margin-bottom: 1.8rem;
+  margin: 0 auto 1.8rem !important;
   font-size: 1.8rem;
   color: white;
   font-weight: bold;

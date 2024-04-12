@@ -50,4 +50,12 @@ input[type="file"] {
   color: transparent;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0rem 2rem;
+}
+
 /* TODO: Style Checkmark symbol */
