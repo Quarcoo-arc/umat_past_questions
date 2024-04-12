@@ -8,7 +8,7 @@ import { ReactComponent as Line } from "../../assets/svgs/Line.svg";
 import { getAuth } from "firebase/auth";
 import AdminContext from "../../context/AdminContext";
 import { useContext } from "react";
-import "./Footer.css";
+import styles from "./Footer.module.css";
 
 const Footer = ({ isLoggedIn }) => {
   const { setIsAdmin, setIsUser } = useContext(AdminContext);
@@ -23,36 +23,36 @@ const Footer = ({ isLoggedIn }) => {
   };
 
   return (
-    <div className="background-footer">
-      <div className="row">
-        <div className="column">
-          <AvatarIcon width="3rem" className="avatar" />
+    <div className={styles.background}>
+      <div className={styles.row}>
+        <div className={styles.column}>
+          <AvatarIcon width="3rem" className={styles.avatar} />
           {isLoggedIn ? (
-            <span onClick={logout} className="red logout clickable">
+            <span onClick={logout} className={styles.logout}>
               Logout
             </span>
           ) : (
-            <div className="row">
-              <Link to="/register" className="light-green">
+            <div className={styles.row}>
+              <Link to="/register" className={styles.green}>
                 Register
               </Link>
               &nbsp;|&nbsp;
-              <Link to="/sign-in" className="red">
+              <Link to="/sign-in" className={styles.red}>
                 Login
               </Link>
             </div>
           )}
         </div>
-        <UmatLogo width="6rem" />
-        <div className="row-footer">
-          <FacebookLogo width="1.8rem" className="social" />
-          <img src={InstagramLogo} className="social icon-small" alt="" />
-          <TwitterLogo width="1.8rem" className="social" />
+        <UmatLogo width="6rem" className={styles.icon} />
+        <div className={styles.socialsWrapper}>
+          <FacebookLogo width="1.8rem" className={styles.icon} />
+          <img src={InstagramLogo} className={styles.smallIcon} alt="" />
+          <TwitterLogo width="1.8rem" className={styles.icon} />
         </div>
       </div>
-      <div className="center">
+      <div className={styles.center}>
         <p>Knowledge | Truth | Excellence</p>
-        <div className="row">
+        <div className={styles.row}>
           <Line width={"100%"} />
         </div>
         <p>
