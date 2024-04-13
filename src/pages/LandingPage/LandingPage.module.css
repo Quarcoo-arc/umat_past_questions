@@ -1,0 +1,38 @@
+.content {
+  margin: 3% auto 4%;
+  display: flex;
+  flex-direction: row;
+  width: 94%;
+}
+
+.books {
+  border: none;
+  width: 46%;
+}
+
+.col {
+  margin: auto;
+  text-align: center;
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+
+.col p {
+  margin: 0 0 2%;
+}
+
+.auth {
+  width: 25rem;
+  display: block;
+  margin: 2rem auto 6%;
+  padding: 0.7rem 0rem;
+  background-color: #09cc5c;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.auth:hover {
+  background: #9d9d9d;
+}

@@ -3,7 +3,7 @@ import { Footer, Header } from "../../components/index";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import AdminContext from "../../context/AdminContext";
-import "./LandingPage.css";
+import styles from "./LandingPage.module.css";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -16,11 +16,11 @@ const LandingPage = () => {
     <div>
       <div className="background-red">
         <Header isLoggedIn={isUser} isAdmin={isAdmin} />
-        <div className="content">
-          <img src={books} alt="" className="books" />
-          <div className="col new">
+        <div className={styles.content}>
+          <img src={books} alt="" className={styles.books} />
+          <div className={styles.col}>
             <p>Get access to Past Questions in all courses!</p>
-            <button className="auth" onClick={onClick}>
+            <button className={styles.auth} onClick={onClick}>
               GET STARTED
             </button>
           </div>
