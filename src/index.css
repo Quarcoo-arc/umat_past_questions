@@ -170,23 +170,6 @@ button:hover {
   justify-content: space-between;
 }
 
-/* PasswordRecovery Page */
-
-.row-center {
-  width: 66%;
-  margin: auto;
-  margin-bottom: 7%;
-}
-
-.inputField.xxlg {
-  width: 100%;
-}
-
-.auth-other.new.end {
-  margin: 1rem auto 2.5rem;
-  justify-content: end;
-}
-
 /* Password Reset Page */
 
 .wrapper.no-space {
