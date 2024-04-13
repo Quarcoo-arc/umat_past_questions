@@ -58,4 +58,17 @@ input[type="file"] {
   margin: 0rem 2rem;
 }
 
+.form {
+  margin-top: 2%;
+  margin-bottom: 4%;
+}
+
+.buttonGroup {
+  width: fit-content;
+  margin: 3% auto 4%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
+}
+
 /* TODO: Style Checkmark symbol */
