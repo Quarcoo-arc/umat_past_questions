@@ -4,8 +4,8 @@ import AdminContext from "../../context/AdminContext";
 import { useNavigate } from "react-router-dom";
 import QuestionsContext from "../../context/QuestionsContext";
 import styles from "./AddQuestions.module.css";
-import { PROGRAMS } from "../../utils/constants";
-import { ProgramButton } from "../../components/Buttons";
+import { LEVELS, PROGRAMS } from "../../utils/constants";
+import { ProgramButton, RadioButton } from "../../components/Buttons";
 
 const AddQuestions = () => {
   const navigate = useNavigate();
@@ -111,7 +111,19 @@ const AddQuestions = () => {
             ))}
           </div>
           <h2>Select your Level</h2>
-          <div className={styles.buttonGroup}>
+          <div className={styles.levelGroup}>
+            {LEVELS.map((l, idx) => (
+              <RadioButton
+                key={idx}
+                onClick={changeLevel}
+                id="level"
+                value={l}
+                checked={level === l}
+                text={l.split(" ")[1]}
+              />
+            ))}
+          </div>
+          {/* <div className={styles.buttonGroup}>
             <div className={styles.row}>
               <div className="radio-button" onClick={changeLevel}>
                 <input
@@ -158,7 +170,7 @@ const AddQuestions = () => {
                 400
               </div>
             </div>
-          </div>
+          </div> */}
           <h2>Semester</h2>
           <div className="buttonGroup">
             <div className="row">

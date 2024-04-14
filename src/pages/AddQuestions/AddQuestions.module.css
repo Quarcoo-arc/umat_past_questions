@@ -71,4 +71,12 @@ input[type="file"] {
   gap: 1rem;
 }
 
+.levelGroup {
+  width: fit-content;
+  margin: 3% auto 4%;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 1rem;
+}
+
 /* TODO: Style Checkmark symbol */
