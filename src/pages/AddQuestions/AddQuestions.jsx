@@ -48,7 +48,9 @@ const AddQuestions = () => {
       ...prev,
       level: event.target.value
         ? event.target.value
-        : event.target.firstChild.value,
+        : event.target.firstChild.value
+        ? event.target.firstChild.value
+        : event.target.previousSibling.value,
     }));
   };
 

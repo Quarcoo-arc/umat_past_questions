@@ -12,7 +12,7 @@ const RadioButton = ({ onClick, id, value, text, checked }) => {
         onChange={onClick}
         checked={checked}
       />
-      <p>{text}</p>
+      <p onClick={onClick}>{text}</p>
     </div>
   );
 };
