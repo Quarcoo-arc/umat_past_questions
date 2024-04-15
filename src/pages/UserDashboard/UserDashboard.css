@@ -46,15 +46,6 @@
   font-size: 1.05rem;
 }
 
-#semester {
-  margin: 0.5rem 3rem 0rem 1.2rem;
-  font-size: 1rem;
-}
-
-#semester {
-  margin-right: 1.3rem;
-}
-
 input[type="radio"] {
   -webkit-appearance: none;
   -moz-appearance: none;

@@ -4,7 +4,7 @@ import AdminContext from "../../context/AdminContext";
 import { useNavigate } from "react-router-dom";
 import QuestionsContext from "../../context/QuestionsContext";
 import styles from "./AddQuestions.module.css";
-import { LEVELS, PROGRAMS } from "../../utils/constants";
+import { LEVELS, PROGRAMS, SEMESTERS } from "../../utils/constants";
 import { ProgramButton, RadioButton } from "../../components/Buttons";
 
 const AddQuestions = () => {
@@ -59,7 +59,9 @@ const AddQuestions = () => {
       ...prev,
       semester: event.target.value
         ? event.target.value
-        : event.target.firstChild.value,
+        : event.target.firstChild.value
+        ? event.target.firstChild.value
+        : event.target.previousSibling.value,
     }));
   };
 
@@ -125,98 +127,36 @@ const AddQuestions = () => {
               />
             ))}
           </div>
-          {/* <div className={styles.buttonGroup}>
-            <div className={styles.row}>
-              <div className="radio-button" onClick={changeLevel}>
-                <input
-                  type="radio"
-                  name="level"
-                  id="level"
-                  value="LEVEL 100"
-                  checked={level === "LEVEL 100"}
-                  onChange={changeLevel}
-                />{" "}
-                100
-              </div>
-              <div className="radio-button" onClick={changeLevel}>
-                <input
-                  type="radio"
-                  name="level"
-                  id="level"
-                  value="LEVEL 200"
-                  checked={level === "LEVEL 200"}
-                  onChange={changeLevel}
-                />{" "}
-                200
-              </div>
-              <div className="radio-button" onClick={changeLevel}>
-                <input
-                  type="radio"
-                  name="level"
-                  id="level"
-                  value="LEVEL 300"
-                  checked={level === "LEVEL 300"}
-                  onChange={changeLevel}
-                />{" "}
-                300
-              </div>
-              <div className="radio-button" onClick={changeLevel}>
-                <input
-                  type="radio"
-                  name="level"
-                  id="level"
-                  value="LEVEL 400"
-                  checked={level === "LEVEL 400"}
-                  onChange={changeLevel}
-                />{" "}
-                400
-              </div>
-            </div>
-          </div> */}
           <h2>Semester</h2>
-          <div className="buttonGroup">
-            <div className="row">
-              <div className="radio-button" onClick={changeSemester}>
-                <input
-                  type="radio"
-                  name="semester"
-                  id="semester"
-                  value="1ST SEMESTER"
-                  checked={semester === "1ST SEMESTER"}
-                  onChange={changeSemester}
-                />
-                1ST SEMESTER
-              </div>
-              <div className="radio-button" onClick={changeSemester}>
-                <input
-                  type="radio"
-                  name="semester"
-                  id="semester"
-                  value="2ND SEMESTER"
-                  checked={semester === "2ND SEMESTER"}
-                  onChange={changeSemester}
-                />
-                2ND SEMESTER
-              </div>
-            </div>
+          <div className={styles.semesterGroup}>
+            {SEMESTERS.map((s, idx) => (
+              <RadioButton
+                key={idx}
+                id="semester"
+                checked={semester === s}
+                onClick={changeSemester}
+                value={s}
+                text={s}
+              />
+            ))}
           </div>
-          <div className="button-wrapper">
+          <div className={styles.buttonWrapper}>
             <input
-              className="file-input"
+              className={styles.fileInput}
               type="file"
               id="aa"
               onChange={changeFiles}
               multiple
               max="10"
             />
-            <label className="reference" htmlFor="aa">
+            <label className={styles.reference} htmlFor="aa">
               CHOOSE A FILE
             </label>
-            <label id="fileLabel">{inputText}</label>
+            <label id={styles.fileLabel}>{inputText}</label>
           </div>
           <button
             type="submit"
-            className="view formButton"
+            className={styles.formButton}
             onClick={addQuestions}
           >
             ADD
