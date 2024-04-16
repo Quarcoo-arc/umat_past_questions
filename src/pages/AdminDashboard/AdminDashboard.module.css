@@ -16,20 +16,17 @@
   box-sizing: border-box;
 }
 
-.row {
+.row,
+.buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
-  margin: 0rem 2rem;
-}
-
-.form-select .row.new {
   width: 75%;
   margin: 4% auto 7%;
 }
 
-.row.new.buttons {
+.buttons {
   margin-top: 3%;
   margin-bottom: 15%;
 }
@@ -112,4 +109,28 @@
 
 .dropdownContent p:hover {
   background-color: #b1b1b1;
+}
+
+.form {
+  margin-top: 2%;
+  margin-bottom: 4%;
+}
+
+.question {
+  width: 75%;
+  margin: 1% auto;
+  background-color: white;
+  padding: 0.4rem;
+  display: flex;
+  column-gap: 0.7rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #626262;
+  font-weight: bold;
+}
+
+.heading {
+  text-align: center;
+  margin-top: 3rem;
+  justify-content: center;
 }

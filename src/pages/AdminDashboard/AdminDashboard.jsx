@@ -7,7 +7,8 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminContext from "../../context/AdminContext";
 import QuestionsContext from "../../context/QuestionsContext";
-import "./AdminDashboard.css";
+import styles from "./AdminDashboard.module.css";
+import { LEVELS, PROGRAMS } from "../../utils/constants";
 
 const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
@@ -37,25 +38,27 @@ const AdminDashboard = () => {
     if (event.target.matches("svg")) {
       event.target.parentElement.children[
         event.target.parentElement.children.length - 1
-      ].classList.toggle("active");
+      ].classList.toggle(styles.active);
 
-      event.target.classList.toggle("rotate");
-    } else if (event.target.matches(".selected")) {
+      event.target.classList.toggle(styles.rotate);
+    } else if (event.target.matches(`.${styles["selected"]}`)) {
       event.target.parentElement.children[
         event.target.parentElement.children.length - 1
-      ].classList.toggle("active");
+      ].classList.toggle(styles.active);
 
-      event.target.nextSibling.classList.toggle("rotate");
-    } else if (event.target.matches(".drop-down-container")) {
-      event.target.lastElementChild.classList.toggle("active");
+      event.target.nextSibling.classList.toggle(styles.rotate);
+    } else if (event.target.matches(styles["drop-down-container"])) {
+      event.target.lastElementChild.classList.toggle(styles.active);
 
-      event.target.lastElementChild.previousSibling.classList.toggle("rotate");
+      event.target.lastElementChild.previousSibling.classList.toggle(
+        styles.rotate
+      );
     } else if (event.target.matches("path")) {
       event.target.parentElement.parentElement.children[
         event.target.parentElement.parentElement.children.length - 1
-      ].classList.toggle("active");
+      ].classList.toggle(styles.active);
 
-      event.target.parentElement.classList.toggle("rotate");
+      event.target.parentElement.classList.toggle(styles.rotate);
     }
   };
 
@@ -83,14 +86,14 @@ const AdminDashboard = () => {
       return;
     }
     if (event.target.matches("path")) {
-      event.target.parentElement.classList.add("rotate");
+      event.target.parentElement.classList.add(styles.rotate);
       setTimeout(() => {
-        event.target.parentElement.classList.remove("rotate");
+        event.target.parentElement.classList.remove(styles.rotate);
       }, 2000);
     } else {
-      event.target.classList.add("rotate");
+      event.target.classList.add(styles.rotate);
       setTimeout(() => {
-        event.target.classList.remove("rotate");
+        event.target.classList.remove(styles.rotate);
       }, 2000);
     }
     loadQuestions(Department, Level, Semester);
@@ -117,73 +120,68 @@ const AdminDashboard = () => {
     setCheckedInputs([]);
   };
 
-  const courses = [
-    "RENEWABLE ENGINEERING",
-    "COMPUTER SCIENCE & ENG.",
-    "ELECTRICAL ENGINEERING",
-    "MATHEMATICS",
-    "MECHANICAL ENGINEERING",
-    "GEOMATIC ENGINEERING",
-    "GEOLOGICAL ENGINEERING",
-    "MINING ENGINEERING",
-    "MINERALS ENGINEERING",
-    "ENV. & SAFETY ENG.",
-    "PETROLEUM ENGINEERING",
-    "GENERAL DRILLING",
-  ];
-
   return (
     <div>
       <div className="background-red">
         <Header isLoggedIn={isAdmin} isAdmin={isAdmin} />
-        <form action="" className="form-select">
-          <div className="row new">
+        <form action="" className={styles.form}>
+          <div className={styles.row}>
             {/* Cards showing statistics */}
-            <div className="stats">
+            <div className={styles.stats}>
               <h4>STUDENTS</h4>
               <h1>5,000</h1>
             </div>
-            <div className="stats">
+            <div className={styles.stats}>
               <h4>PAST QUESTIONS</h4>
               <h1>1,000</h1>
             </div>
-            <div className="stats">
+            <div className={styles.stats}>
               <h4>ADMINISTRATORS</h4>
               <h1>5</h1>
             </div>
           </div>
-          <div className="row new">
-            <div className="drop-down-container long" onClick={showDropdown}>
+          <div className={styles.row}>
+            <div
+              className={`${styles["drop-down-container"]} ${styles.long}`}
+              onClick={showDropdown}
+            >
               <p className="selected">{Department}</p>
-              <DropDownArrow width="2rem" className="dropdown" />
-              <div className="dropdownContent">
-                {courses.map((course, index) => (
+              <DropDownArrow width="2rem" className={styles.dropdown} />
+              <div className={styles.dropdownContent}>
+                {PROGRAMS.map((course, index) => (
                   <p onClick={setDepartment} key={index}>
                     {course}
                   </p>
                 ))}
               </div>
             </div>
-            <div className="drop-down-container small" onClick={showDropdown}>
-              <p className="selected">{Level}</p>
-              <DropDownArrow width="2rem" className="dropdown" />
-              <div className="dropdownContent small">
-                <p onClick={setLevel}>LEVEL 100</p>
-                <p onClick={setLevel}>LEVEL 200</p>
-                <p onClick={setLevel}>LEVEL 300</p>
-                <p onClick={setLevel}>LEVEL 400</p>
+            <div
+              className={`${styles["drop-down-container"]} ${styles.small}`}
+              onClick={showDropdown}
+            >
+              <p className={styles.selected}>{Level}</p>
+              <DropDownArrow width="2rem" className={styles.dropdown} />
+              <div className={`${styles.dropdownContent} ${styles.small}`}>
+                {LEVELS.map((l, idx) => (
+                  <p key={idx} onClick={setLevel}>
+                    {l}
+                  </p>
+                ))}
               </div>
             </div>
-            <div className="drop-down-container medium" onClick={showDropdown}>
-              <p className="selected">{Semester}</p>
-              <DropDownArrow width="2rem" className="dropdown" />
-              <div className="dropdownContent">
+            <div
+              className={`${styles["drop-down-container"]} ${styles.medium}`}
+              onClick={showDropdown}
+            >
+              <p className={styles.selected}>{Semester}</p>
+              <DropDownArrow width="2rem" className={styles.dropdown} />
+              <div className={styles.dropdownContent}>
                 <p onClick={setSemester}>1ST SEMESTER</p>
                 <p onClick={setSemester}>2ND SEMESTER</p>
               </div>
             </div>
             <SpinIcon
-              className="clickable"
+              className={styles.clickable}
               width="3rem"
               height="2.7rem"
               onClick={filterQuestions}
@@ -196,7 +194,7 @@ const AdminDashboard = () => {
               <label
                 key={index}
                 htmlFor={`question${index}`}
-                className="question"
+                className={styles.question}
               >
                 <input
                   type="checkbox"
@@ -211,16 +209,22 @@ const AdminDashboard = () => {
               </label>
             ))
           ) : (
-            <h1 className="question">No questions available yet!</h1>
+            <h1 className={`${styles.question} ${styles.heading}`}>
+              No questions available yet!
+            </h1>
           )}
           {/* Add & Delete Buttons & Functionalities */}
-          <div className="row new buttons">
+          <div className={styles.buttons}>
             <DeleteIcon
               width="3rem"
-              className="clickable"
+              className={styles.clickable}
               onClick={deleteSelected}
             />
-            <PlusIcon width="3rem" className="clickable" onClick={addNew} />
+            <PlusIcon
+              width="3rem"
+              className={styles.clickable}
+              onClick={addNew}
+            />
           </div>
         </form>
       </div>
