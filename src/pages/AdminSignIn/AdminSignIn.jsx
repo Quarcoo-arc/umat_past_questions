@@ -8,7 +8,7 @@ import { useState, useContext } from "react";
 import { Authentication } from "../../HOC";
 import AdminContext from "../../context/AdminContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import "./AdminSignIn.css";
+import styles from "./AdminSignIn.module.css";
 
 const AdminSignIn = () => {
   const { setIsAdmin, setIsUser } = useContext(AdminContext);
@@ -59,20 +59,11 @@ const AdminSignIn = () => {
         }
       }
     } catch (error) {
-      if (error.message === "Firebase: Error (auth/invalid-email).") {
-        alert("Invalid email!");
-      } else if (error.message === "Firebase: Error (auth/user-not-found).") {
-        alert("User not found!");
-      } else if (error.message === "Firebase: Error (auth/wrong-password).") {
-        alert("Incorrect password");
-      } else if (
-        error.message === "Firebase: Error (auth/network-request-failed)."
-      ) {
+      if (error.message === "Firebase: Error (auth/network-request-failed).") {
         alert("Network Error!");
       } else {
-        alert("Something went wrong!");
+        alert("Invalid email or password!");
       }
-      console.log(error);
     }
   };
 
@@ -83,51 +74,55 @@ const AdminSignIn = () => {
         <>
           SIGN{" "}
           <span>
-            <WrenchIcon width="3.7rem" height="4rem" className="wrench" />
+            <WrenchIcon
+              width="3.7rem"
+              height="4rem"
+              className={styles.wrench}
+            />
           </span>
           {""}N
         </>
       }
     >
-      <form className="form" onSubmit={validateUser}>
-        <div className="wrap">
-          <div className="wrapper">
+      <form className={styles.form} onSubmit={validateUser}>
+        <div className={styles.wrap}>
+          <div className={styles.wrapper}>
             <label htmlFor="email">
-              <UserIcon className="icon" />
+              <UserIcon className={styles.icon} />
             </label>
             <input
               type="text"
               name="email"
               id="email"
               placeholder="Email"
-              className="inputField"
+              className={styles.inputField}
               value={email}
               onChange={onChange}
             />
           </div>
-          <div className="wrapper">
+          <div className={styles.wrapper}>
             <label htmlFor="password">
-              <PasswordIcon className="icon" />
+              <PasswordIcon className={styles.icon} />
             </label>
             <input
               type="password"
               name="password"
               id="password"
               placeholder="Password"
-              className="inputField"
+              className={styles.inputField}
               value={password}
               onChange={onChange}
             />
           </div>
-          <div className="auth-wrap">
-            <button className="auth" type="submit">
+          <div className={styles["auth-wrap"]}>
+            <button className={styles.auth} type="submit">
               LOGIN
             </button>
-            <div className="auth-other">
-              <Link to="/forgot-password" className="forgotPassword">
+            <div className={styles["auth-other"]}>
+              <Link to="/forgot-password" className={styles.forgotPassword}>
                 forgot password
               </Link>
-              <Link to="/" className="register">
+              <Link to="/" className={styles.register}>
                 &lt; Back to Home
               </Link>
             </div>
