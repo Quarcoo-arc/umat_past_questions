@@ -3,10 +3,11 @@
   color: white;
   border-radius: 0.4rem;
   border: none;
-  width: 18rem;
-  height: 2.5rem;
-  margin: 1rem;
+  width: 15rem;
+  height: 3rem;
+  margin: 8% auto 14%;
   font-size: 1.05rem;
+  display: block;
 }
 
 .formButton:hover {
@@ -30,9 +31,27 @@
   margin: 0rem 2rem;
 }
 
-.buttonGroup {
-  width: fit-content;
+.buttonGroup,
+.levelGroup,
+.semesterGroup {
   margin: 3% auto 4%;
+  display: grid;
+  width: fit-content;
+}
+
+.buttonGroup {
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
+}
+
+.levelGroup {
+  grid-template-columns: auto auto auto auto;
+  gap: 2rem;
+}
+
+.semesterGroup {
+  grid-template-columns: auto auto;
+  gap: 2rem;
 }
 
 .radio-button {
@@ -70,11 +89,4 @@ input[type="radio"]:hover {
 input[type="radio"]:checked {
   background-color: #9d9d9d;
   box-shadow: inset 0px 0px 0px 2.5px #ffff;
-}
-
-.view {
-  margin: 8% auto 14%;
-  display: block;
-  height: 3rem;
-  width: 15rem;
 }

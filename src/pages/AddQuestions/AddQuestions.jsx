@@ -121,8 +121,8 @@ const AddQuestions = () => {
                 key={idx}
                 onClick={changeLevel}
                 id="level"
-                value={l}
-                checked={level === l}
+                value={l.split(" ")[1]}
+                checked={level === l.split(" ")[1]}
                 text={l.split(" ")[1]}
               />
             ))}
@@ -133,9 +133,9 @@ const AddQuestions = () => {
               <RadioButton
                 key={idx}
                 id="semester"
-                checked={semester === s}
+                checked={semester === s[0]}
                 onClick={changeSemester}
-                value={s}
+                value={s[0]}
                 text={s}
               />
             ))}
