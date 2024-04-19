@@ -1,0 +1,18 @@
+.formButton {
+  background: #2ec06d;
+  color: white;
+  border-radius: 0.4rem;
+  border: none;
+  width: 18rem;
+  height: 2.5rem;
+  margin: 1rem;
+  font-size: 1.05rem;
+}
+
+.formButton:hover {
+  background: #89d19e;
+}
+
+.formButton.active {
+  background: #9d9d9d;
+}

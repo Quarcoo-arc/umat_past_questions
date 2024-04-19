@@ -1,0 +1,67 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 7%;
+  justify-content: center;
+}
+
+.wrapper {
+  align-items: flex-end;
+  display: flex;
+  width: 66%;
+  margin: auto;
+  margin-bottom: 7%;
+}
+
+.icon {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.inputField {
+  border: none;
+  box-sizing: border-box;
+  padding: 0.9rem 1.4rem 0.6rem;
+  width: 8rem;
+  margin-left: 1.4rem;
+  margin-bottom: 0.3rem;
+  border-radius: 2rem;
+  width: 100%;
+}
+
+.auth {
+  width: 66%;
+  display: block;
+  padding: 0.7rem 0rem;
+  background-color: #09cc5c;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+  margin: auto;
+  margin-bottom: 3%;
+}
+
+.authWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 66%;
+  margin: 1rem auto 2.5rem;
+  justify-content: end;
+}
+
+.register {
+  color: #d17b7b;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.forgotPassword {
+  color: #ffffff;
+  font-weight: normal;
+  text-shadow: 0px 0.5px 10px #46785c;
+  display: inline-block;
+  margin: 0px;
+}

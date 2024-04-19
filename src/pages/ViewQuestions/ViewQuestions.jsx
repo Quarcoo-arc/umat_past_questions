@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import "./ViewQuestions.css";
+import styles from "./ViewQuestions.module.css";
 import { Footer, Header } from "../../components/index";
 import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -94,11 +94,11 @@ const ViewQuestions = () => {
     <div>
       <div className="background-red">
         <Header isLoggedIn={true} isAdmin={false} />
-        <form action="" className="form-select">
+        <form action="" className={styles.form}>
           <div className="col">
-            <div className="row center page-title">{department}</div>
-            <div className="row center page-title">{level}</div>
-            <div className="row center page-title">{semester}</div>
+            <div className={styles.title}>{department}</div>
+            <div className={styles.title}>{level}</div>
+            <div className={styles.title}>{semester}</div>
           </div>
           {/* TODO: Create a downloadable link component for the pdfs */}
           {/* TODO: Create a state variable to be updated upon checking a checkbox */}
@@ -108,7 +108,7 @@ const ViewQuestions = () => {
                 <label
                   key={index}
                   htmlFor={`question${index}`}
-                  className="question"
+                  className={styles.question}
                 >
                   <input
                     type="checkbox"
@@ -127,7 +127,7 @@ const ViewQuestions = () => {
               ))}
               <button
                 type="submit"
-                className="view formButton"
+                className={styles.formButton}
                 onClick={downloadQuestions}
               >
                 DOWNLOAD
@@ -135,10 +135,12 @@ const ViewQuestions = () => {
             </>
           ) : (
             <>
-              <h1 className="question">No questions available yet!</h1>
+              <h1 className={`${styles.question} ${styles.heading}`}>
+                No questions available yet!
+              </h1>
               <button
                 type="submit"
-                className="view formButton"
+                className={styles.formButton}
                 onClick={launchReport}
               >
                 REQUEST QUESTIONS

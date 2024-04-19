@@ -3,7 +3,9 @@ import { useContext, useEffect, useState } from "react";
 import AdminContext from "../../context/AdminContext";
 import { useNavigate } from "react-router-dom";
 import QuestionsContext from "../../context/QuestionsContext";
-import "./AddQuestions.css";
+import styles from "./AddQuestions.module.css";
+import { LEVELS, PROGRAMS, SEMESTERS } from "../../utils/constants";
+import { ProgramButton, RadioButton } from "../../components/Buttons";
 
 const AddQuestions = () => {
   const navigate = useNavigate();
@@ -46,7 +48,9 @@ const AddQuestions = () => {
       ...prev,
       level: event.target.value
         ? event.target.value
-        : event.target.firstChild.value,
+        : event.target.firstChild.value
+        ? event.target.firstChild.value
+        : event.target.previousSibling.value,
     }));
   };
 
@@ -55,7 +59,9 @@ const AddQuestions = () => {
       ...prev,
       semester: event.target.value
         ? event.target.value
-        : event.target.firstChild.value,
+        : event.target.firstChild.value
+        ? event.target.firstChild.value
+        : event.target.previousSibling.value,
     }));
   };
 
@@ -95,267 +101,62 @@ const AddQuestions = () => {
     <div>
       <div className="background-red">
         <Header isLoggedIn={isAdmin} isAdmin={isAdmin} />
-        <form action="" className="form-select">
+        <form action="" className={styles.form}>
           <h2>Select your Department(s)</h2>
-          <div className="buttonGroup">
-            <div className="row">
-              <button
-                type="button"
-                className={
-                  departments.includes("RENEWABLE ENGINEERING")
-                    ? "formButton active"
-                    : "formButton"
-                }
+          <div className={styles.buttonGroup}>
+            {PROGRAMS.map((program, idx) => (
+              <ProgramButton
+                key={idx}
+                active={departments.includes(program)}
+                value={program}
                 id="department"
-                value="RENEWABLE ENGINEERING"
                 onClick={changeDepartment}
-              >
-                RENEWABLE ENGINEERING
-              </button>
-              <button
-                type="button"
-                className={
-                  departments.includes("COMPUTER SCIENCE & ENG.")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="COMPUTER SCIENCE & ENG."
-                onClick={changeDepartment}
-              >
-                COMPUTER SCIENCE & ENG.
-              </button>
-              <button
-                type="button"
-                className={
-                  departments.includes("ELECTRICAL ENGINEERING")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="ELECTRICAL ENGINEERING"
-                onClick={changeDepartment}
-              >
-                ELECTRICAL ENGINEERING
-              </button>
-            </div>
-            <div className="row">
-              <button
-                type="button"
-                className={
-                  departments.includes("MATHEMATICS")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="MATHEMATICS"
-                onClick={changeDepartment}
-              >
-                MATHEMATICS
-              </button>
-              <button
-                type="button"
-                className={
-                  departments.includes("MECHANICAL ENGINEERING")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="MECHANICAL ENGINEERING"
-                onClick={changeDepartment}
-              >
-                MECHANICAL ENGINEERING
-              </button>
-              <button
-                type="button"
-                className={
-                  departments.includes("GEOMATIC ENGINEERING")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="GEOMATIC ENGINEERING"
-                onClick={changeDepartment}
-              >
-                GEOMATIC ENGINEERING
-              </button>
-            </div>
-            <div className="row">
-              <button
-                type="button"
-                className={
-                  departments.includes("GEOLOGICAL ENGINEERING")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="GEOLOGICAL ENGINEERING"
-                onClick={changeDepartment}
-              >
-                GEOLOGICAL ENGINEERING
-              </button>
-              <button
-                type="button"
-                className={
-                  departments.includes("MINING ENGINEERING")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="MINING ENGINEERING"
-                onClick={changeDepartment}
-              >
-                MINING ENGINEERING
-              </button>
-              <button
-                type="button"
-                className={
-                  departments.includes("MINERALS ENGINEERING")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="MINERALS ENGINEERING"
-                onClick={changeDepartment}
-              >
-                MINERALS ENGINEERING
-              </button>
-            </div>
-            <div className="row">
-              <button
-                type="button"
-                className={
-                  departments.includes("ENV. & SAFETY ENG.")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="ENV. & SAFETY ENG."
-                onClick={changeDepartment}
-              >
-                ENV. & SAFETY ENG.
-              </button>
-              <button
-                type="button"
-                className={
-                  departments.includes("PETROLEUM ENGINEERING")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="PETROLEUM ENGINEERING"
-                onClick={changeDepartment}
-              >
-                PETROLEUM ENGINEERING
-              </button>
-              <button
-                type="button"
-                className={
-                  departments.includes("GENERAL DRILLING")
-                    ? "formButton active"
-                    : "formButton"
-                }
-                id="department"
-                value="GENERAL DRILLING"
-                onClick={changeDepartment}
-              >
-                GENERAL DRILLING
-              </button>
-            </div>
+              />
+            ))}
           </div>
           <h2>Select your Level</h2>
-          <div className="buttonGroup">
-            <div className="row">
-              <div className="radio-button" onClick={changeLevel}>
-                <input
-                  type="radio"
-                  name="level"
-                  id="level"
-                  value="LEVEL 100"
-                  checked={level === "LEVEL 100"}
-                  onChange={changeLevel}
-                />{" "}
-                100
-              </div>
-              <div className="radio-button" onClick={changeLevel}>
-                <input
-                  type="radio"
-                  name="level"
-                  id="level"
-                  value="LEVEL 200"
-                  checked={level === "LEVEL 200"}
-                  onChange={changeLevel}
-                />{" "}
-                200
-              </div>
-              <div className="radio-button" onClick={changeLevel}>
-                <input
-                  type="radio"
-                  name="level"
-                  id="level"
-                  value="LEVEL 300"
-                  checked={level === "LEVEL 300"}
-                  onChange={changeLevel}
-                />{" "}
-                300
-              </div>
-              <div className="radio-button" onClick={changeLevel}>
-                <input
-                  type="radio"
-                  name="level"
-                  id="level"
-                  value="LEVEL 400"
-                  checked={level === "LEVEL 400"}
-                  onChange={changeLevel}
-                />{" "}
-                400
-              </div>
-            </div>
+          <div className={styles.levelGroup}>
+            {LEVELS.map((l, idx) => (
+              <RadioButton
+                key={idx}
+                onClick={changeLevel}
+                id="level"
+                value={l.split(" ")[1]}
+                checked={level === l.split(" ")[1]}
+                text={l.split(" ")[1]}
+              />
+            ))}
           </div>
           <h2>Semester</h2>
-          <div className="buttonGroup">
-            <div className="row">
-              <div className="radio-button" onClick={changeSemester}>
-                <input
-                  type="radio"
-                  name="semester"
-                  id="semester"
-                  value="1ST SEMESTER"
-                  checked={semester === "1ST SEMESTER"}
-                  onChange={changeSemester}
-                />
-                1ST SEMESTER
-              </div>
-              <div className="radio-button" onClick={changeSemester}>
-                <input
-                  type="radio"
-                  name="semester"
-                  id="semester"
-                  value="2ND SEMESTER"
-                  checked={semester === "2ND SEMESTER"}
-                  onChange={changeSemester}
-                />
-                2ND SEMESTER
-              </div>
-            </div>
+          <div className={styles.semesterGroup}>
+            {SEMESTERS.map((s, idx) => (
+              <RadioButton
+                key={idx}
+                id="semester"
+                checked={semester === s[0]}
+                onClick={changeSemester}
+                value={s[0]}
+                text={s}
+              />
+            ))}
           </div>
-          <div className="button-wrapper">
+          <div className={styles.buttonWrapper}>
             <input
-              className="file-input"
+              className={styles.fileInput}
               type="file"
               id="aa"
               onChange={changeFiles}
               multiple
               max="10"
             />
-            <label className="reference" htmlFor="aa">
+            <label className={styles.reference} htmlFor="aa">
               CHOOSE A FILE
             </label>
-            <label id="fileLabel">{inputText}</label>
+            <label id={styles.fileLabel}>{inputText}</label>
           </div>
           <button
             type="submit"
-            className="view formButton"
+            className={styles.formButton}
             onClick={addQuestions}
           >
             ADD

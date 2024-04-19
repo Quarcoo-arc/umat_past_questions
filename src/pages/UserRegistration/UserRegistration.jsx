@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Authentication } from "../../HOC";
 import { app, db } from "../../firebase.config";
+import styles from "./UserRegistration.module.css";
 
 const UserRegistration = () => {
   const navigate = useNavigate();
@@ -98,16 +99,16 @@ const UserRegistration = () => {
   };
   return (
     <Authentication headingText="REGISTER" redIcon={true}>
-      <form className="form new" onSubmit={addUser}>
-        <div className="wrap">
-          <div className="col">
-            <div className="wrapper">
+      <form className={styles.form} onSubmit={addUser}>
+        <div className={styles.wrap}>
+          <div className={styles.col}>
+            <div className={styles.wrapper}>
               <input
                 type="text"
                 name="firstName"
                 id="firstName"
                 placeholder="First Name"
-                className="inputField new"
+                className={styles.inputField}
                 onChange={onChange}
                 value={firstName}
               />
@@ -116,7 +117,7 @@ const UserRegistration = () => {
                 name="lastName"
                 id="lastName"
                 placeholder="Last Name"
-                className="inputField new"
+                className={styles.inputField}
                 onChange={onChange}
                 value={lastName}
               />
@@ -125,18 +126,18 @@ const UserRegistration = () => {
                 name="id"
                 id="id"
                 placeholder="ID/Ref. No."
-                className="inputField new"
+                className={styles.inputField}
                 onChange={onChange}
                 value={id}
               />
             </div>
-            <div className="wrapper">
+            <div className={styles.wrapper}>
               <input
                 type="text"
                 name="username"
                 id="username"
                 placeholder="Username"
-                className="inputField new"
+                className={styles.inputField}
                 onChange={onChange}
                 value={username}
               />
@@ -145,18 +146,18 @@ const UserRegistration = () => {
                 name="email"
                 id="email"
                 placeholder="Email"
-                className="inputField new xlg"
+                className={`${styles.inputField} ${styles.xlg}`}
                 onChange={onChange}
                 value={email}
               />
             </div>
-            <div className="wrapper space">
+            <div className={`${styles.wrapper} ${styles.space}`}>
               <input
                 type="password"
                 name="password"
                 id="password"
                 placeholder="Password"
-                className="inputField new lg"
+                className={`${styles.inputField} ${styles.lg}`}
                 onChange={onChange}
                 value={password}
               />
@@ -165,21 +166,21 @@ const UserRegistration = () => {
                 name="confirmPassword"
                 id="confirmPassword"
                 placeholder="Confirm Password"
-                className="inputField new lg"
+                className={`${styles.inputField} ${styles.lg}`}
                 onChange={onChange}
                 value={confirmPassword}
               />
             </div>
           </div>
 
-          <div className="auth-wrap">
-            <button className="auth new" type="submit">
+          <div className={styles["auth-wrap"]}>
+            <button className={styles.auth} type="submit">
               REGISTER
             </button>
-            <div className="auth-other new">
-              <p className="forgotPassword">
+            <div className={styles["auth-other"]}>
+              <p className={styles.forgotPassword}>
                 Already have an account? &nbsp;&nbsp;
-                <Link to="/sign-in" className="register">
+                <Link to="/sign-in" className={styles.register}>
                   login
                 </Link>
               </p>

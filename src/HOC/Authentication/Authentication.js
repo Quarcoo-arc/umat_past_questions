@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../assets/images/umat-logo.png";
 import { ReactComponent as CorrectIcon } from "../../assets/svgs/CorrectSign.svg";
 import { ReactComponent as NutIcon } from "../../assets/svgs/NutIcon.svg";
-import "./Authentication.css";
+import styles from "./Authentication.module.css";
 
 const Authentication = ({
   children,
@@ -12,22 +12,24 @@ const Authentication = ({
   admin = false,
 }) => {
   return (
-    <div className="background">
-      <div className="card">
-        <div className="container">
-          {admin && <NutIcon width="2.3rem" className="nut-small" />}
-          <h1 className={`heading ${longHeading ? "small" : ""}`}>
+    <div className={styles.background}>
+      <div className={styles.card}>
+        <div className={styles.container}>
+          {admin && <NutIcon width="2.3rem" className={styles.smallNut} />}
+          <h1
+            className={`${styles.heading} ${longHeading ? styles.small : ""}`}
+          >
             {headingText}
           </h1>
           <CorrectIcon
             width="10rem"
-            className={`checkMark ${redIcon ? "red" : ""}`}
+            className={`${styles.checkMark} ${redIcon ? styles.red : ""}`}
           />
-          {admin && <NutIcon width="5rem" className="nut-large" />}
+          {admin && <NutIcon width="5rem" className={styles.largeNut} />}
         </div>
         {children}
       </div>
-      <img src={logo} alt="" className="logo" />
+      <img src={logo} alt="" className={styles.logo} />
     </div>
   );
 };

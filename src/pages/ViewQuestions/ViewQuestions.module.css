@@ -1,0 +1,56 @@
+.title {
+  margin: 0 auto 1.8rem !important;
+  font-size: 1.8rem;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0px 0.5px 10px #46785c;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0rem 2rem;
+  width: fit-content;
+  margin: -1rem auto 1rem;
+  text-align: center;
+}
+
+.question {
+  width: 75%;
+  margin: 1% auto;
+  background-color: white;
+  padding: 0.4rem;
+  display: flex;
+  column-gap: 0.7rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #626262;
+  font-weight: bold;
+}
+
+.heading {
+  text-align: center;
+  margin-top: 3rem;
+  justify-content: center;
+}
+
+.formButton {
+  background: #2ec06d;
+  color: white;
+  border-radius: 0.4rem;
+  border: none;
+  margin: 1rem;
+  font-size: 1.05rem;
+  margin: 8% auto 14%;
+  display: block;
+  height: 3rem;
+  width: 15rem;
+}
+
+.formButton:hover {
+  background: #89d19e;
+}
+
+.form {
+  margin-top: 2%;
+  margin-bottom: 4%;
+}

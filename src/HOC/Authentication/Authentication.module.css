@@ -29,6 +29,7 @@
   width: 4.3rem;
   right: 1rem;
   bottom: 0.3rem;
+  cursor: pointer;
 }
 
 .container {
@@ -60,13 +61,13 @@
   fill: #d5a496;
 }
 
-.nut-small {
+.smallNut {
   position: absolute;
   bottom: -1.3rem;
   left: 16%;
 }
 
-.nut-large {
+.largeNut {
   position: absolute;
   bottom: -3.5rem;
   right: 10%;
