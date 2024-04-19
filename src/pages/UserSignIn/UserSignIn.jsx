@@ -6,6 +6,7 @@ import { ReactComponent as PasswordIcon } from "../../assets/svgs/PasswordIcon.s
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AdminContext from "../../context/AdminContext";
+import styles from "./UserSignIn.module.css";
 
 const UserSignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -39,64 +40,55 @@ const UserSignIn = () => {
         navigate("/user-dashboard");
       }
     } catch (error) {
-      if (error.message === "Firebase: Error (auth/invalid-email).") {
-        alert("Invalid email!");
-      } else if (error.message === "Firebase: Error (auth/user-not-found).") {
-        alert("User not found!");
-      } else if (
-        error.message === "Firebase: Error (auth/network-request-failed)."
-      ) {
+      if (error.message === "Firebase: Error (auth/network-request-failed).") {
         alert("Network Error!");
-      } else if (error.message === "Firebase: Error (auth/wrong-password).") {
-        alert("Incorrect password");
       } else {
-        alert("Something went wrong!");
+        alert("Invalid email or password!");
       }
-      console.log(error);
     }
   };
   return (
     <Authentication headingText="SIGN IN">
-      <form className="form" onSubmit={validateUser}>
-        <div className="wrap">
-          <div className="wrapper">
+      <form className={styles.form} onSubmit={validateUser}>
+        <div className={styles.wrap}>
+          <div className={styles.wrapper}>
             <label htmlFor="email">
-              <UserIcon className="icon" />
+              <UserIcon className={styles.icon} />
             </label>
             <input
               type="text"
               name="email"
               id="email"
               placeholder="Email"
-              className="inputField"
+              className={styles.inputField}
               value={email}
               onChange={onChange}
             />
           </div>
-          <div className="wrapper">
+          <div className={styles.wrapper}>
             <label htmlFor="password">
-              <PasswordIcon className="icon" />
+              <PasswordIcon className={styles.icon} />
             </label>
             <input
               type="password"
               name="password"
               id="password"
               placeholder="Password"
-              className="inputField"
+              className={styles.inputField}
               value={password}
               onChange={onChange}
             />
           </div>
 
-          <div className="auth-wrap">
-            <button className="auth" type="submit">
+          <div className={styles["auth-wrap"]}>
+            <button className={styles.auth} type="submit">
               LOGIN
             </button>
-            <div className="auth-other">
-              <Link to="/forgot-password" className="forgotPassword">
+            <div className={styles["auth-other"]}>
+              <Link to="/forgot-password" className={styles.forgotPassword}>
                 forgot password
               </Link>
-              <Link to="/register" className="register">
+              <Link to="/register" className={styles.register}>
                 register
               </Link>
             </div>
