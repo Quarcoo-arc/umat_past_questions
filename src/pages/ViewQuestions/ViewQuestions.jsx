@@ -9,7 +9,6 @@ const ViewQuestions = () => {
   const { level, semester, department } = useParams();
   const { questions, loadQuestions } = useContext(QuestionsContext);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
-  const [checkedInputs, setCheckedInputs] = useState([]);
 
   useEffect(() => {
     loadQuestions(department, level, semester);
@@ -58,9 +57,6 @@ const ViewQuestions = () => {
         });
     });
 
-    //Uncheck checkboxes
-    checkedInputs.map((input) => (input.checked = false));
-    setCheckedInputs([]);
     //Reset Files to be downloaded
     setSelectedQuestions([]);
   };
@@ -79,12 +75,10 @@ const ViewQuestions = () => {
 
   const selectQuestion = (event) => {
     if (selectedQuestions.includes(event.target.dataset.url)) {
-      setCheckedInputs(checkedInputs.filter((input) => input !== event.target));
       setSelectedQuestions(
         selectedQuestions.filter((quest) => quest !== event.target.dataset.url)
       );
     } else {
-      setCheckedInputs((prev) => [...prev, event.target]);
       setSelectedQuestions((prev) => [...prev, event.target.dataset.url]);
     }
   };
@@ -101,7 +95,6 @@ const ViewQuestions = () => {
             <div className={styles.title}>{semester}</div>
           </div>
           {/* TODO: Create a downloadable link component for the pdfs */}
-          {/* TODO: Create a state variable to be updated upon checking a checkbox */}
           {questions.length > 0 ? (
             <>
               {questions.map((link, index) => (
@@ -110,6 +103,7 @@ const ViewQuestions = () => {
                   index={index}
                   link={link}
                   onChange={selectQuestion}
+                  checked={selectedQuestions.includes(link)}
                 />
               ))}
               <button

@@ -18,7 +18,6 @@ const AdminDashboard = () => {
     useContext(QuestionsContext);
   const navigate = useNavigate();
   const [selectedQuestions, setSelectedQuestions] = useState([]);
-  const [checkedInputs, setCheckedInputs] = useState([]);
 
   const [selected, setSelected] = useState({
     Level: "Level",
@@ -103,21 +102,17 @@ const AdminDashboard = () => {
 
   const selectQuestion = (event) => {
     if (selectedQuestions.includes(event.target.dataset.url)) {
-      setCheckedInputs(checkedInputs.filter((input) => input !== event.target));
       setSelectedQuestions(
         selectedQuestions.filter((quest) => quest !== event.target.dataset.url)
       );
     } else {
-      setCheckedInputs((prev) => [...prev, event.target]);
       setSelectedQuestions((prev) => [...prev, event.target.dataset.url]);
     }
   };
 
   const deleteSelected = () => {
-    const links = [];
-    checkedInputs.forEach((input) => links.push(input.dataset.url));
-    deleteQuestions(selected, links);
-    setCheckedInputs([]);
+    deleteQuestions(selected, selectedQuestions);
+    setSelectedQuestions([]);
   };
 
   return (
@@ -196,6 +191,7 @@ const AdminDashboard = () => {
                 index={index}
                 link={link}
                 onChange={selectQuestion}
+                checked={selectedQuestions.includes(link)}
               />
             ))
           ) : (
