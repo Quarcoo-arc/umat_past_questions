@@ -1,4 +1,4 @@
-import { Footer, Header } from "../../components/index";
+import { Footer, Header, Question } from "../../components/index";
 import { ReactComponent as DeleteIcon } from "../../assets/svgs/DeleteIcon.svg";
 import { ReactComponent as PlusIcon } from "../../assets/svgs/PlusIcon.svg";
 import { ReactComponent as DropDownArrow } from "../../assets/svgs/DropDownArrow.svg";
@@ -191,22 +191,12 @@ const AdminDashboard = () => {
           {/* TODO: Create a state variable to be updated upon checking a checkbox */}
           {questions.length ? (
             questions.map((link, index) => (
-              <label
+              <Question
                 key={index}
-                htmlFor={`question${index}`}
-                className={styles.question}
-              >
-                <input
-                  type="checkbox"
-                  name={`question${index}`}
-                  id={`question${index}`}
-                  onChange={selectQuestion}
-                  data-url={link}
-                />
-                {decodeURIComponent(
-                  link.slice(link.indexOf("F") + 1, link.lastIndexOf("?"))
-                )}
-              </label>
+                index={index}
+                link={link}
+                onChange={selectQuestion}
+              />
             ))
           ) : (
             <h1 className={`${styles.question} ${styles.heading}`}>

@@ -1,0 +1,18 @@
+.question {
+  width: 75%;
+  margin: 1% auto;
+  background-color: white;
+  padding: 0.4rem;
+  display: flex;
+  column-gap: 0.7rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #626262;
+  font-weight: bold;
+}
+
+.question label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}

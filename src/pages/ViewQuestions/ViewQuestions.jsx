@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import styles from "./ViewQuestions.module.css";
-import { Footer, Header } from "../../components/index";
+import { Footer, Header, Question } from "../../components/index";
 import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import QuestionsContext from "../../context/QuestionsContext";
@@ -104,26 +104,13 @@ const ViewQuestions = () => {
           {/* TODO: Create a state variable to be updated upon checking a checkbox */}
           {questions.length > 0 ? (
             <>
-              {questions.map((question, index) => (
-                <label
+              {questions.map((link, index) => (
+                <Question
                   key={index}
-                  htmlFor={`question${index}`}
-                  className={styles.question}
-                >
-                  <input
-                    type="checkbox"
-                    name={`question${index}`}
-                    id={`question${index}`}
-                    onChange={selectQuestion}
-                    data-url={question}
-                  />
-                  {decodeURIComponent(
-                    question.slice(
-                      question.indexOf("F") + 1,
-                      question.lastIndexOf("?")
-                    )
-                  )}
-                </label>
+                  index={index}
+                  link={link}
+                  onChange={selectQuestion}
+                />
               ))}
               <button
                 type="submit"
