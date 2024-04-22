@@ -1,5 +1,5 @@
 .content {
-  margin: 3% auto 4%;
+  margin: 3% auto 8%;
   display: flex;
   flex-direction: row;
   width: 94%;
@@ -8,6 +8,7 @@
 .books {
   border: none;
   width: 46%;
+  max-width: 25rem;
 }
 
 .col {
@@ -15,16 +16,22 @@
   text-align: center;
   font-size: 2.3rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 30rem;
 }
 
 .col p {
-  margin: 0 0 2%;
+  margin: 0;
 }
 
 .auth {
-  width: 25rem;
+  max-width: 25rem;
+  width: 100%;
   display: block;
-  margin: 2rem auto 6%;
   padding: 0.7rem 0rem;
   background-color: #09cc5c;
   color: #ffffff;
@@ -35,4 +42,30 @@
 
 .auth:hover {
   background: #9d9d9d;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    row-gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 15%;
+  }
+
+  .books {
+    width: 30%;
+    min-width: 10rem;
+  }
+
+  .col {
+    font-size: 1.6rem;
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .content {
+    margin-top: 5%;
+    font-size: 1.3rem;
+  }
 }

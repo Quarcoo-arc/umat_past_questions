@@ -13,7 +13,7 @@ const LandingPage = () => {
   const onClick = () => navigate("/user-dashboard");
 
   return (
-    <div>
+    <>
       <div className="background-red">
         <Header isLoggedIn={isUser} isAdmin={isAdmin} />
         <div className={styles.content}>
@@ -27,7 +27,7 @@ const LandingPage = () => {
         </div>
       </div>
       <Footer isLoggedIn={isUser} />
-    </div>
+    </>
   );
 };
 
