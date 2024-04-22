@@ -2,17 +2,24 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: stretch;
-  margin: 0rem 2rem;
+  align-items: center;
+  padding: 1rem 2rem;
 }
 
 .icon {
   cursor: pointer;
+  width: 4.5rem;
+  height: fit-content;
+}
+
+.icon.sm {
+  width: 3.8rem;
 }
 
 .action {
-  margin-top: 3rem;
-  margin-right: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: #d17b7b;
   font-weight: bolder;
@@ -27,4 +34,34 @@
   letter-spacing: 0.5rem;
   color: rgb(0, 0, 0);
   margin: auto;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+    letter-spacing: 0.3rem;
+  }
+
+  .icon {
+    width: 4rem;
+  }
+
+  .icon.sm {
+    width: 3rem;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .row {
+    padding: 1rem 1.5rem;
+  }
+
+  .icon.sm {
+    width: 2.5rem;
+  }
 }

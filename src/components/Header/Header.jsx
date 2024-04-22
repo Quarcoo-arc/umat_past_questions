@@ -7,7 +7,7 @@ import styles from "./Header.module.css";
 const Header = ({ isLoggedIn, isAdmin }) => {
   return (
     <div className={styles.row}>
-      <UmatLogo width="4.5rem" className={styles.icon} />
+      <UmatLogo className={styles.icon} />
       <h1 className={styles.title}>Past Questions Database</h1>
       {!isLoggedIn && (
         <Link to="/sign-in" className={styles.action}>
@@ -15,13 +15,13 @@ const Header = ({ isLoggedIn, isAdmin }) => {
         </Link>
       )}
       {isLoggedIn && isAdmin && (
-        <Link to="/admin-dashboard">
-          <ToolsIcon width="3.5rem" />
+        <Link to="/admin-dashboard" className={styles.center}>
+          <ToolsIcon className={`${styles.icon} ${styles.sm}`} />
         </Link>
       )}
       {isLoggedIn && !isAdmin && (
-        <Link to="/user-dashboard">
-          <SpeedDialIcon width="4rem" height="156" />
+        <Link to="/user-dashboard" className={styles.center}>
+          <SpeedDialIcon className={`${styles.icon} ${styles.sm}`} />
         </Link>
       )}
     </div>
