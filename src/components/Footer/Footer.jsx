@@ -26,13 +26,13 @@ const Footer = ({ isLoggedIn }) => {
     <div className={styles.background}>
       <div className={styles.row}>
         <div className={styles.column}>
-          <AvatarIcon width="3rem" className={styles.avatar} />
+          <AvatarIcon width="3rem" />
           {isLoggedIn ? (
             <span onClick={logout} className={styles.logout}>
               Logout
             </span>
           ) : (
-            <div className={styles.row}>
+            <div className={styles.flex}>
               <Link to="/register" className={styles.green}>
                 Register
               </Link>
@@ -43,7 +43,7 @@ const Footer = ({ isLoggedIn }) => {
             </div>
           )}
         </div>
-        <UmatLogo width="6rem" className={styles.icon} />
+        <UmatLogo className={styles.umatLogo} />
         <div className={styles.socialsWrapper}>
           <FacebookLogo width="1.8rem" className={styles.icon} />
           <img src={InstagramLogo} className={styles.smallIcon} alt="" />
@@ -51,14 +51,22 @@ const Footer = ({ isLoggedIn }) => {
         </div>
       </div>
       <div className={styles.center}>
-        <p>Knowledge | Truth | Excellence</p>
-        <div className={styles.row}>
+        <p>University of Mines and Technology</p>
+        <div className={styles.line}>
           <Line width={"100%"} />
         </div>
-        <p>
-          Copyright &copy; {new Date().getFullYear()} | University of Mines and
-          Technology
-        </p>
+        <div className={styles.space}>
+          <p>Copyright &copy; {new Date().getFullYear()}</p>
+          <p>|</p>
+          <a
+            href="https://github.com/Quarcoo-arc"
+            target="_blank"
+            className={styles.link}
+            rel="noreferrer"
+          >
+            Michael Quarcoo
+          </a>
+        </div>
       </div>
     </div>
   );
