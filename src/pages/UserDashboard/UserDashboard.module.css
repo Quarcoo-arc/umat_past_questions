@@ -37,21 +37,19 @@
   margin: 3% auto 4%;
   display: grid;
   width: fit-content;
+  gap: 2rem;
 }
 
 .buttonGroup {
   grid-template-columns: auto auto auto;
-  gap: 1rem;
 }
 
 .levelGroup {
   grid-template-columns: auto auto auto auto;
-  gap: 2rem;
 }
 
 .semesterGroup {
   grid-template-columns: auto auto;
-  gap: 2rem;
 }
 
 .radio-button {
@@ -89,4 +87,14 @@ input[type="radio"]:hover {
 input[type="radio"]:checked {
   background-color: #9d9d9d;
   box-shadow: inset 0px 0px 0px 2.5px #ffff;
+}
+
+@media screen and (max-width: 768px) {
+  .buttonGroup {
+    grid-template-columns: auto auto;
+  }
+
+  .levelGroup {
+    grid-template-columns: auto auto;
+  }
 }
