@@ -9,10 +9,21 @@
 }
 
 .row {
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  justify-items: center;
+}
+
+.line,
+.flex {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
+}
+
+.line,
+.row {
   margin: 0rem 2rem;
 }
 
@@ -21,7 +32,7 @@
 }
 
 .logout {
-  margin: 0 3.5rem;
+  /* margin: 0 3.5rem; */
   color: #c60202;
   font-weight: bold;
   cursor: pointer;
@@ -31,7 +42,7 @@
   display: flex;
   flex-direction: row;
   width: fit-content;
-  margin: auto 3rem auto 0;
+  align-items: center;
   column-gap: 0.8rem;
 }
 
@@ -46,10 +57,17 @@
   cursor: pointer;
 }
 
+.umatLogo {
+  width: 6rem;
+  height: fit-content;
+  cursor: pointer;
+}
+
 .center {
   width: fit-content;
-  margin: -1rem auto 1rem;
+  margin: 0 auto;
   text-align: center;
+  font-size: 1.05rem;
 }
 
 .center p {
@@ -63,7 +81,8 @@
   display: flex;
   flex-direction: column;
   height: fit-content;
-  margin: auto 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .red {
@@ -74,4 +93,34 @@
 .green {
   color: #029141;
   font-weight: bold;
+}
+
+.space {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.space p {
+  margin: 0;
+}
+
+.link {
+  color: white;
+  text-shadow: 0px 0.5px 10px #46785c;
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 425px) {
+  .umatLogo {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: 50% 50%;
+    margin: 5rem 0rem 1.5rem;
+  }
 }

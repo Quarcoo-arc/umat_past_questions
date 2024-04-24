@@ -69,21 +69,19 @@ input[type="file"] {
   margin: 3% auto 4%;
   display: grid;
   width: fit-content;
+  gap: 2rem;
 }
 
 .buttonGroup {
   grid-template-columns: auto auto auto;
-  gap: 1rem;
 }
 
 .levelGroup {
   grid-template-columns: auto auto auto auto;
-  gap: 2rem;
 }
 
 .semesterGroup {
   grid-template-columns: auto auto;
-  gap: 2rem;
 }
 
 .formButton {
@@ -107,3 +105,13 @@ input[type="file"] {
 }
 
 /* TODO: Style Checkmark symbol */
+
+@media screen and (max-width: 768px) {
+  .buttonGroup {
+    grid-template-columns: auto auto;
+  }
+
+  .levelGroup {
+    grid-template-columns: auto auto;
+  }
+}

@@ -43,3 +43,18 @@ input[type="radio"]:checked {
   background-color: #9d9d9d;
   box-shadow: inset 0px 0px 0px 2.5px #ffff;
 }
+
+@media screen and (max-width: 1024px) {
+  .radioButton {
+    width: 10rem;
+    height: 4rem;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  .radioButton {
+    width: 8.5rem;
+    height: 3.5rem;
+    font-size: 0.8rem;
+  }
+}
