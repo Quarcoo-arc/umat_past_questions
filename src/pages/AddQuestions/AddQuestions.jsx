@@ -102,43 +102,49 @@ const AddQuestions = () => {
       <div className="background-red">
         <Header isLoggedIn={isAdmin} isAdmin={isAdmin} />
         <form action="" className={styles.form}>
-          <h2>Select your Department(s)</h2>
-          <div className={styles.buttonGroup}>
-            {PROGRAMS.map((program, idx) => (
-              <ProgramButton
-                key={idx}
-                active={departments.includes(program)}
-                value={program}
-                id="department"
-                onClick={changeDepartment}
-              />
-            ))}
+          <div className={styles.wrap}>
+            <h2>Select your Department(s)</h2>
+            <div className={styles.buttonGroup}>
+              {PROGRAMS.map((program, idx) => (
+                <ProgramButton
+                  key={idx}
+                  active={departments.includes(program)}
+                  value={program}
+                  id="department"
+                  onClick={changeDepartment}
+                />
+              ))}
+            </div>
           </div>
-          <h2>Select your Level</h2>
-          <div className={styles.levelGroup}>
-            {LEVELS.map((l, idx) => (
-              <RadioButton
-                key={idx}
-                onClick={changeLevel}
-                id="level"
-                value={l.split(" ")[1]}
-                checked={level === l.split(" ")[1]}
-                text={l.split(" ")[1]}
-              />
-            ))}
+          <div className={styles.wrap}>
+            <h2>Select your Level</h2>
+            <div className={styles.levelGroup}>
+              {LEVELS.map((l, idx) => (
+                <RadioButton
+                  key={idx}
+                  onClick={changeLevel}
+                  id="level"
+                  value={l.split(" ")[1]}
+                  checked={level === l.split(" ")[1]}
+                  text={l.split(" ")[1]}
+                />
+              ))}
+            </div>
           </div>
-          <h2>Semester</h2>
-          <div className={styles.semesterGroup}>
-            {SEMESTERS.map((s, idx) => (
-              <RadioButton
-                key={idx}
-                id="semester"
-                checked={semester === s[0]}
-                onClick={changeSemester}
-                value={s[0]}
-                text={s}
-              />
-            ))}
+          <div className={styles.wrap}>
+            <h2>Semester</h2>
+            <div className={styles.semesterGroup}>
+              {SEMESTERS.map((s, idx) => (
+                <RadioButton
+                  key={idx}
+                  id="semester"
+                  checked={semester === s[0]}
+                  onClick={changeSemester}
+                  value={s[0]}
+                  text={s}
+                />
+              ))}
+            </div>
           </div>
           <div className={styles.buttonWrapper}>
             <input
