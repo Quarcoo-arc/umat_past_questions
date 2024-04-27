@@ -1,4 +1,9 @@
-import { Footer, Header, Question } from "../../components/index";
+import {
+  Footer,
+  Header,
+  Question,
+  StatisticCard,
+} from "../../components/index";
 import { ReactComponent as DeleteIcon } from "../../assets/svgs/DeleteIcon.svg";
 import { ReactComponent as PlusIcon } from "../../assets/svgs/PlusIcon.svg";
 import { ReactComponent as DropDownArrow } from "../../assets/svgs/DropDownArrow.svg";
@@ -115,6 +120,12 @@ const AdminDashboard = () => {
     setSelectedQuestions([]);
   };
 
+  const statistics = [
+    { group: "STUDENTS", count: "5,000" },
+    { group: "PAST QUESTIONS", count: "14,000" },
+    { group: "ADMINISTRATORS", count: "10" },
+  ];
+
   return (
     <div>
       <div className="background-red">
@@ -122,18 +133,9 @@ const AdminDashboard = () => {
         <form action="" className={styles.form}>
           <div className={styles.row}>
             {/* Cards showing statistics */}
-            <div className={styles.stats}>
-              <h4>STUDENTS</h4>
-              <h1>5,000</h1>
-            </div>
-            <div className={styles.stats}>
-              <h4>PAST QUESTIONS</h4>
-              <h1>1,000</h1>
-            </div>
-            <div className={styles.stats}>
-              <h4>ADMINISTRATORS</h4>
-              <h1>5</h1>
-            </div>
+            {statistics.map((el, idx) => (
+              <StatisticCard key={idx} count={el.count} group={el.group} />
+            ))}
           </div>
           <div className={styles.row}>
             <div

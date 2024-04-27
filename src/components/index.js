@@ -2,5 +2,6 @@ import Footer from "./Footer/Footer";
 import Spinner from "./Spinner/Spinner";
 import Header from "./Header/Header";
 import Question from "./Question/Question";
+import StatisticCard from "./StatisticCard/StatisticCard";
 
-export { Footer, Spinner, Header, Question };
+export { Footer, Spinner, Header, Question, StatisticCard };
