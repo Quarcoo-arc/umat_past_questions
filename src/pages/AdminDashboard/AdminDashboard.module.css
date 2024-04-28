@@ -1,11 +1,20 @@
 .row,
-.buttons {
+.buttons,
+.statistics {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
   width: 75%;
   margin: 4% auto 7%;
+}
+
+.statistics,
+.row {
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 2rem;
+  flex-wrap: wrap;
 }
 
 .buttons {
@@ -22,7 +31,7 @@
   cursor: pointer;
 }
 
-.drop-down-container.small {
+/* .drop-down-container.small {
   width: 10rem;
 }
 
@@ -32,7 +41,7 @@
 
 .drop-down-container.medium {
   width: 13rem;
-}
+} */
 
 .drop-down-container p {
   margin: 0.6rem 1rem;
@@ -110,3 +119,8 @@
   margin-top: 3rem;
   justify-content: center;
 }
+
+/* 
+@media screen and (max-width: ) {
+  
+} */

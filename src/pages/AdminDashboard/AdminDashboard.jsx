@@ -39,6 +39,12 @@ const AdminDashboard = () => {
   }, [isAdmin, navigate]);
 
   const showDropdown = (event) => {
+    console.log(
+      event.target,
+      `.${styles["drop-down-container"]}`,
+      event.target.closest(`.${styles["drop-down-container"]}`),
+      event.target.matches(`.${styles["drop-down-container"]}`)
+    );
     if (event.target.matches("svg")) {
       event.target.parentElement.children[
         event.target.parentElement.children.length - 1
@@ -51,7 +57,8 @@ const AdminDashboard = () => {
       ].classList.toggle(styles.active);
 
       event.target.nextSibling.classList.toggle(styles.rotate);
-    } else if (event.target.matches(styles["drop-down-container"])) {
+    } else if (event.target.matches(`.${styles["drop-down-container"]}`)) {
+      console.log("Here");
       event.target.lastElementChild.classList.toggle(styles.active);
 
       event.target.lastElementChild.previousSibling.classList.toggle(
@@ -131,7 +138,7 @@ const AdminDashboard = () => {
       <div className="background-red">
         <Header isLoggedIn={isAdmin} isAdmin={isAdmin} />
         <form action="" className={styles.form}>
-          <div className={styles.row}>
+          <div className={styles.statistics}>
             {/* Cards showing statistics */}
             {statistics.map((el, idx) => (
               <StatisticCard key={idx} count={el.count} group={el.group} />
@@ -139,10 +146,10 @@ const AdminDashboard = () => {
           </div>
           <div className={styles.row}>
             <div
-              className={`${styles["drop-down-container"]} ${styles.long}`}
+              className={`${styles["drop-down-container"]}`}
               onClick={showDropdown}
             >
-              <p className="selected">{Department}</p>
+              <p className={styles.selected}>{Department}</p>
               <DropDownArrow width="2rem" className={styles.dropdown} />
               <div className={styles.dropdownContent}>
                 {PROGRAMS.map((course, index) => (
@@ -153,12 +160,12 @@ const AdminDashboard = () => {
               </div>
             </div>
             <div
-              className={`${styles["drop-down-container"]} ${styles.small}`}
+              className={`${styles["drop-down-container"]}`}
               onClick={showDropdown}
             >
               <p className={styles.selected}>{Level}</p>
               <DropDownArrow width="2rem" className={styles.dropdown} />
-              <div className={`${styles.dropdownContent} ${styles.small}`}>
+              <div className={`${styles.dropdownContent}`}>
                 {LEVELS.map((l, idx) => (
                   <p key={idx} onClick={setLevel}>
                     {l}
