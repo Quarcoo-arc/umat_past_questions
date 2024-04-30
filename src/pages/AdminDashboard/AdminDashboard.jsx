@@ -42,35 +42,45 @@ const AdminDashboard = () => {
     console.log(
       event.target,
       `.${styles["drop-down-container"]}`,
-      event.target.closest(`.${styles["drop-down-container"]}`),
+      event.target.closest(`div .${styles["drop-down-container"]}`),
       event.target.matches(`.${styles["drop-down-container"]}`)
     );
-    if (event.target.matches("svg")) {
-      event.target.parentElement.children[
-        event.target.parentElement.children.length - 1
+    let dropdownContainer = event.target.closest(`div`);
+    if (dropdownContainer) {
+      // Toggle display dropdown list
+      dropdownContainer.children[
+        dropdownContainer.children.length - 1
       ].classList.toggle(styles.active);
-
-      event.target.classList.toggle(styles.rotate);
-    } else if (event.target.matches(`.${styles["selected"]}`)) {
-      event.target.parentElement.children[
-        event.target.parentElement.children.length - 1
-      ].classList.toggle(styles.active);
-
-      event.target.nextSibling.classList.toggle(styles.rotate);
-    } else if (event.target.matches(`.${styles["drop-down-container"]}`)) {
-      console.log("Here");
-      event.target.lastElementChild.classList.toggle(styles.active);
-
-      event.target.lastElementChild.previousSibling.classList.toggle(
-        styles.rotate
-      );
-    } else if (event.target.matches("path")) {
-      event.target.parentElement.parentElement.children[
-        event.target.parentElement.parentElement.children.length - 1
-      ].classList.toggle(styles.active);
-
-      event.target.parentElement.classList.toggle(styles.rotate);
+      // Rotate dropdown arror
+      dropdownContainer.children[
+        dropdownContainer.children.length - 2
+      ].classList.toggle(styles.rotate);
     }
+    // if (event.target.matches("svg")) {
+    //   event.target.parentElement.children[
+    //     event.target.parentElement.children.length - 1
+    //   ].classList.toggle(styles.active);
+
+    //   event.target.classList.toggle(styles.rotate);
+    // } else if (event.target.matches(".selected")) {
+    //   event.target.parentElement.children[
+    //     event.target.parentElement.children.length - 1
+    //   ].classList.toggle(styles.active);
+
+    //   event.target.nextSibling.classList.toggle(styles.rotate);
+    // } else if (event.target.matches(`.${styles["drop-down-container"]}`)) {
+    //   event.target.lastElementChild.classList.toggle(styles.active);
+
+    //   event.target.lastElementChild.previousSibling.classList.toggle(
+    //     styles.rotate
+    //   );
+    // } else if (event.target.matches("path")) {
+    //   event.target.parentElement.parentElement.children[
+    //     event.target.parentElement.parentElement.children.length - 1
+    //   ].classList.toggle(styles.active);
+
+    //   event.target.parentElement.classList.toggle(styles.rotate);
+    // }
   };
 
   const setLevel = (event) => {
@@ -149,7 +159,7 @@ const AdminDashboard = () => {
               className={`${styles["drop-down-container"]}`}
               onClick={showDropdown}
             >
-              <p className={styles.selected}>{Department}</p>
+              <p className="selected">{Department}</p>
               <DropDownArrow width="2rem" className={styles.dropdown} />
               <div className={styles.dropdownContent}>
                 {PROGRAMS.map((course, index) => (
@@ -163,7 +173,7 @@ const AdminDashboard = () => {
               className={`${styles["drop-down-container"]}`}
               onClick={showDropdown}
             >
-              <p className={styles.selected}>{Level}</p>
+              <p className="selected">{Level}</p>
               <DropDownArrow width="2rem" className={styles.dropdown} />
               <div className={`${styles.dropdownContent}`}>
                 {LEVELS.map((l, idx) => (
@@ -177,7 +187,7 @@ const AdminDashboard = () => {
               className={`${styles["drop-down-container"]} ${styles.medium}`}
               onClick={showDropdown}
             >
-              <p className={styles.selected}>{Semester}</p>
+              <p className="selected">{Semester}</p>
               <DropDownArrow width="2rem" className={styles.dropdown} />
               <div className={styles.dropdownContent}>
                 <p onClick={setSemester}>1ST SEMESTER</p>
