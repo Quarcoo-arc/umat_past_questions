@@ -8,7 +8,7 @@ import { ReactComponent as DeleteIcon } from "../../assets/svgs/DeleteIcon.svg";
 import { ReactComponent as PlusIcon } from "../../assets/svgs/PlusIcon.svg";
 import { ReactComponent as DropDownArrow } from "../../assets/svgs/DropDownArrow.svg";
 import { ReactComponent as SpinIcon } from "../../assets/svgs/SpinIcon.svg";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminContext from "../../context/AdminContext";
 import QuestionsContext from "../../context/QuestionsContext";
@@ -23,12 +23,14 @@ const AdminDashboard = () => {
     useContext(QuestionsContext);
   const navigate = useNavigate();
   const [selectedQuestions, setSelectedQuestions] = useState([]);
-
   const [selected, setSelected] = useState({
     Level: "Level",
     Department: "Department",
     Semester: "Semester",
   });
+  const levelSelectRef = useRef(null);
+  const semesterSelectRef = useRef(null);
+  const departmentSelectRef = useRef(null);
 
   const { Level, Department, Semester } = selected;
 
@@ -38,62 +40,62 @@ const AdminDashboard = () => {
     }
   }, [isAdmin, navigate]);
 
-  const showDropdown = (event) => {
-    console.log(
-      event.target,
-      `.${styles["drop-down-container"]}`,
-      event.target.closest(`div .${styles["drop-down-container"]}`),
-      event.target.matches(`.${styles["drop-down-container"]}`)
+  useEffect(() => {
+    if (isDropdownShown(semesterSelectRef)) toggleDropdown(semesterSelectRef);
+  }, [Semester]);
+
+  useEffect(() => {
+    if (isDropdownShown(departmentSelectRef))
+      toggleDropdown(departmentSelectRef);
+  }, [Department]);
+
+  useEffect(() => {
+    if (isDropdownShown(levelSelectRef)) toggleDropdown(levelSelectRef);
+  }, [Level]);
+
+  const toggleDropdown = (ref) => {
+    ref.current?.children[ref.current?.children.length - 1].classList.toggle(
+      styles.active
     );
-    let dropdownContainer = event.target.closest(`div`);
-    if (dropdownContainer) {
-      // Toggle display dropdown list
-      dropdownContainer.children[
-        dropdownContainer.children.length - 1
-      ].classList.toggle(styles.active);
-      // Rotate dropdown arror
-      dropdownContainer.children[
-        dropdownContainer.children.length - 2
-      ].classList.toggle(styles.rotate);
-    }
-    // if (event.target.matches("svg")) {
-    //   event.target.parentElement.children[
-    //     event.target.parentElement.children.length - 1
-    //   ].classList.toggle(styles.active);
+    ref.current?.children[ref.current?.children.length - 2].classList.toggle(
+      styles.rotate
+    );
+  };
 
-    //   event.target.classList.toggle(styles.rotate);
-    // } else if (event.target.matches(".selected")) {
-    //   event.target.parentElement.children[
-    //     event.target.parentElement.children.length - 1
-    //   ].classList.toggle(styles.active);
+  const isDropdownShown = (ref) => {
+    return ref.current?.children[
+      ref.current?.children.length - 1
+    ].classList.contains(styles.active);
+  };
 
-    //   event.target.nextSibling.classList.toggle(styles.rotate);
-    // } else if (event.target.matches(`.${styles["drop-down-container"]}`)) {
-    //   event.target.lastElementChild.classList.toggle(styles.active);
+  const toggleDepartmentDropdown = () => {
+    toggleDropdown(departmentSelectRef);
+    if (isDropdownShown(levelSelectRef)) toggleDropdown(levelSelectRef);
+    if (isDropdownShown(semesterSelectRef)) toggleDropdown(semesterSelectRef);
+  };
 
-    //   event.target.lastElementChild.previousSibling.classList.toggle(
-    //     styles.rotate
-    //   );
-    // } else if (event.target.matches("path")) {
-    //   event.target.parentElement.parentElement.children[
-    //     event.target.parentElement.parentElement.children.length - 1
-    //   ].classList.toggle(styles.active);
+  const toggleLevelDropdown = () => {
+    toggleDropdown(levelSelectRef);
+    if (isDropdownShown(departmentSelectRef))
+      toggleDropdown(departmentSelectRef);
+    if (isDropdownShown(semesterSelectRef)) toggleDropdown(semesterSelectRef);
+  };
 
-    //   event.target.parentElement.classList.toggle(styles.rotate);
-    // }
+  const toggleSemesterDropdown = () => {
+    toggleDropdown(semesterSelectRef);
+    if (isDropdownShown(departmentSelectRef))
+      toggleDropdown(departmentSelectRef);
+    if (isDropdownShown(levelSelectRef)) toggleDropdown(levelSelectRef);
   };
 
   const setLevel = (event) => {
     setSelected((prev) => ({ ...prev, Level: event.target.innerText }));
-    event.target.parentElement.parentElement.click();
   };
   const setDepartment = (event) => {
     setSelected((prev) => ({ ...prev, Department: event.target.innerText }));
-    event.target.parentElement.parentElement.click();
   };
   const setSemester = (event) => {
     setSelected((prev) => ({ ...prev, Semester: event.target.innerText }));
-    event.target.parentElement.parentElement.click();
   };
 
   const filterQuestions = (event) => {
@@ -156,8 +158,9 @@ const AdminDashboard = () => {
           </div>
           <div className={styles.row}>
             <div
+              ref={departmentSelectRef}
               className={`${styles["drop-down-container"]}`}
-              onClick={showDropdown}
+              onClick={toggleDepartmentDropdown}
             >
               <p className="selected">{Department}</p>
               <DropDownArrow width="2rem" className={styles.dropdown} />
@@ -170,8 +173,9 @@ const AdminDashboard = () => {
               </div>
             </div>
             <div
+              ref={levelSelectRef}
               className={`${styles["drop-down-container"]}`}
-              onClick={showDropdown}
+              onClick={toggleLevelDropdown}
             >
               <p className="selected">{Level}</p>
               <DropDownArrow width="2rem" className={styles.dropdown} />
@@ -184,8 +188,9 @@ const AdminDashboard = () => {
               </div>
             </div>
             <div
+              ref={semesterSelectRef}
               className={`${styles["drop-down-container"]} ${styles.medium}`}
-              onClick={showDropdown}
+              onClick={toggleSemesterDropdown}
             >
               <p className="selected">{Semester}</p>
               <DropDownArrow width="2rem" className={styles.dropdown} />
@@ -202,7 +207,6 @@ const AdminDashboard = () => {
             />
           </div>
           {/* TODO: Create a select all button / Checkbox */}
-          {/* TODO: Create a state variable to be updated upon checking a checkbox */}
           {questions.length ? (
             questions.map((link, index) => (
               <Question
