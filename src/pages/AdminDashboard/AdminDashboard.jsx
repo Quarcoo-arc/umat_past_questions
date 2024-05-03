@@ -2,18 +2,18 @@ import {
   Footer,
   Header,
   Question,
+  SelectInput,
   StatisticCard,
 } from "../../components/index";
 import { ReactComponent as DeleteIcon } from "../../assets/svgs/DeleteIcon.svg";
 import { ReactComponent as PlusIcon } from "../../assets/svgs/PlusIcon.svg";
-import { ReactComponent as DropDownArrow } from "../../assets/svgs/DropDownArrow.svg";
 import { ReactComponent as SpinIcon } from "../../assets/svgs/SpinIcon.svg";
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminContext from "../../context/AdminContext";
 import QuestionsContext from "../../context/QuestionsContext";
 import styles from "./AdminDashboard.module.css";
-import { LEVELS, PROGRAMS } from "../../utils/constants";
+import { LEVELS, PROGRAMS, SEMESTERS } from "../../utils/constants";
 
 const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
@@ -28,9 +28,7 @@ const AdminDashboard = () => {
     Department: "Department",
     Semester: "Semester",
   });
-  const levelSelectRef = useRef(null);
-  const semesterSelectRef = useRef(null);
-  const departmentSelectRef = useRef(null);
+  const [loadingQuestions, setloadingQuestions] = useState(false);
 
   const { Level, Department, Semester } = selected;
 
@@ -40,62 +38,8 @@ const AdminDashboard = () => {
     }
   }, [isAdmin, navigate]);
 
-  useEffect(() => {
-    if (isDropdownShown(semesterSelectRef)) toggleDropdown(semesterSelectRef);
-  }, [Semester]);
-
-  useEffect(() => {
-    if (isDropdownShown(departmentSelectRef))
-      toggleDropdown(departmentSelectRef);
-  }, [Department]);
-
-  useEffect(() => {
-    if (isDropdownShown(levelSelectRef)) toggleDropdown(levelSelectRef);
-  }, [Level]);
-
-  const toggleDropdown = (ref) => {
-    ref.current?.children[ref.current?.children.length - 1].classList.toggle(
-      styles.active
-    );
-    ref.current?.children[ref.current?.children.length - 2].classList.toggle(
-      styles.rotate
-    );
-  };
-
-  const isDropdownShown = (ref) => {
-    return ref.current?.children[
-      ref.current?.children.length - 1
-    ].classList.contains(styles.active);
-  };
-
-  const toggleDepartmentDropdown = () => {
-    toggleDropdown(departmentSelectRef);
-    if (isDropdownShown(levelSelectRef)) toggleDropdown(levelSelectRef);
-    if (isDropdownShown(semesterSelectRef)) toggleDropdown(semesterSelectRef);
-  };
-
-  const toggleLevelDropdown = () => {
-    toggleDropdown(levelSelectRef);
-    if (isDropdownShown(departmentSelectRef))
-      toggleDropdown(departmentSelectRef);
-    if (isDropdownShown(semesterSelectRef)) toggleDropdown(semesterSelectRef);
-  };
-
-  const toggleSemesterDropdown = () => {
-    toggleDropdown(semesterSelectRef);
-    if (isDropdownShown(departmentSelectRef))
-      toggleDropdown(departmentSelectRef);
-    if (isDropdownShown(levelSelectRef)) toggleDropdown(levelSelectRef);
-  };
-
-  const setLevel = (event) => {
-    setSelected((prev) => ({ ...prev, Level: event.target.innerText }));
-  };
-  const setDepartment = (event) => {
-    setSelected((prev) => ({ ...prev, Department: event.target.innerText }));
-  };
-  const setSemester = (event) => {
-    setSelected((prev) => ({ ...prev, Semester: event.target.innerText }));
+  const changeSelected = (type, val) => {
+    setSelected((prev) => ({ ...prev, [type]: val }));
   };
 
   const filterQuestions = (event) => {
@@ -108,17 +52,10 @@ const AdminDashboard = () => {
       alert("Please select from the categories available!");
       return;
     }
-    if (event.target.matches("path")) {
-      event.target.parentElement.classList.add(styles.rotate);
-      setTimeout(() => {
-        event.target.parentElement.classList.remove(styles.rotate);
-      }, 2000);
-    } else {
-      event.target.classList.add(styles.rotate);
-      setTimeout(() => {
-        event.target.classList.remove(styles.rotate);
-      }, 2000);
-    }
+    setloadingQuestions(true);
+    setTimeout(() => {
+      setloadingQuestions(false);
+    }, 2000);
     loadQuestions(Department, Level, Semester);
   };
 
@@ -157,50 +94,28 @@ const AdminDashboard = () => {
             ))}
           </div>
           <div className={styles.row}>
-            <div
-              ref={departmentSelectRef}
-              className={`${styles["drop-down-container"]}`}
-              onClick={toggleDepartmentDropdown}
-            >
-              <p className="selected">{Department}</p>
-              <DropDownArrow width="2rem" className={styles.dropdown} />
-              <div className={styles.dropdownContent}>
-                {PROGRAMS.map((course, index) => (
-                  <p onClick={setDepartment} key={index}>
-                    {course}
-                  </p>
-                ))}
-              </div>
-            </div>
-            <div
-              ref={levelSelectRef}
-              className={`${styles["drop-down-container"]}`}
-              onClick={toggleLevelDropdown}
-            >
-              <p className="selected">{Level}</p>
-              <DropDownArrow width="2rem" className={styles.dropdown} />
-              <div className={`${styles.dropdownContent}`}>
-                {LEVELS.map((l, idx) => (
-                  <p key={idx} onClick={setLevel}>
-                    {l}
-                  </p>
-                ))}
-              </div>
-            </div>
-            <div
-              ref={semesterSelectRef}
-              className={`${styles["drop-down-container"]} ${styles.medium}`}
-              onClick={toggleSemesterDropdown}
-            >
-              <p className="selected">{Semester}</p>
-              <DropDownArrow width="2rem" className={styles.dropdown} />
-              <div className={styles.dropdownContent}>
-                <p onClick={setSemester}>1ST SEMESTER</p>
-                <p onClick={setSemester}>2ND SEMESTER</p>
-              </div>
-            </div>
+            <SelectInput
+              options={PROGRAMS}
+              selectItem={changeSelected}
+              type="Department"
+              selected={Department}
+            />
+            <SelectInput
+              options={LEVELS}
+              selectItem={changeSelected}
+              type="Level"
+              selected={Level}
+            />
+            <SelectInput
+              options={SEMESTERS}
+              selectItem={changeSelected}
+              type="Semester"
+              selected={Semester}
+            />
             <SpinIcon
-              className={styles.clickable}
+              className={`${styles.clickable} ${
+                loadingQuestions ? styles.rotate : ""
+              }`}
               width="3rem"
               height="2.7rem"
               onClick={filterQuestions}
@@ -218,9 +133,7 @@ const AdminDashboard = () => {
               />
             ))
           ) : (
-            <h1 className={`${styles.question} ${styles.heading}`}>
-              No questions available yet!
-            </h1>
+            <h1 className={styles.heading}>No questions available yet!</h1>
           )}
           {/* Add & Delete Buttons & Functionalities */}
           <div className={styles.buttons}>
