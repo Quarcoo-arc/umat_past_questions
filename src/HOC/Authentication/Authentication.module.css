@@ -10,7 +10,8 @@
 }
 
 .card {
-  width: 50%;
+  width: 65%;
+  max-width: 40rem;
   height: fit-content;
 
   background: linear-gradient(
@@ -55,6 +56,7 @@
   position: absolute;
   bottom: -1.2rem;
   left: 41%;
+  width: 10rem;
 }
 
 .checkMark.red path {
@@ -65,10 +67,31 @@
   position: absolute;
   bottom: -1.3rem;
   left: 16%;
+  width: 2.3rem;
 }
 
 .largeNut {
   position: absolute;
   bottom: -3.5rem;
   right: 10%;
+  width: 5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .heading {
+    font-size: 3.5rem;
+  }
+  .checkMark {
+    left: 35%;
+    width: 9rem;
+  }
+  .card {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .card {
+    width: 90%;
+  }
 }
