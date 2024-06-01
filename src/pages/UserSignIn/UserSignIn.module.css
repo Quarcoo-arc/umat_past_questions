@@ -61,7 +61,7 @@
   .form {
     grid-template-columns: auto;
   }
-  label {
+  .form > label {
     display: none;
   }
   .auth,
