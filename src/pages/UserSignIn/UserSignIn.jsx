@@ -50,49 +50,41 @@ const UserSignIn = () => {
   return (
     <Authentication headingText="SIGN IN">
       <form className={styles.form} onSubmit={validateUser}>
-        <div className={styles.wrap}>
-          <div className={styles.wrapper}>
-            <label htmlFor="email">
-              <UserIcon className={styles.icon} />
-            </label>
-            <input
-              type="text"
-              name="email"
-              id="email"
-              placeholder="Email"
-              className={styles.inputField}
-              value={email}
-              onChange={onChange}
-            />
-          </div>
-          <div className={styles.wrapper}>
-            <label htmlFor="password">
-              <PasswordIcon className={styles.icon} />
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              className={styles.inputField}
-              value={password}
-              onChange={onChange}
-            />
-          </div>
+        <label htmlFor="email">
+          <UserIcon className={styles.icon} />
+        </label>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="Email"
+          className={styles.inputField}
+          value={email}
+          onChange={onChange}
+        />
+        <label htmlFor="password">
+          <PasswordIcon className={styles.icon} />
+        </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          className={styles.inputField}
+          value={password}
+          onChange={onChange}
+        />
 
-          <div className={styles["auth-wrap"]}>
-            <button className={styles.auth} type="submit">
-              LOGIN
-            </button>
-            <div className={styles["auth-other"]}>
-              <Link to="/forgot-password" className={styles.forgotPassword}>
-                forgot password
-              </Link>
-              <Link to="/register" className={styles.register}>
-                register
-              </Link>
-            </div>
-          </div>
+        <button className={styles.auth} type="submit">
+          LOGIN
+        </button>
+        <div className={styles["auth-other"]}>
+          <Link to="/forgot-password" className={styles.forgotPassword}>
+            forgot password
+          </Link>
+          <Link to="/register" className={styles.register}>
+            register
+          </Link>
         </div>
       </form>
     </Authentication>
