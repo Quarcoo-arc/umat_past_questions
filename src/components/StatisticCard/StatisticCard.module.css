@@ -1,0 +1,40 @@
+.stats {
+  background: linear-gradient(
+      135.23deg,
+      #eaeae4 12.02%,
+      rgba(238, 232, 178, 0.72071) 33.56%,
+      rgba(145, 211, 61, 0.292715) 73.31%,
+      rgba(169, 204, 30, 0.18) 83.77%
+    ),
+    #ffffff;
+  border-radius: 19px;
+  width: 15rem;
+  height: 9rem;
+  text-align: center;
+  letter-spacing: 0.155em;
+  padding: 2rem 0;
+  box-sizing: border-box;
+}
+
+h4 {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .stats {
+    width: 10rem;
+    height: 7rem;
+    letter-spacing: 0.095em;
+  }
+
+  h4 {
+    font-size: 0.7rem;
+    margin-bottom: 1.2rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+}

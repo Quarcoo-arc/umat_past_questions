@@ -15,17 +15,16 @@ const Authentication = ({
     <div className={styles.background}>
       <div className={styles.card}>
         <div className={styles.container}>
-          {admin && <NutIcon width="2.3rem" className={styles.smallNut} />}
+          {admin && <NutIcon className={styles.smallNut} />}
           <h1
             className={`${styles.heading} ${longHeading ? styles.small : ""}`}
           >
             {headingText}
           </h1>
           <CorrectIcon
-            width="10rem"
             className={`${styles.checkMark} ${redIcon ? styles.red : ""}`}
           />
-          {admin && <NutIcon width="5rem" className={styles.largeNut} />}
+          {admin && <NutIcon className={styles.largeNut} />}
         </div>
         {children}
       </div>

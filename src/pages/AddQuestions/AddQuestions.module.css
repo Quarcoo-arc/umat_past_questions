@@ -1,10 +1,11 @@
 .buttonWrapper {
-  width: 30%;
+  width: 30rem;
   display: flex;
   flex-direction: column;
   margin: 3% auto;
   justify-content: center;
   text-align: center;
+  align-items: center;
   position: relative;
 }
 
@@ -28,7 +29,7 @@
   color: white;
   font-weight: bold;
   top: 40%;
-  left: 35%;
+  left: 38%;
 }
 
 ::-webkit-file-upload-button {
@@ -61,6 +62,13 @@ input[type="file"] {
 .form {
   margin-top: 2%;
   margin-bottom: 4%;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 .buttonGroup,
@@ -113,5 +121,15 @@ input[type="file"] {
 
   .levelGroup {
     grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .buttonWrapper {
+    width: 18rem;
+  }
+
+  .reference {
+    left: 31%;
   }
 }
