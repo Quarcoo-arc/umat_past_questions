@@ -100,91 +100,82 @@ const UserRegistration = () => {
   return (
     <Authentication headingText="REGISTER" redIcon={true}>
       <form className={styles.form} onSubmit={addUser}>
-        <div className={styles.wrap}>
-          <div className={styles.col}>
-            <div className={styles.wrapper}>
-              <input
-                type="text"
-                name="firstName"
-                id="firstName"
-                placeholder="First Name"
-                className={styles.inputField}
-                onChange={onChange}
-                value={firstName}
-              />
-              <input
-                type="text"
-                name="lastName"
-                id="lastName"
-                placeholder="Last Name"
-                className={styles.inputField}
-                onChange={onChange}
-                value={lastName}
-              />
-              <input
-                type="number"
-                name="id"
-                id="id"
-                placeholder="ID/Ref. No."
-                className={styles.inputField}
-                onChange={onChange}
-                value={id}
-              />
-            </div>
-            <div className={styles.wrapper}>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Username"
-                className={styles.inputField}
-                onChange={onChange}
-                value={username}
-              />
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                className={`${styles.inputField} ${styles.xlg}`}
-                onChange={onChange}
-                value={email}
-              />
-            </div>
-            <div className={`${styles.wrapper} ${styles.space}`}>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className={`${styles.inputField} ${styles.lg}`}
-                onChange={onChange}
-                value={password}
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="Confirm Password"
-                className={`${styles.inputField} ${styles.lg}`}
-                onChange={onChange}
-                value={confirmPassword}
-              />
-            </div>
-          </div>
+        <input
+          type="text"
+          name="firstName"
+          id="firstName"
+          placeholder="First Name"
+          className={styles.inputField}
+          onChange={onChange}
+          value={firstName}
+        />
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          placeholder="Last Name"
+          className={styles.inputField}
+          onChange={onChange}
+          value={lastName}
+        />
+        <input
+          type="number"
+          name="id"
+          id="id"
+          placeholder="ID/Ref. No."
+          className={styles.inputField}
+          onChange={onChange}
+          value={id}
+        />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Username"
+          className={styles.inputField}
+          onChange={onChange}
+          value={username}
+        />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          className={`${styles.inputField} ${styles.xlg}`}
+          onChange={onChange}
+          value={email}
+        />
 
-          <div className={styles["auth-wrap"]}>
-            <button className={styles.auth} type="submit">
-              REGISTER
-            </button>
-            <div className={styles["auth-other"]}>
-              <p className={styles.forgotPassword}>
-                Already have an account? &nbsp;&nbsp;
-                <Link to="/sign-in" className={styles.register}>
-                  login
-                </Link>
-              </p>
-            </div>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          className={`${styles.inputField} ${styles.lg}`}
+          onChange={onChange}
+          value={password}
+        />
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          placeholder="Confirm Password"
+          className={`${styles.inputField} ${styles.lg} ${styles.last}`}
+          onChange={onChange}
+          value={confirmPassword}
+        />
+
+        <div className={styles["auth-wrap"]}>
+          <button className={styles.auth} type="submit">
+            REGISTER
+          </button>
+          <div className={styles["auth-other"]}>
+            <p className={styles.forgotPassword}>
+              Already have an account? &nbsp;&nbsp;
+              <Link to="/sign-in" className={styles.register}>
+                login
+              </Link>
+            </p>
           </div>
         </div>
       </form>

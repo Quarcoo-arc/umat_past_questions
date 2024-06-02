@@ -1,12 +1,13 @@
 .background {
   background-image: url(../../assets/images/library.jpg);
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  min-height: 100vh;
   height: 100%;
   background-size: cover;
+  position: relative;
 }
 
 .card {
@@ -23,6 +24,7 @@
     ),
     #ffffff;
   border-radius: 19px;
+  margin: 5rem auto;
 }
 
 .logo {
@@ -79,19 +81,38 @@
 
 @media screen and (max-width: 768px) {
   .heading {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
+
+  .heading.small {
+    font-size: 2rem;
+  }
+
   .checkMark {
-    left: 35%;
-    width: 9rem;
+    left: 40%;
+    width: 8rem;
   }
   .card {
     width: 80%;
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 426px) {
+  .heading {
+    font-size: 2.5rem;
+  }
   .card {
     width: 90%;
+  }
+
+  .checkMark {
+    width: 7rem;
+    bottom: -1rem;
+    left: 37%;
+  }
+
+  .logo {
+    right: 0.3rem;
+    bottom: 0.2rem;
   }
 }
