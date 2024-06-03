@@ -14,10 +14,9 @@ const PasswordReset = () => {
     >
       <form className={styles.form}>
         <div className={styles.wrapper}>
-          <div>
-            &nbsp;&nbsp;&nbsp;Password reset for{" "}
-            <span className={styles.green}>{email}</span>{" "}
-          </div>
+          <p>
+            Password reset for <span className={styles.green}>{email}</span>
+          </p>
         </div>
         <div className={styles.wrapper}>
           <input
