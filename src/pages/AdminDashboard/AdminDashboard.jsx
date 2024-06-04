@@ -53,10 +53,9 @@ const AdminDashboard = () => {
       return;
     }
     setloadingQuestions(true);
-    setTimeout(() => {
-      setloadingQuestions(false);
-    }, 2000);
-    loadQuestions(Department, Level, Semester);
+    loadQuestions(Department, Level, Semester).then(() =>
+      setloadingQuestions(false)
+    );
   };
 
   const addNew = () => navigate("/add-questions");

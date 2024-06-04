@@ -12,7 +12,7 @@ const ViewQuestions = () => {
 
   useEffect(() => {
     loadQuestions(department, level, semester);
-  }, [department, level, loadQuestions, semester]);
+  }, [department, level, semester]);
 
   const downloadQuestions = (event) => {
     event.preventDefault();
