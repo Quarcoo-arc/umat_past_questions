@@ -4,11 +4,13 @@ import { Footer, Header, Question } from "../../components/index";
 import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import QuestionsContext from "../../context/QuestionsContext";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 const ViewQuestions = () => {
   const { level, semester, department } = useParams();
   const { questions, loadQuestions } = useContext(QuestionsContext);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const storage = getStorage();
 
   useEffect(() => {
     loadQuestions(department, level, semester);
@@ -22,38 +24,38 @@ const ViewQuestions = () => {
     }
     //Download Questions
     selectedQuestions.forEach((question) => {
-      fetch(question, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/pdf",
-        },
-        mode: "no-cors",
-      })
-        .then((response) => response.blob())
-        .then((blob) => {
-          // Create blob link to download
-          const url = window.URL.createObjectURL(new Blob([blob]));
-          const link = document.createElement("a");
-          link.href = url;
-          link.setAttribute(
-            "download",
-            decodeURIComponent(
-              question.slice(
-                question.indexOf("F") + 1,
-                question.lastIndexOf("?")
+      getDownloadURL(ref(storage, question))
+        .then((url) => {
+          const xhr = new XMLHttpRequest();
+          xhr.responseType = "blob";
+          xhr.onload = (event) => {
+            const blob = xhr.response;
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute(
+              "download",
+              decodeURIComponent(
+                question.slice(
+                  question.indexOf("F") + 1,
+                  question.lastIndexOf("?")
+                )
               )
-            )
-          );
+            );
 
-          // Append to html link element page
-          document.body.appendChild(link);
+            // Append to html link element page
+            document.body.appendChild(link);
 
-          // Start download
-          link.click();
+            // Start download
+            link.click();
+          };
 
-          // Clean up and remove the link
-          link.parentNode.removeChild(link);
-          // window.location.reload();
+          xhr.open("GET", url);
+          xhr.send();
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Failed to download file!");
         });
     });
 
