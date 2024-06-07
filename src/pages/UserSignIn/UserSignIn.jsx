@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AdminContext from "../../context/AdminContext";
 import styles from "./UserSignIn.module.css";
+import { toast } from "react-toastify";
 
 const UserSignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -41,9 +42,9 @@ const UserSignIn = () => {
       }
     } catch (error) {
       if (error.message === "Firebase: Error (auth/network-request-failed).") {
-        alert("Network Error!");
+        toast.error("Network Error!");
       } else {
-        alert("Invalid email or password!");
+        toast.error("Invalid email or password!");
       }
     }
   };

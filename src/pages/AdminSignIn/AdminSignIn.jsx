@@ -9,6 +9,7 @@ import { Authentication } from "../../HOC";
 import AdminContext from "../../context/AdminContext";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import styles from "./AdminSignIn.module.css";
+import { toast } from "react-toastify";
 
 const AdminSignIn = () => {
   const { setIsAdmin, setIsUser } = useContext(AdminContext);
@@ -55,14 +56,14 @@ const AdminSignIn = () => {
           setIsUser(true);
           navigate("/admin-dashboard");
         } else {
-          alert("You are not an administrator!");
+          toast.error("You are not an administrator!");
         }
       }
     } catch (error) {
       if (error.message === "Firebase: Error (auth/network-request-failed).") {
-        alert("Network Error!");
+        toast.error("Network Error!");
       } else {
-        alert("Invalid email or password!");
+        toast.error("Invalid email or password!");
       }
     }
   };

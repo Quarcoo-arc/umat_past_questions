@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Authentication } from "../../HOC";
 import { app, db } from "../../firebase.config";
 import styles from "./UserRegistration.module.css";
+import { toast } from "react-toastify";
 
 const UserRegistration = () => {
   const navigate = useNavigate();
@@ -54,13 +55,13 @@ const UserRegistration = () => {
         confirmPassword
       )
     ) {
-      alert("Please fill in the blanks");
+      toast.error("Please fill in the blanks");
       return;
     } else if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      toast.error("Passwords do not match!");
       return;
     } else if (password.length < 6) {
-      alert("Password should be more than 6 characters!");
+      toast.error("Password should be more than 6 characters!");
       return;
     }
     try {
@@ -90,11 +91,10 @@ const UserRegistration = () => {
       navigate("/user-dashboard");
     } catch (error) {
       if (error.message === "Firebase: Error (auth/email-already-in-use).") {
-        alert("Email already in use!");
+        toast.error("Email already in use!");
       } else {
-        alert("Something went wrong!");
+        toast.error("Something went wrong!");
       }
-      console.log(error.message);
     }
   };
   return (

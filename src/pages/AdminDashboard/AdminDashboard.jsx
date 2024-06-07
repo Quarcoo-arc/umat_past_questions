@@ -14,6 +14,7 @@ import AdminContext from "../../context/AdminContext";
 import QuestionsContext from "../../context/QuestionsContext";
 import styles from "./AdminDashboard.module.css";
 import { LEVELS, PROGRAMS, SEMESTERS } from "../../utils/constants";
+import { toast } from "react-toastify";
 
 const AdminDashboard = () => {
   // TODO: Check if course name, level and semester are valid
@@ -49,7 +50,7 @@ const AdminDashboard = () => {
       Department === "Department" ||
       Semester === "Semester"
     ) {
-      alert("Please select from the categories available!");
+      toast.error("Please select from the categories available!");
       return;
     }
     setloadingQuestions(true);

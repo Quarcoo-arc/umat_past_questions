@@ -14,11 +14,14 @@ import AddQuestions from "./pages/AddQuestions/AddQuestions";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import PrivateRoute from "./routes/PrivateRoute";
 import { QuestionsContextProvider } from "./context/QuestionsContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
   return (
     <AdminContextProvider>
       <QuestionsContextProvider>
+        <ToastContainer />
         <Router>
           <Routes>
             <Route path="/" element={<LandingPage />} />

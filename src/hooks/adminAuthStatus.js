@@ -2,6 +2,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { db } from "../firebase.config";
+import { toast } from "react-toastify";
 
 export const useAuthStatus = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -35,7 +36,7 @@ export const useAuthStatus = () => {
           console.log(querySnap);
           setIsAdmin(true) && setLoggedIn(true);
         } else {
-          alert("You are not an administrator!");
+          toast.error("You are not an administrator!");
         }
         setCheckingStatus(false);
       }

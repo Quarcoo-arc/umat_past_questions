@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./UserDashboard.module.css";
 import { LEVELS, PROGRAMS, SEMESTERS } from "../../utils/constants";
 import { ProgramButton, RadioButton } from "../../components/Buttons";
+import { toast } from "react-toastify";
 
 const UserDashboard = () => {
   const [formData, setFormData] = useState({
@@ -45,9 +46,8 @@ const UserDashboard = () => {
   const viewQuestions = (event) => {
     event.preventDefault();
     if (!(department && semester && level)) {
-      alert("Fill in the missing fields");
+      toast.error("Fill in the missing fields");
     } else {
-      alert("Success!");
       navigate(
         `/view-questions/LEVEL ${level}/${department}/${semester}${
           semester === "1" ? "ST" : "ND"
