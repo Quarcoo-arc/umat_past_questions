@@ -5,6 +5,7 @@ import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import QuestionsContext from "../../context/QuestionsContext";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { toast } from "react-toastify";
 
 const ViewQuestions = () => {
   const { level, semester, department } = useParams();
@@ -19,7 +20,7 @@ const ViewQuestions = () => {
   const downloadQuestions = (event) => {
     event.preventDefault();
     if (selectedQuestions.length === 0) {
-      alert("No questions selected!");
+      toast.error("No questions selected!");
       return;
     }
     //Download Questions
@@ -55,7 +56,7 @@ const ViewQuestions = () => {
         })
         .catch((error) => {
           console.log(error);
-          alert("Failed to download file!");
+          toast.error("Failed to download file!");
         });
     });
 
@@ -72,7 +73,7 @@ const ViewQuestions = () => {
     window.open(
       `mailto:michaelquarcoo04@gmail.com?subject=${subject}&body=${body}`
     );
-    alert("Thanks for your message!");
+    toast("Thanks for your message!");
   };
 
   const selectQuestion = (event) => {
