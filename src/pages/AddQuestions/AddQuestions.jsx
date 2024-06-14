@@ -6,6 +6,7 @@ import QuestionsContext from "../../context/QuestionsContext";
 import styles from "./AddQuestions.module.css";
 import { LEVELS, PROGRAMS, SEMESTERS } from "../../utils/constants";
 import { ProgramButton, RadioButton } from "../../components/Buttons";
+import { toast } from "react-toastify";
 
 const AddQuestions = () => {
   const navigate = useNavigate();
@@ -82,11 +83,11 @@ const AddQuestions = () => {
   const addQuestions = (event) => {
     event.preventDefault();
     if (!(departments.length && semester && level && files.length)) {
-      alert("Fill in the missing portions");
+      toast.error("Fill in the missing portions");
     } else {
       /* TODO: Create Add to firestore functionality */
       addNewQuestions(formData);
-      alert("Success!");
+      toast.success("Operation complete!");
       setFormData({
         departments: [],
         level: "",
