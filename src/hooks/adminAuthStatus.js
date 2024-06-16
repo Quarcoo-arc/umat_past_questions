@@ -18,10 +18,10 @@ export const useAuthStatus = () => {
 
         let q;
 
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
           if (!user) {
             setCheckingStatus(false);
-            console.log("No user");
+            toast.error("User not found");
             return;
           }
           q = query(
@@ -29,16 +29,16 @@ export const useAuthStatus = () => {
             where("email", "==", user.email),
             where("isAdmin", "==", true)
           );
+          const querySnap = await getDocs(q);
+          if (querySnap.docs.length === 1) {
+            setIsAdmin(true);
+            setLoggedIn(true);
+            setCheckingStatus(false);
+          } else {
+            setCheckingStatus(false);
+            toast.error("Unauthorised");
+          }
         });
-        const querySnap = await getDocs(q);
-
-        if (querySnap.docs.length === 1) {
-          console.log(querySnap);
-          setIsAdmin(true) && setLoggedIn(true);
-        } else {
-          toast.error("You are not an administrator!");
-        }
-        setCheckingStatus(false);
       }
     };
     checkAdminStats();
