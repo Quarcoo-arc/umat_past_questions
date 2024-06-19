@@ -21,7 +21,8 @@ export const useAuthStatus = () => {
         onAuthStateChanged(auth, async (user) => {
           if (!user) {
             setCheckingStatus(false);
-            toast.error("User not found");
+            setLoggedIn(false);
+            setIsAdmin(false);
             return;
           }
           q = query(
