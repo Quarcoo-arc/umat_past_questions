@@ -1,3 +1,4 @@
 import Authentication from "./Authentication/Authentication";
+import Layout from "./Layout";
 
-export { Authentication };
+export { Authentication, Layout };
