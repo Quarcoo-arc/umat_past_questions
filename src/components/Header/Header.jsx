@@ -3,8 +3,14 @@ import { ReactComponent as SpeedDialIcon } from "../../assets/svgs/SpeedDialIcon
 import { ReactComponent as ToolsIcon } from "../../assets/svgs/ToolsIcon.svg";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
+import { useContext } from "react";
+import AdminContext from "../../context/AdminContext";
+import { useAuthStatus } from "../../hooks/useAuthStatus";
 
-const Header = ({ isLoggedIn, isAdmin }) => {
+const Header = () => {
+  const { isAdmin } = useContext(AdminContext);
+  const { loggedIn: isLoggedIn } = useAuthStatus();
+
   return (
     <div className={styles.row}>
       <UmatLogo className={styles.icon} />

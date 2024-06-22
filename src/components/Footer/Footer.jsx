@@ -9,9 +9,12 @@ import { getAuth } from "firebase/auth";
 import AdminContext from "../../context/AdminContext";
 import { useContext } from "react";
 import styles from "./Footer.module.css";
+import { useAuthStatus } from "../../hooks/useAuthStatus";
 
-const Footer = ({ isLoggedIn }) => {
+const Footer = () => {
   const { setIsAdmin, setIsUser } = useContext(AdminContext);
+  const { loggedIn: isLoggedIn, setLoggedIn } = useAuthStatus();
+
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -19,6 +22,7 @@ const Footer = ({ isLoggedIn }) => {
     auth.signOut();
     setIsAdmin(false);
     setIsUser(false);
+    setLoggedIn(false);
     navigate("/");
   };
 
